@@ -53,18 +53,16 @@ def get_all_tables(file_path:str):
          
             # Extract all tables found on the current page
             tables = page.extract_tables(table_settings=table_settings)
-       
-        
             for table in tables:
                     
                     df2 = pd.DataFrame(table[1:], columns=table[0])
-                    if df2.shape[1] == 8:
-                        df2_clean = df2.replace(r'^\s*$', pd.NA, regex=True)
-                        data_frames.append((page_num+1,df2_clean.dropna().to_numpy()))
-                  
-                    # if df2.shape[1] == 9:
+                    # if df2.shape[1] == 8:
                     #     df2_clean = df2.replace(r'^\s*$', pd.NA, regex=True)
-                    #     data_frames.append((page_num+1,df2_clean.iloc[:,2:].dropna().to_numpy()))
+                    #     data_frames.append((page_num+1,df2_clean.dropna().to_numpy()))
+                  
+                    if df2.shape[1] == 9:
+                        df2_clean = df2.replace(r'^\s*$', pd.NA, regex=True)
+                        data_frames.append((page_num+1,df2_clean.iloc[:,2:].dropna().to_numpy()))
 
     print("Stacking the data to stack_frame for file:",os.path.basename(file_path))
 
@@ -75,8 +73,8 @@ def get_all_tables(file_path:str):
  
     stack = data_frames[0][1]    
     for id,frame in data_frames[1:]:
-        if frame.shape[-1] != 8:
-        # if frame.shape[-1] != 7:
+        #if frame.shape[-1] != 8:
+        if frame.shape[-1] != 7:
             errs.append("Faulty data_frame excluded and needs manunal inspection:page_num:"+str(id))
             continue
         
@@ -89,7 +87,7 @@ def get_all_tables(file_path:str):
     for i,ele in enumerate(flt):
         flt[i] = flt[i].replace('\n',' ').lower()
 
-    np.savetxt(os.path.join('csv','raw','output_'+extract_month_year(file_path).strftime("%Y_%m")+'.csv'),flt.reshape(shape_now),"%s",",")
+    np.savetxt(os.path.join('csv','raw_2025','output_'+extract_month_year(file_path).strftime("%Y_%m")+'.csv'),flt.reshape(shape_now),"%s","|")
 
     if len(errs) > 0:
         print("========ERRORS=========")

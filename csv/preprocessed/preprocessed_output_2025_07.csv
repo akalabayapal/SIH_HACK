@@ -1,0 +1,715 @@
+id|code|department|name|state|date_start|date_start_revised|date_end|date_end_revised|cost_target|cost_target_revised|cost_spent|progress
+1|610315|adani airport holdings limited|guwahati airport new integrated terminal building construction project |assam|03/2018|03/2018|03/2025 |03/2025|1712.0|1712.0|0.0|94.1
+2|400144|airport authority of india [aai]|c/o nitb imphal airport |manipur|07/2022|07/2022|07/2024|07/2024|499.0|499.0|160.48|41.0
+3|608301|airport authority of india [aai]|widening of basic strip at western side of runway chainage 80m to 920m i/c slope stabilization measures [balance work] of uphill and improvement of storm water drainage system at pakyong airport, sikkim on design & build basis [epc] with integrated 10 years maintenance. |sikkim|12/2023|12/2023|02/2026 |02/2026|323.26|323.26|29.69|12.0
+4|608302|mis mocoal integration logins|tikak extension ocp |assam|07/2022|07/2022|07/2031 |07/2031|159.77|159.77|80.84|0.0
+5|702522|mis mocoal integration logins|tirap ocp |assam|11/2022|11/2022|11/2030 |11/2030|289.46|289.46|105.47|0.0
+6|702524|national institute of technology, arunachal pradesh|construction of permanent campus of national institute of technology arunachal pradesh |arunachal pradesh|03/2013|03/2013|08/2026 |08/2026|592.61|592.61|549.96|75.0
+7|602181|tezpur university|tezpur university projects |assam|06/2021|06/2021|11/2023|11/2023|153.71|153.71|288.87|93.0
+8|602182|national institute of technology, meghalaya|construction and developement of national institute of technology meghalaya permanent campus at sohra |meghalaya|09/2014|09/2014|03/2022|03/2022|494.52|494.52|413.57|86.0
+9|602184|ministry of education|construction of permanent campus for nit mizoram at lengpui, aizawl |mizoram|05/2014|05/2014|12/2029|12/2029|474.23|474.23|167.55|4.0
+10|602185|nit nagaland|establishment of nit nagaland |nagaland|09/2012|09/2012|12/2025 |12/2025|275.63|275.63|257.82|93.0
+11|702540|sikkim university|construction of sikkim university campus phase-i package-ii at yangang, south sikkim |sikkim|01/2022|01/2022|01/2025|01/2025|314.06|314.06|238.22|82.0
+12|702544|ministry of education|establishment of permanent campus of nit sikkim at khamdong-gangtok district |sikkim|03/2024|03/2024|02/2028|02/2028|685.76|610.76|121.56|7.0
+13|602193|national highways & infrastructure development corporation ltd. [nhidcl]|dibang multipurpose project |arunachal pradesh|02/2023|02/2023|02/2032|02/2032|31876.39|31876.4|3436.38|16.0
+14|602194|north eastern electric power corporation limited|240mw heo he project |arunachal pradesh|05/2025|05/2025|07/2029 |07/2029|1938.85|1938.85|49.31|3.0
+15|602195|north eastern electric power corporation limited|186 mw tato-i h e project |arunachal pradesh|05/2025|05/2025|07/2029 |07/2029|1750.07|1750.07|102.79|2.0
+16|400152|national highways & infrastructure development corporation ltd. [nhidcl]|subansiri lower he project [2000 mw] |multi-states (arunachal pradesh, assam)|09/2003|09/2003|09/2010|09/2010|6285.33|26075.5|24685.13|96.0
+17|705444|national highways & infrastructure development corporation ltd. [nhidcl]|teesta-vi he project, sikkim [500 mw], executed by lanco teesta hydro power limited [a wholly owned subsidiary of nhpc ltd. acquired through nclt] |sikkim|03/2019|03/2019|03/2024|03/2024|5748.04|5748.04|4495.28|68.0
+18|702555|national highways & infrastructure development corporation ltd. [nhidcl]|rangit-iv he project [120 mw] executed by jal power corporation ltd. [jpcl] - a wholly owned subsidiary of nhpc ltd. acquired through nclt |sikkim|03/2021|03/2021|05/2024|05/2024|938.29|1828.11|1554.15|90.0
+19|602223|power grid corporation of india limited [powergrid]|north eastern region power system improvement project [nerpsip] |multi-states (meghalaya, manipur, mizoram, tripura, nagaland, assam)|03/2016|03/2016|12/2018|12/2018|5111.33|6700.0|5253.47|96.0
+20|400158|power grid corporation of india limited [powergrid]|comprehensive scheme for strengthening of transmission and distribution [t&d] systems [csst&ds] in arunachal pradesh and sikkim |multi-states (sikkim, arunachal pradesh)|01/2016|01/2016|12/2018|12/2018|4754.42|4754.42|7321.07|81.0
+21|705450|ministryofpetroleumnaturalgas|rajasthan refinery project |arunachal pradesh|10/2017|10/2017|10/2022|10/2022|43129.0|72937.0|59524.37|87.0
+22|705453|ministry of petroleum & natural gas|paradip-numaligarh crude oil pipeline [pncpl] & crude oil import terminal [coit] at paradip |assam|01/2019|01/2019|07/2024|07/2024|10228.0|11407.0|9701.95|86.0
+23|705454|hindustan petroleum corporation limited|construction of lpg facilities at kamardanga, assam |assam|03/2023|03/2023|07/2027|07/2027|156.36|156.36|49.78|39.0
+24|616586|hindustan petroleum corporation limited [hpcl]|setting up of new rail fed pol facility at kamardanga, assam |assam|03/2023|03/2023|07/2027|07/2027|384.04|384.04|110.44|48.0
+25|616587|indian oil corporation limited [iocl]|grass root rail-fed depot at sekerkote, agartala as resitement of existing dharmanagar depot |tripura|06/2022|06/2022|09/2025|09/2025|656.0|656.0|465.73|84.0
+26|616588|ministry of petroleum & natural gas|numaligarh refinery expansion project |assam|07/2020|07/2020|07/2024|07/2024|12366.0|22494.0|16502.36|75.0
+27|705457|ministry of petroleum & natural gas|assam bio refinery, abrpl |assam|02/2018|02/2018|09/2021|09/2021|1750.0|4200.0|4650.0|99.0
+28|702612|ministry of petroleum & natural gas|development of surface facilities for production and evacuation of crude oil and natural gas from nadua and east khagorija |assam|01/2018|01/2018|02/2020|02/2020|682.9|726.93|488.37|94.0
+29|706718|ministry of petroleum & natural gas|guwahati refinery expansion [1.0 to 1.2 mmtpa] along with installation of cru, guwahati refinery |assam|05/2021|05/2021|10/2023|10/2023|412.3|577.0|430.83|84.0
+30|702625|ministry of petroleum & natural gas|construction of field gas gathering station at baghjan area for collection, processing & transportation of natural gas to be produced from baghjan field |assam|12/2020|12/2020|03/2024|03/2024|430.76|430.76|326.12|85.0
+31|702626|ministry of petroleum & natural gas|upgradation of facilities of numaligarh-siliguri product pipeline [nspl] for transportation of additional products from existing 1.72 mmtpa to 5.5 mmtpa |assam|06/2021|06/2021|12/2024|12/2024|860.0|860.0|566.18|98.0
+32|702627|ministryofpetroleumnaturalgas|augmentation/revamping of facilities at existing guwahati terminal at betkuchi |assam|04/2022|04/2022|09/2026|09/2026|277.0|323.09|185.18|67.0
+33|706724|ministryofpetroleumnaturalgas|capacity expansion of digboi refinery from 0.65 to 1.0 mmtpa |assam|06/2022|06/2022|03/2026|03/2026|768.0|740.0|99.02|35.0
+34|702628|ministry of petroleum & natural gas|pipeline network project rudrasagar |assam|01/2023|01/2023|04/2026|04/2026|344.99|344.99|210.89|46.0
+35|702630|ministry of petroleum & natural gas|borholla ggs life extension project [blep] |assam|09/2023|09/2023|05/2026|05/2026|198.7|198.7|36.78|29.0
+36|702631|nrl|dcu revamp project |assam|08/2021|08/2021|07/2024|07/2024|370.0|370.0|249.41|57.0
+37|702632|nrl|power recovery turbine [prt] in pfccu unit as an energy conservation scheme |assam|04/2023|04/2023|12/2024|12/2024|293.5|293.5|97.22|93.0
+38|702633|ministry of petroleum & natural gas|north east gas grid |multi-states (sikkim, arunachal pradesh, nagaland, meghalaya, assam, mizoram, tripura, manipur)|04/2020|04/2020|03/2024|03/2024|9265.0|9265.0|6375.02|85.0
+39|702629|ministryofpetroleumnaturalgas|augmentation/ revamping of dimapur depot, dimapur |nagaland|08/2023|08/2023|11/2027|11/2027|227.62|227.62|9.01|20.0
+40|702635|oil and natural gas corporation limited [ongc]|creation of gas dehydration facilities, tripura asset |tripura|03/2022|03/2022|05/2024|05/2024|209.33|131.51|65.97|62.0
+41|702637|northeast frontier railway [nfr]|agthori kamakhya section with construction of new rail cum- road bridge at saraighat - 7.062km |assam|05/2025|05/2025|12/2029 |12/2029|1473.77|1473.77|0.0|0.0
+42|702639|northeast frontier railway [nfr]|doubling of new bonggigaon to kamakhya via goalpara - 176 km |assam|09/2016|09/2016|03/2026|03/2026|4060.0|4961.0|3683.75|93.0
+43|701395|central organisation for railway electrification [core]|guwahati-dibrugarh via tinsukia & simaluguri-dibrugarh |assam|09/2018|09/2018|09/2020|09/2020|890.36|889.36|391.73|89.0
+44|400174|northeast frontier railway [nfr]|murkongselek-pasighat |multi-states (arunachal pradesh, assam)|03/2012|03/2012|03/2025|03/2025|435.0|1250.0|901.0|56.0
+45|702658|northeast frontier railway [nfr]|lumding furkating doubling project 140 km |multi-states (assam, nagaland)|01/2025|01/2025|02/2028 |02/2028|2123.7|2123.7|13.74|0.0
+46|706757|northeast frontier railway [nfr]|dimapur [dhansiri]-sukhobi kohima [zubza] nl [82.5 km] |multi-states (nagaland, assam)|02/2016|02/2016|03/2025|03/2025|6663.0|6663.0|5202.29|79.0
+47|706759|indian railway construction international limited [ircon]|sivok-rangpo new rail line |sikkim|05/2010|05/2010|05/2015|05/2015|7877.0|12133.0|8883.6|80.0
+48|702664|department of telecommunications [dot]|provision of 4g based mobile services in uncovered villages and national highways of meghalaya |meghalaya|09/2020|09/2020|03/2022|03/2022|971.96|971.96|208.25|98.0
+49|702665|department of telecommunications [dot]|provision of 4g mobile services in uncovered villages of arunachal pradesh and 2 districts of assam |multi-states (assam, arunachal pradesh)|10/2021|10/2021|04/2023|04/2023|1255.49|1255.49|284.04|89.0
+50|400291|department of water resources, river development & gr|borolia irrigation project |assam|12/1996|12/1996|12/2022|12/2022|256.16|256.16|0.0|0.0
+51|706763|water resources department-mn|thoubal multipurpose project |manipur|04/1997|04/1997|12/2019|12/2019|1449.44|1822.24|1837.91|98.0
+52|702668|airport authority of india [aai]|construction of new domestic terminal building building and miscellaneous works including maintenance, operations and aicmc at kadapa airport |andhra pradesh|01/2024|01/2024|01/2026|01/2026|265.91|265.91|45.54|31.0
+53|706776|airport authority of india [aai]|construction of new integrated terminal building and associated works including apron to park 3 code e type of aircraft or 6 code c type of aircraft at vijayawada airport. |andhra pradesh|09/2020|09/2020|09/2022|09/2022|611.8|611.8|464.55|77.0
+54|706777|airport authority of india [aai]|construction of new domestic terminal building at rajahmundry airport. |andhra pradesh|08/2023|08/2023|08/2025|08/2025|347.15|347.15|81.23|49.0
+56|706779|airport authority of india [aai]|development of new civil enclave at bihta |bihar|03/2025|03/2025|09/2027 |09/2027|1413.0|1413.0|0.0|1.0
+57|706780|airport authority of india [aai]|development of new civil enclave and associated works at darbhanga airport |bihar|07/2024|07/2024|01/2026 |01/2026|911.66|911.66|133.01|23.0
+58|706781|airport authority of india [aai]|construction of new domestic terminal building [phase-i and ii] and other allied structures at jpni airport, patna |bihar|10/2018|10/2018|07/2023|07/2023|1216.9|1216.9|1046.48|94.0
+59|616670|airport authority of india [aai]|goa airport terminal building extension project |goa|12/2019|12/2019|12/2021|12/2021|255.69|255.69|130.0|88.0
+60|616671|airport authority of india [aai]|development of dholera international greenfield airport , gujarat |gujarat|07/2022|07/2022|06/2026|06/2026|1305.0|1551.0|666.42|63.0
+61|616672|airport authority of india [aai]|construction of ntb complex including apron, taxi track and other associated civil works and electrical & mechanical installations towards tawi river side at ca jammu. |jammu and kashmir|07/2023|07/2023|06/2026|06/2026|861.37|861.37|154.3|30.0
+62|606431|airport authority of india [aai]|construction of new domestic terminal building and miscellaneous works at hubli airport |karnataka|01/2024|01/2024|01/2026|01/2026|320.47|320.47|56.54|36.0
+63|701405|airport authority of india [aai]|construction of new domestic terminal building and miscellaneous works at belagavi airport. |karnataka|02/2024|02/2024|01/2026|01/2026|322.45|322.45|115.82|48.0
+64|701406|airport authority of india [aai]|development of additional resa on either end on runway 10-28 at calicut airport. construction of embankment with slope protection, drainage system and associated works for additional resa on either end on runway 10-28 |kerala|02/2024|02/2024|09/2025|09/2025|484.57|484.57|74.67|19.0
+65|616694|airport authority of india [aai]|construction of terminal building & associated works at leh airport, ladakh |ladakh|09/2018|09/2018|09/2021|09/2021|480.0|640.0|427.04|67.0
+67|616695|airport authority of india [aai]|procurment of 30 nos acfts of wt capacity 10kl at various airports |multi-states (andhra pradesh, bihar, delhi, gujarat, jharkhand, karnataka, kerala, madhya pradesh, odisha, tamil nadu, telangana, uttar pradesh, west bengal)|05/2023|05/2023|06/2025 |06/2025|215.17|215.17|104.92|53.0
+68|616696|airport authority of india [aai]|sitc of atm automation system and asmgcs [including smr & mlat] for mumbai, navi mumbai, mopa [without asmgcs], hial & bial |multi-states (goa, karnataka, maharashtra, telangana)|10/2022|10/2022|09/2025 |09/2025|500.48|500.48|306.21|74.0
+69|616697|airport authority of india [aai]|construction of new passenger terminal building for domestic operations at jodhpur airport. |rajasthan|04/2023|04/2023|11/2024|11/2024|480.0|480.0|254.71|77.0
+70|616699|airport authority of india [aai]|construction of new integrated passenger terminal building at udaipur airport |rajasthan|11/2022|11/2022|03/2026|03/2026|887.0|887.0|312.4|44.0
+72|706811|airport authority of india [aai]|modernization of chennai airport, phase ii, part 2 |tamil nadu|06/2023|06/2023|07/2025|07/2025|1207.0|1207.0|376.47|21.0
+73|616701|airport authority of india [aai]|construction of new terminal building, second link taxi track, apron expansion, and associated works at prayagraj airport- on design & build basis. |uttar pradesh|08/2023|08/2023|11/2024|11/2024|219.18|274.38|206.33|97.0
+74|616702|adani airport holdings limited|lucknow airport-terminal 3- phase 1 & other associated works |uttar pradesh|09/2018|09/2018|03/2026 |03/2026|3100.0|3100.0|0.0|99.96
+75|701408|airport authority of india [aai]|development of lal bahadur shastri international airport, varanasi including c/o new terminal building, apron extension, runway extension, ptt and allied works. |uttar pradesh|07/2024|07/2024|07/2027|07/2027|2869.65|2869.65|302.3|14.0
+76|701410|airport authority of india [aai]|development of new integrated civil enclave at agra airport |uttar pradesh|07/2024|07/2024|07/2026 |07/2026|579.0|579.0|74.3|14.0
+77|606479|airport authority of india [aai]|development of new civil enclave at bagdogra airport |west bengal|10/2023|10/2023|01/2027|01/2027|1549.0|1549.0|262.41|10.0
+78|701411|airport authority of india [aai]|re-construction of rigid portions of secondary runway, k and a taxiway and strengthening of c taxiway at nscbi airport kolkata. |west bengal|12/2023|12/2023|02/2025|02/2025|328.3|328.3|98.15|44.0
+81|706835|south eastern coalfields limited [secl]|porda chimtapani ocp [10 mty] |chhattisgarh|12/2020|12/2020|03/2029 |03/2029|2310.12|2310.12|83.66|10.0
+82|701412|south eastern coalfields limited [secl]|chhal oc seam iii [6 mty] |chhattisgarh|12/2013|12/2013|03/2022|03/2022|610.63|610.63|577.46|85.0
+83|706854|south eastern coalfields limited [secl]|kusmunda oc expansion [15 to 50 mty] |chhattisgarh|08/2013|08/2013|03/2023|03/2023|7612.33|7612.33|4697.95|81.0
+84|706856|south eastern coalfields limited [secl]|baroud oc expansion [3.0-10.0mty] |chhattisgarh|08/2020|08/2020|03/2029 |03/2029|2309.8|2309.8|913.03|47.0
+85|706866|south eastern coalfields limited [secl]|dipka expansion ocp [40 mty] |chhattisgarh|12/2020|12/2020|03/2029 |03/2029|5241.4|5241.4|2675.0|37.0
+86|400204|south eastern coalfields limited [secl]|gevra oc [70 mty] |chhattisgarh|03/2016|03/2016|03/2023|03/2023|11816.4|11816.4|5328.96|77.0
+87|400205|secl - cil|jampali oc rce [2.0 mty] |chhattisgarh|05/2020|05/2020|03/2025|03/2025|278.64|278.64|210.07|82.0
+88|706922|south eastern coalfields limited [secl]|amera oc rce [1.0 mty] |chhattisgarh|02/2015|02/2015|03/2026 |03/2026|335.97|335.97|87.47|42.0
+89|706950|south eastern coalfields limited [secl]|amgaon oc rce [1.0 mty] |chhattisgarh|07/2015|07/2015|03/2026 |03/2026|316.11|316.11|188.53|71.0
+90|616840|south eastern coalfields limited [secl]|jagannathpur oc rce project[3.0 mty] |chhattisgarh|07/2016|07/2016|03/2025|03/2025|459.49|459.49|274.35|92.0
+91|616841|south eastern coalfields limited [secl]|mahamaya ocp [1.50 mty] |chhattisgarh|05/2018|05/2018|03/2026 |03/2026|410.26|410.26|169.3|38.0
+92|616842|south eastern coalfields limited [secl]|katkona ro ug mine |chhattisgarh|01/2023|01/2023|03/2029 |03/2029|329.21|329.21|60.3|2.0
+93|616843|south eastern coalfields limited [secl]|pelma oc mdo |chhattisgarh|10/2022|10/2022|03/2033 |03/2033|1725.04|1725.04|15.63|17.0
+94|617251|secl - cil|kusmunda oc expansion project 50-75 mty |chhattisgarh|11/2024|11/2024|03/2030 |03/2030|4516.88|4516.88|16.97|3.0
+95|616856|south eastern coalfields limited [secl]|manikpur oc expansion project 7 mty |chhattisgarh|01/2025|01/2025|03/2029 |03/2029|382.61|382.61|0.86|1.0
+96|616857|secl - cil|dipka oc |gujarat|01/2017|01/2017|03/2025 |03/2025|7580.0|7580.0|3091.0|65.0
+97|616858|ecl - cil|hura c ocp |jharkhand|08/2022|08/2022|03/2029 |03/2029|859.41|859.41|450.47|62.0
+98|602525|ministry of coal|konar expansion ocp |jharkhand|01/2022|01/2022|03/2032 |03/2032|799.34|799.34|426.16|46.0
+99|617252|ministry of coal|karo expansion ocp |jharkhand|01/2022|01/2022|03/2029 |03/2029|908.47|908.47|251.79|22.0
+100|602532|ministry of coal|sanghmitra oc |jharkhand|03/2027|03/2027|03/2032 |03/2032|2660.0|2660.0|0.0|0.0
+101|602535|ministry of coal|chandragupt ocp |jharkhand|08/2020|08/2020|03/2032 |03/2032|973.5|973.5|440.32|15.0
+102|602538|ministry of coal|kotre basantpur pachmo ocp |jharkhand|08/2020|08/2020|03/2032 |03/2032|861.06|625.4|441.05|41.0
+103|612781|nlc india limited [nlcil]|pachwara south coal block |jharkhand|12/2019|12/2019|09/2028 |09/2028|2242.9|2242.9|1165.64|54.0
+104|609041|ministry of coal|rpr magadh exp ocp |jharkhand|08/2020|08/2020|03/2028 |03/2028|7254.37|7254.37|1534.64|38.0
+105|616879|ministry of coal|north urimari expansion ocp |jharkhand|07/2021|07/2021|03/2029 |03/2029|778.8|778.8|695.11|67.0
+106|612786|ministry of coal|epr rohini - karketta ocp |jharkhand|01/2021|01/2021|03/2028 |03/2028|1020.42|1020.42|83.95|20.0
+107|612787|ministry of coal|epr pundi ocp |jharkhand|11/2020|11/2020|03/2027 |03/2027|713.35|713.35|236.57|10.0
+108|612788|ministry of coal|epr ashok oc |jharkhand|05/2021|05/2021|03/2028 |03/2028|2898.28|2898.28|176.6|21.0
+109|612789|ministry of coal|epr amrapali ocp |jharkhand|02/2020|02/2020|03/2028 |03/2028|5136.15|5136.15|1125.18|43.0
+110|616886|ministry of coal|rajrappa rce ocp |jharkhand|12/2009|12/2009|03/2016|03/2016|510.85|510.85|488.57|76.0
+111|612791|eastern coal fields limited [ecl]|chitra east oc |jharkhand|08/2018|08/2018|03/2026 |03/2026|513.99|513.99|228.71|51.0
+112|612790|ministry of coal|jharkhand-laiyo ocp |jharkhand|08/2020|08/2020|03/2031 |03/2031|764.57|764.57|145.81|25.0
+113|612793|bccl - cil|moonidih xv seam ug |jharkhand|08/2011|08/2011|03/2019|03/2019|1230.27|1230.27|624.17|81.0
+114|617253|ministry of coal|2.5 mtpa patherdih nlw washery |jharkhand|04/2016|04/2016|04/2018|04/2018|334.27|334.27|138.69|48.0
+115|612815|ministry of coal|amalagamated ntst kujama ocp 8.5mty |jharkhand|01/2023|01/2023|03/2030 |03/2030|4011.85|4011.85|398.5|28.0
+116|612816|ministry of coal|muraidih ug project |jharkhand|02/2011|02/2011|04/2014|04/2014|339.87|339.87|190.65|70.0
+117|612819|ministry of coal|tapin south expn |jharkhand|11/2020|11/2020|03/2028 |03/2028|230.41|230.41|21.0|20.0
+118|602579|ministry of coal|sirka oc |jharkhand|05/2020|05/2020|03/2028 |03/2028|222.82|222.82|139.31|60.0
+119|617254|ministry of coal|tetariakhar oc |jharkhand|11/2019|11/2019|03/2025|03/2025|243.52|243.52|44.64|28.0
+120|602582|eastern coal fields limited [ecl]|chuperbhita simlong ocp mdo 6 mty |jharkhand|12/2023|12/2023|03/2037 |03/2037|979.08|979.08|0.0|0.0
+121|612827|ccl - cil|jarangdih expn. ocp 1.5 mty |jharkhand|02/2020|02/2020|03/2029 |03/2029|414.37|414.37|85.6|26.0
+122|602593|ministry of coal|block e ocp |jharkhand|03/2024|03/2024|03/2029 |03/2029|5850.83|5850.83|0.0|2.0
+123|612834|ministry of coal|amadand ocp[4.0mty] |madhya pradesh|03/2016|03/2016|03/2021|03/2021|869.44|869.44|274.45|75.0
+124|616933|south eastern coalfields limited [secl]|rampur batura ocp [4.0mty] |madhya pradesh|07/2019|07/2019|03/2026 |03/2026|1248.93|1248.93|495.4|44.0
+125|612838|northern coalfields limited [ncl]|block b expansion [3.5 to 8.0 mtpa] opencast coal mining project |madhya pradesh|07/2019|07/2019|03/2023|03/2023|998.71|998.71|458.01|46.0
+126|612851|northern coalfields limited [ncl]|nigahi expansion [15 to 25 mtpa] opencast mining project |madhya pradesh|11/2020|11/2020|03/2025|03/2025|1729.68|1729.68|772.91|44.0
+127|612855|south eastern coalfields limited [secl]|kanchan oc exp |madhya pradesh|12/2014|12/2014|03/2026 |03/2026|371.04|371.04|144.61|47.0
+128|612856|south eastern coalfields limited [secl]|jhiria west ocp [1.5 mty] |madhya pradesh|01/2024|01/2024|03/2026 |03/2026|366.94|366.94|25.07|41.0
+129|617256|wcl - cil|rpr tawa-iii ug 0.84 mty |madhya pradesh|12/2021|12/2021|03/2027 |03/2027|314.09|314.09|5.7|17.0
+130|602633|western coalfields limited [wcl]|amalgamated dhankasa & jamunia ug |madhya pradesh|09/2022|09/2022|03/2027 |03/2027|399.2|399.2|72.21|67.0
+131|612876|western coalfields limited [wcl]|rpr of vishnupuri ug to oc |madhya pradesh|11/2022|11/2022|03/2029 |03/2029|220.62|220.62|0.0|11.0
+132|612877|western coalfields limited [wcl]|urdhan expansion oc cost plus |madhya pradesh|01/2023|01/2023|03/2031 |03/2031|206.88|206.88|23.22|1.0
+133|612883|western coalfields limited [wcl]|sharda ug mine |madhya pradesh|09/2023|09/2023|03/2028 |03/2028|166.25|166.25|2.78|9.0
+134|612885|western coalfields limited [wcl]|gandhigram ug mine |madhya pradesh|08/2019|08/2019|03/2026 |03/2026|414.15|414.15|13.27|57.0
+135|612894|western coalfields limited [wcl]|bhatadi expansion oc |maharashtra|05/2022|05/2022|03/2028 |03/2028|580.61|580.61|20.52|26.0
+136|617257|western coalfields limited [wcl]|amalgamated yekona i & yekona ii oc |maharashtra|08/2015|08/2015|03/2025|03/2025|727.28|727.28|524.54|80.0
+137|612898|western coalfields limited [wcl]|dinesh[makardhokra-iii] oc |maharashtra|02/2020|02/2020|03/2027 |03/2027|822.88|822.88|621.73|35.0
+138|612916|western coalfields limited [wcl]|dhuptala oc [sasti ug to oc ] |maharashtra|10/2021|10/2021|03/2028 |03/2028|711.01|711.01|80.33|17.0
+139|606781|western coalfields limited [wcl]|saoner ug mine -1 expansion 1.2 mty |maharashtra|01/2022|01/2022|03/2028 |03/2028|228.64|228.64|139.81|68.0
+140|617068|western coalfields limited [wcl]|sasti expansion opencast |maharashtra|08/2020|08/2020|03/2026 |03/2026|319.04|319.04|90.96|20.0
+141|617069|western coalfields limited [wcl]|new majri ug to oc 3 mty cost plus |maharashtra|09/2022|09/2022|03/2027 |03/2027|402.27|402.27|41.08|24.0
+142|701599|western coalfields limited [wcl]|makardhokra expn oc 4.9 mty |maharashtra|06/2022|06/2022|03/2026 |03/2026|361.87|361.87|67.64|12.0
+143|604791|western coalfields limited [wcl]|singhori deep oc min 2.0 mty |maharashtra|05/2022|05/2022|03/2029 |03/2029|335.75|335.75|26.64|6.0
+144|604792|western coalfields limited [wcl]|gokul extension oc mine |maharashtra|04/2021|04/2021|03/2026 |03/2026|309.58|309.58|29.85|8.0
+145|610940|western coalfields limited [wcl]|kolgaon expansion deep oc mine 0.80 mty |maharashtra|09/2023|09/2023|03/2027 |03/2027|198.71|198.71|0.71|3.0
+146|617224|western coalfields limited [wcl]|ballarpur north west oc mine |maharashtra|12/2022|12/2022|03/2029 |03/2029|360.81|360.81|0.0|4.0
+147|400005|western coalfields limited [wcl]|gadegaon oc 3 mty |maharashtra|10/2023|10/2023|03/2030 |03/2030|497.41|497.41|0.0|0.0
+148|400010|western coalfields limited [wcl]|ghonsa expansion deep oc mine 1.5 mty |maharashtra|03/2021|03/2021|03/2029 |03/2029|184.71|184.71|10.48|6.0
+149|613003|western coalfields limited [wcl]|amlg gauri pauni expansion oc - 9.0 mty |maharashtra|04/2024|04/2024|03/2030 |03/2030|1225.21|1225.21|78.41|1.0
+150|400012|western coalfields limited [wcl]|gaurideep/gauri central ocp 7.00 mty cp |maharashtra|06/2024|06/2024|03/2030 |03/2030|973.07|973.07|0.11|0.0
+151|613002|western coalfields limited [wcl]|rpr of bhanegaon oc |maharashtra|09/2022|09/2022|03/2028 |03/2028|405.2|405.2|11.71|8.0
+152|613008|western coalfields limited [wcl]|n. extn. mungoli nirguda d ocp 6.125 mty |maharashtra|06/2024|06/2024|03/2030 |03/2030|1024.91|1024.91|165.54|0.0
+153|400018|western coalfields limited [wcl]|niljai expansion deep ocp |maharashtra|08/2016|08/2016|03/2022|03/2022|319.75|319.75|367.6|79.0
+154|400019|western coalfields limited [wcl]|ukni deep oc mine -cost plus |maharashtra|01/2019|01/2019|03/2021|03/2021|237.06|237.06|159.21|87.0
+155|613013|western coalfields limited [wcl]|amalgamated inder-kamptee deep oc |maharashtra|09/2018|09/2018|03/2024|03/2024|235.9|235.9|237.12|98.0
+156|400022|western coalfields limited [wcl]|adasa ug to oc mine |maharashtra|11/2018|11/2018|03/2024|03/2024|316.0|316.0|308.84|86.0
+157|400023|western coalfields limited [wcl]|amal gondegaon ghatrohana expn ocp |maharashtra|09/2024|09/2024|03/2030 |03/2030|668.54|668.54|0.53|0.0
+158|613015|western coalfields limited [wcl]|waghoda ug mine [1.02 mty] |maharashtra|01/2025|01/2025|03/2030 |03/2030|379.3|379.3|0.0|0.0
+159|608922|western coalfields limited [wcl]|kolarpimpri expansion oc [2.5 mty] |maharashtra|02/2025|02/2025|03/2030 |03/2030|630.37|630.37|0.0|0.0
+160|615194|bharat coking coal limited [bccl]|master plan for jharia and raniganj coalfields |multi-states (jharkhand, west bengal)|08/2009|08/2009|08/2019|08/2019|2661.73|2661.73|787.75|43.0
+161|707229|northern coalfields limited [ncl]|bina kakri amalgamation expansion opencast mining project [14 mtpa] |multi-states (madhya pradesh, uttar pradesh)|08/2020|08/2020|03/2024|03/2024|836.42|836.42|778.77|89.0
+162|615195|northern coalfields limited [ncl]|khadia expansion [10 to 16 mtpa] opencast mining project |multi-states (madhya pradesh, uttar pradesh)|06/2021|06/2021|03/2025|03/2025|491.67|491.67|202.18|40.0
+163|400033|mahanadi coalfields limite|subhadra ocp |odisha|05/2021|05/2021|03/2029|03/2029|1693.81|1693.81|1278.66|42.0
+164|604833|mahanadi coalfields limite|siarmal ocp |odisha|02/2021|02/2021|03/2029|03/2029|5194.95|5194.95|3455.65|54.0
+165|400035|mahanadi coalfields limite|bhubaneswari expansion ocp |odisha|01/2023|01/2023|03/2031 |03/2031|3145.45|6321.73|1250.66|21.0
+166|701091|mahanadi coalfields limite|balaram expansion ocp |odisha|08/2020|08/2020|03/2029 |03/2029|3504.21|3504.21|1027.23|52.0
+167|617231|mahanadi coalfields limite|gopalji kaniha ocp [10 to 30 mty] |odisha|04/2022|04/2022|03/2030 |03/2030|8416.19|6107.87|1694.31|17.0
+168|610984|mahanadi coalfields limite|integrated lakhanpur-belpahar-lilari ocp |odisha|05/2018|05/2018|03/2027 |03/2027|2434.75|2434.75|1805.65|61.0
+169|610985|mahanadi coalfields limite|bharatpur re-organization ocp |odisha|11/2018|11/2018|03/2029 |03/2029|2838.86|2838.86|1748.9|47.0
+170|602792|mahanadi coalfields limite|basundhara west extension opencast pro |odisha|05/2014|05/2014|03/2027 |03/2027|479.15|479.15|259.2|62.0
+171|400043|singareni collieries company limited [sccl]|naini coal mine |odisha|03/2020|03/2020|03/2026 |03/2026|494.3|494.3|491.33|80.0
+172|701101|mahanadi coalfields limite|integrated kulda garjanbahal ocp 40 mty |odisha|04/2023|04/2023|03/2033 |03/2033|3563.5|3563.5|150.7|3.0
+173|602797|mahanadi coalfields limite|bhubaneswari expn ocp 50 mty |odisha|03/2024|03/2024|03/2033 |03/2033|5366.27|5366.27|0.0|3.0
+174|400045|mahanadi coalfields limite|hingula ii oc expn ph iii 15 mty |odisha|11/2022|11/2022|03/2029 |03/2029|1561.85|1561.85|50.15|23.0
+175|701105|mahanadi coalfields limite|balabhadra ocp |odisha|04/2023|04/2023|03/2030 |03/2030|978.44|978.44|211.36|8.0
+176|701107|singareni collieries company limited [sccl]|jawahar khani open cast mine |telangana|12/2021|12/2021|03/2025|03/2025|297.88|297.88|46.39|20.0
+177|604852|singareni collieries company limited [sccl]|kalyanikhani opencast project |telangana|05/2017|05/2017|03/2026 |03/2026|384.32|384.32|281.83|75.0
+178|604853|singareni collieries company limited [sccl]|kakathiya khani opencast - iii project phase - i |telangana|05/2017|05/2017|03/2026 |03/2026|413.84|413.84|397.55|79.0
+179|701113|singareni collieries company limited [sccl]|godavarikhani coal mine - 5 |telangana|05/2019|05/2019|03/2025|03/2025|607.04|607.04|178.82|71.0
+180|400062|singareni collieries company limited [sccl]|indaram opencast project |telangana|12/2022|12/2022|03/2025|03/2025|424.81|424.81|402.64|80.0
+181|604863|singareni collieries company limited [sccl]|goleti opencast mine |telangana|08/2021|08/2021|03/2026 |03/2026|345.6|345.6|73.25|20.0
+182|701121|singareni collieries company limited [sccl]|venkatesh khani coal mine |telangana|06/2020|06/2020|03/2026 |03/2026|484.5|484.5|434.44|75.0
+183|701122|singareni collieries company limited [sccl]|ramagundam oc-ii extension project |telangana|06/2015|06/2015|03/2026 |03/2026|489.62|489.62|405.54|77.0
+184|707267|singareni collieries company limited [sccl]|kakatiyakhani oc - 2 project |telangana|09/2017|09/2017|03/2025|03/2025|442.42|442.42|203.15|63.0
+185|615202|eastern coal fields limited [ecl]|mohanpur expansion oc -phase ii |west bengal|11/2020|11/2020|03/2026 |03/2026|888.99|888.99|85.51|30.0
+186|400065|eastern coal fields limited [ecl]|bonjemehari expansion ocp |west bengal|08/2021|08/2021|03/2026|03/2026|570.11|570.11|81.29|16.0
+187|701126|eastern coal fields limited [ecl]|nakrakonda kumardih- b ocp |west bengal|08/2018|08/2018|03/2029 |03/2029|502.68|502.68|70.97|25.0
+188|701127|ecl - cil|siduli [oc & ug] |west bengal|05/2018|05/2018|03/2027 |03/2027|535.18|535.18|5.05|14.0
+189|701128|eastern coal fields limited [ecl]|tilaboni ug |west bengal|03/2023|03/2023|03/2029|03/2029|749.08|749.08|51.73|10.0
+190|400073|eastern coal fields limited [ecl]|jhanjra expansion ug |west bengal|04/2020|04/2020|03/2029 |03/2029|1210.12|1210.12|514.93|40.0
+191|400074|eastern coal fields limited [ecl]|sonepur bazari expansion ocp [12 mty] |west bengal|07/2021|07/2021|03/2029 |03/2029|5365.88|5365.88|571.02|17.0
+192|611017|ministry of coal|2.0 mtpa bhojudih nlw washery |west bengal|03/2019|03/2019|09/2020|09/2020|384.57|384.57|353.21|97.0
+193|611016|eastern coal fields limited [ecl]|itapara ocp |west bengal|12/2023|12/2023|03/2030 |03/2030|929.1|929.1|65.61|7.0
+194|400077|eastern coal fields limited [ecl]|shyamsundarpur ug including sarpi |west bengal|04/2020|04/2020|03/2026 |03/2026|483.65|483.65|55.89|12.0
+195|400078|eastern coal fields limited [ecl]|parasea-belbaid ug project |west bengal|01/2023|01/2023|03/2028 |03/2028|389.1|389.1|131.42|16.0
+196|617240|eastern coal fields limited [ecl]|parascole jambad ocp |west bengal|11/2024|11/2024|03/2037 |03/2037|1193.55|1193.55|6.79|0.0
+197|705237|nlc india limited [nlcil]|50 mw wind power project |gujarat|02/2024|02/2024|06/2025|06/2025|383.84|383.84|303.5|41.0
+198|400087|nlc india limited [nlcil]|nlc talabira thermal power project |odisha|01/2024|01/2024|03/2030 |03/2030|27212.96|27213.0|1938.68|1.0
+199|617179|nlc india limited [nlcil]|300 mw spp part of 510 mw cpsu scheme |rajasthan|03/2023|03/2023|09/2024|09/2024|1813.0|1813.0|769.57|68.0
+200|705244|nlc india limited [nlcil]|50 mw solar pp minedout area |tamil nadu|02/2024|02/2024|03/2025|03/2025|218.03|218.03|160.93|46.0
+201|617181|nlc india limited [nlcil]|ghatampur thermal power plant 3 x 660 mw |uttar pradesh|08/2016|08/2016|11/2020|11/2020|17237.8|21780.9|20135.48|92.0
+202|617182|wr|dharamjaigarh-korba |chhattisgarh|03/2017|03/2017|12/2026|12/2026|1686.22|1686.22|342.96|40.0
+203|617183|ministry of coal|shivpur-kathautia new rail [bg] line [49 km] [package ii of tori-shivpur-kathautia line] |jharkhand|05/2022|05/2022|06/2025 |06/2025|1799.64|1799.64|1293.71|60.0
+204|617184|damodar valley corporation|tubed coal mine |jharkhand|10/2016|10/2016|05/2026|05/2026|1581.0|1581.0|599.18|34.0
+205|617185|national thermal power corporation [ntpc]|badam coal mining project of ntpc |jharkhand|09/2019|09/2019|12/2056|12/2056|502.0|784.0|302.2|59.0
+209|617186|satluj jal vidyut nigam [sjvn] thermal limited|buxar thermal power project [1320 mw] |bihar|06/2019|06/2019|01/2024|01/2024|10439.09|13756.6|11970.96|92.0
+210|617243|national thermal power corporation [ntpc]|lara super thermal power project stage-ii [2 x 800 mw] |chhattisgarh|08/2023|08/2023|06/2028 |06/2028|15530.0|15530.0|2288.0|14.0
+211|617188|national thermal power corporation [ntpc]|sipat super thermal power project, stage-iii [1x800 mw] |chhattisgarh|09/2024|09/2024|09/2029 |09/2029|9791.0|9791.0|0.0|0.0
+212|400096|satluj jal vidyut nigam [sjvn] thermal limited|bagodara solar power project |gujarat|05/2021|05/2021|12/2025|12/2025|339.35|339.35|317.59|51.0
+213|400095|satluj jal vidyut nigam [sjvn] thermal limited|dhaulasidh hydro electric project [66 mw] |himachal pradesh|05/2021|05/2021|11/2025|11/2025|687.97|1511.87|908.65|67.0
+214|611047|satluj jal vidyut nigam [sjvn] thermal limited|luhri stage-i hydro electric project [210 mw] |himachal pradesh|11/2020|11/2020|01/2026|01/2026|1810.56|3584.53|1742.92|51.0
+215|400102|satluj jal vidyut nigam [sjvn] thermal limited|382 mw sunni dam hep |himachal pradesh|04/2018|04/2018|03/2027 |03/2027|2615.0|2615.0|495.57|0.5
+216|400105|satluj jal vidyut nigam [sjvn] thermal limited|sunni dam hydro electric project [382 mw] |himachal pradesh|01/2023|01/2023|04/2028|04/2028|2614.51|4540.71|956.76|29.0
+217|400103|national highways & infrastructure development corporation ltd. [nhidcl]|pakal dul [drangdhuran] hydroelectric project, 1000 mw |jammu and kashmir|02/2018|02/2018|04/2020|04/2020|8112.12|8112.12|6916.1|71.0
+218|400107|national highways & infrastructure development corporation ltd. [nhidcl]|kiru he project |jammu and kashmir|03/2019|03/2019|09/2023|09/2023|4287.59|4287.59|3055.87|66.0
+219|400109|national highways & infrastructure development corporation ltd. [nhidcl]|ratle he project - 850 mw, ratle hydroelectric power corporation limited. |jammu and kashmir|02/2021|02/2021|02/2026|02/2026|5281.94|5281.94|1009.79|24.0
+220|617246|national highways & infrastructure development corporation ltd. [nhidcl]|kwar he project |jammu and kashmir|05/2022|05/2022|11/2026 |11/2026|4526.12|4526.12|1078.61|23.0
+221|617200|national thermal power corporation [ntpc]|patratu thermal power station expansion project phase-i [3x800 mw] |jharkhand|11/2017|11/2017|03/2023|03/2023|17112.0|20302.0|17365.0|81.0
+222|617201|damodar valley corporation|koderma thermal power station phase ii [2x800 mw] at koderma, jharkhand |jharkhand|11/2024|11/2024|03/2029 |03/2029|14358.0|14358.0|1116.7|1.0
+223|400112|satluj jal vidyut nigam [sjvn] thermal limited|omkareshwar floating solar power project [90 mw] |madhya pradesh|11/2022|11/2022|08/2024 |08/2024|646.17|646.17|0.0|0.0
+225|400115|national thermal power corporation [ntpc]|talcher thermal power station stage iii [2 x 660 mw] expansion |odisha|09/2022|09/2022|05/2027|05/2027|11843.75|12543.0|3975.0|26.0
+226|400116|satluj jal vidyut nigam [sjvn] thermal limited|bikaner solar power project |rajasthan|05/2022|05/2022|04/2024|04/2024|5491.89|5491.89|4606.84|82.0
+229|400117|thdc india limited|khurja super thermal power plant [2x660 mw] |uttar pradesh|08/2019|08/2019|02/2024|02/2024|11089.42|13276.2|12429.05|96.0
+230|617206|national thermal power corporation [ntpc]|singrauli super thermal power project, stage-iii [2x800 mw] |uttar pradesh|03/2024|03/2024|02/2030 |02/2030|17195.0|17195.0|1626.0|8.0
+231|617207|national thermal power corporation [ntpc]|tapovan-vishnugad hep [4x130 mw] |uttarakhand|11/2006|11/2006|03/2013|03/2013|2978.0|10907.3|7123.58|77.0
+232|400120|thdc india limited|tehri pumped storage plant project [4x250 mw] |uttarakhand|06/2011|06/2011|06/2022|06/2022|4825.6|8339.0|7939.82|98.0
+233|400121|thdc india limited|vishnugad pipalkoti hydro electric project [444 mw] |uttarakhand|01/2014|01/2014|12/2022|12/2022|3860.35|6823.72|4828.89|72.0
+234|617210|damodar valley corporation|raghunathpur thermal power station phase ii [2x660 mw] at raghunathpur, purulia, west bengal |west bengal|02/2025|02/2025|06/2029 |06/2029|17673.0|17673.0|1183.7|1.0
+235|609019|national thermal power corporation [ntpc]|rammam-iii hepp [3x40 mw] |west bengal|09/2014|09/2014|09/2019|09/2019|1381.84|1381.84|1266.0|45.0
+236|617212|damodar valley corporation|installation of fgd for 4x210 & 2x250 mw mtps u 1-6 |west bengal|02/2021|02/2021|01/2024|01/2024|1037.0|1106.0|1085.39|91.0
+237|617211|power grid corporation of india limited [powergrid]|transmission scheme for solar energy zone in ananthpuram 2500mw and kurnool 1000mw |andhra pradesh|09/2023|09/2023|09/2025|09/2025|1248.69|1248.69|820.26|78.0
+238|617214|power grid corporation of india limited [powergrid]|augmentation of 1x1500 mva 3rd 765/400 kv transformation capacity at kurnool new substation |andhra pradesh|12/2023|12/2023|09/2025|09/2025|163.61|163.61|50.72|39.0
+239|617215|power grid corporation of india limited [powergrid]|transmission system strengthening at kurnool- iii ps for integration of additional re generation projects [powergrid kurnool iii ps re transmission limited] |andhra pradesh|03/2025|03/2025|12/2027 |12/2027|2886.0|2886.0|28.86|0.0
+240|617216|power grid corporation of india limited [powergrid]|western region expansion scheme-xxv |chhattisgarh|02/2023|02/2023|11/2023|11/2023|385.84|385.84|378.16|96.0
+241|617249|power grid corporation of india limited [powergrid]|transmission scheme for evacuation of 4.5gw re injection at khavda ps under phase ii- part b |gujarat|03/2023|03/2023|03/2025|03/2025|1167.55|1167.0|1013.39|91.0
+242|617248|power grid corporation of india limited [powergrid]|transmission scheme for evacuation of 4.5gw re injection at khavda ps under phase ii- part c |gujarat|03/2023|03/2023|03/2025|03/2025|2820.99|2820.99|2454.26|84.0
+243|617250|power grid corporation of india limited [powergrid]|establishment of khavda pooling station-2 kps2 in khavda re park kps2 transmission system limited |gujarat|03/2023|03/2023|12/2024|12/2024|966.79|966.79|894.76|95.0
+244|617221|power grid corporation of india limited [powergrid]|transmission system for evacuation of additional 7 gw re power from khavda re park under phase-iii part b [vataman transmission limited] |gujarat|12/2023|12/2023|12/2025|12/2025|3751.82|3751.82|1500.72|21.0
+245|400136|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from potential renewable energy zone in khavda area of gujarat under phase iv [7 gw] part e3 |gujarat|07/2023|07/2023|07/2025|07/2025|334.0|334.0|70.44|22.0
+246|617225|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from potential energy renewable zone in khavda area of gujarat under ph-iv [7gw] part e2 |gujarat|05/2024|05/2024|05/2026|05/2026|679.0|679.0|81.48|18.0
+247|400138|power grid corporation of india limited [powergrid]|augmentation of transformation capacity at jam khambhaliya ps [gis] [spv name powergrid jam khambhaliya transmission limited] |gujarat|10/2024|10/2024|07/2026 |07/2026|329.0|329.0|9.97|1.0
+248|400139|power grid corporation of india limited [powergrid]|provision of dynamic reactive compensation at khavda pooling station 1 [kps1] and khavda pooling station 3 [kps3] |gujarat|11/2024|11/2024|11/2026 |11/2026|501.0|501.0|5.01|1.0
+249|617226|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from potential renewable energy zone in khavda area of gujarat under phase-iv [7gw] part b [spv name powergrid south olpad transmission limited] |gujarat|10/2024|10/2024|10/2026 |10/2026|4766.0|4766.0|513.29|5.0
+250|400141|power grid corporation of india limited [powergrid]|augmentation of transformation capacity at kps1 [gis] and kps2 [gis] [phase-v part b1 and part b2 scheme] [spv name- powergrid kps1 and 2 augmentation transmission limited] |gujarat|02/2025|02/2025|02/2027 |02/2027|466.0|466.0|6.99|0.0
+251|400142|power grid corporation of india limited [powergrid]|augmentation of banaskantha [raghanesda] ps [gis] [powergrid banaskantha transco limited] |gujarat|03/2025|03/2025|03/2027 |03/2027|172.0|172.0|1.72|0.0
+252|615183|power grid corporation of india limited [powergrid]|implementation of lilo of both circuits of 400kv vindhyachal ps-sasan d/c line at hindalco switchyard |haryana|06/2024|06/2024|12/2026 |12/2026|370.0|370.0|1.0|1.0
+253|615184|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from pakaldul hep in chenab valley heps - lta system |jammu and kashmir|02/2022|02/2022|04/2025|04/2025|318.12|318.12|286.31|99.0
+254|615185|power grid corporation of india limited [powergrid]|transmission scheme for evacuation of power from ratle hep [850 mw] & kiru [624 mw] part b |jammu and kashmir|07/2024|07/2024|07/2026 |07/2026|218.6|218.6|0.0|0.0
+255|615186|power grid corporation of india limited [powergrid]|transmission scheme for integration of renewable energy zone [phase ii] in koppal ii [phase a&b] and gadag ii[phase a] in karnataka [powergrid koppal gadag transmission limited] |karnataka|12/2023|12/2023|12/2025 |12/2025|2889.39|2889.39|1154.31|37.0
+256|615187|power grid corporation of india limited [powergrid]|system strengthening at koppal-ii and gadagii for integration of re generation projects [spv name powergrid koppal gadag augmentation transmission limited] |karnataka|01/2025|01/2025|06/2027 |06/2027|1354.0|1354.0|16.65|0.0
+257|615188|power grid corporation of india limited [powergrid]|augmentation of transformation capacity by 3x500 mva, 400/220 kv icts [6th-8th] and 1x1500 mva, 765/400 kv ict [4th] at bidar ps [spv name- powergrid bidar augmentation transmission limited] |karnataka|02/2025|02/2025|06/2027 |06/2027|288.0|288.0|5.76|0.0
+258|615189|power grid corporation of india limited [powergrid]|transmission scheme for integration of davanagere/ chitradurga and bellary rez in karnataka [powergrid chitradurga bellary rez transmission limited] |karnataka|03/2025|03/2025|09/2027 |09/2027|3453.0|3453.0|20.7|0.0
+259|615190|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-2 5.5gw] [jaisalmer/barmer complex] part h1 [powergrid kurawar transmission limited] |madhya pradesh|10/2024|10/2024|10/2026 |10/2026|3674.0|3674.0|408.18|13.0
+260|617233|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-2 5.5 gw] [jaisalmer/barmer complex] part c [spv name powergrid mandsaur transmission limited] |madhya pradesh|08/2024|08/2024|08/2026 |08/2026|2708.0|2708.0|649.92|26.0
+261|615192|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from mahan energen limited generating station in madhya pradesh [spv name - powergrid mel power transmission limited] |madhya pradesh|06/2025|06/2025|12/2027 |12/2027|558.0|558.0|5.58|0.0
+262|615193|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from potential re zone in khavda area of gujarat under phase iv 7gw-part e4 |maharashtra|11/2023|11/2023|07/2025|07/2025|224.41|224.41|22.44|9.0
+263|400145|power grid corporation of india limited [powergrid]|transmission system for integration of kurnool-iv rez phase-i [for 4.5 gw] [powergrid kurnool-iv transmission limited] |multi-states (andhra pradesh, karnataka)|03/2025|03/2025|03/2027 |03/2027|5550.0|5550.0|111.0|0.0
+264|400147|power grid corporation of india limited [powergrid]|transmission system for kurnool wind energy zone/ solar energy zone part-a and part-b |multi-states (andhra pradesh, telangana)|03/2023|03/2023|11/2024|11/2024|3546.94|3546.94|3121.3|94.0
+267|400148|power grid corporation of india limited [powergrid]|eastern region expansion scheme-43 [eres-43] |multi-states (bihar, odisha, west bengal)|09/2024|09/2024|03/2026 |03/2026|342.69|342.69|0.2|0.0
+268|400149|power grid corporation of india limited [powergrid]|eastern region expansion scheme-44 [eres-44] |multi-states (bihar, west bengal)|11/2024|11/2024|05/2026 |05/2026|408.94|408.94|0.2|0.0
+269|400150|power grid corporation of india limited [powergrid]|transmission network expansion in gujarat to increase its atc from ists part b |multi-states (dadra & nagar haveli and daman & diu, gujarat, maharashtra)|07/2022|07/2022|06/2023|06/2023|4546.26|4546.26|4148.46|93.0
+270|615191|power grid corporation of india limited [powergrid]|transmission system strengthening scheme for evacuation of power from sez in rajasthan 8.1 gw under phase ii part g |multi-states (delhi, haryana, rajasthan)|05/2022|05/2022|11/2023|11/2023|1666.0|2218.0|2139.28|95.0
+271|400151|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rez in rajasthan 20gw under phase-iii part j |multi-states (delhi, rajasthan)|12/2022|12/2022|03/2025|03/2025|331.0|331.0|75.92|28.0
+272|400153|power grid corporation of india limited [powergrid]|transmission scheme for evacuation of power from rez in rajasthan [20 gw] under phase-iii part d [sikar khetri transmission ltd] |multi-states (delhi, rajasthan)|02/2024|02/2024|08/2025|08/2025|2000.0|2000.0|1314.8|59.0
+273|400154|power grid corporation of india limited [powergrid]|transmission system strengthening scheme for evacuation of power from solar energy zones in rajasthan 8.1 gw under phase ii- part- g1 |multi-states (delhi, uttar pradesh)|02/2022|02/2022|09/2023|09/2023|359.47|359.47|330.71|93.0
+274|400155|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from potential renewable energy zone in khavda area of gujarat under phase-v [8 gw] part a [spv name powergrid west central transmission limited] |multi-states (gujarat, maharashtra)|11/2024|11/2024|05/2029 |05/2029|24819.0|24819.0|1489.14|1.0
+275|400156|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part- 3/6gw] [bikaner complex] part a [spv name powergrid bikaner iv transmission limited] |multi-states (haryana, punjab, rajasthan)|11/2024|11/2024|11/2026 |11/2026|5969.0|5969.0|167.13|4.0
+276|400160|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-3/ 6 gw] [bikaner complex] part b [spv name powergrid siwani transmission limited] |multi-states (haryana, rajasthan)|11/2024|11/2024|11/2026 |11/2026|5357.0|5357.0|267.85|8.0
+277|400162|power grid corporation of india limited [powergrid]|transmission system for strengthening of srinagar-leh tr. system |multi-states (jammu and kashmir, ladakh)|03/2022|03/2022|12/2024|12/2024|288.71|288.71|202.1|59.0
+278|615199|power grid corporation of india limited [powergrid]|transmission scheme for solar energy zone in bidar [2500 mw], karnataka [bidar transmission ltd] |multi-states (karnataka, telangana)|02/2024|02/2024|02/2026 |02/2026|2147.62|2147.62|1068.65|55.0
+279|615206|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-2 5.5 gw] [jaisalmer/barmer complex] part d [spv name powergrid beawar mandsaur transmission limited] |multi-states (madhya pradesh, rajasthan)|08/2024|08/2024|08/2026 |08/2026|2227.0|2227.0|534.48|19.0
+280|400165|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-2 5.5 gw] [jaisalmer/barmer complex] part e [spv name powergrid mewar transmission limited] |multi-states (madhya pradesh, rajasthan)|08/2024|08/2024|08/2026 |08/2026|3251.0|3251.0|685.96|17.0
+281|400166|power grid corporation of india limited [powergrid]|rajasthan rez ph-v [part-1- 4 gw] [sirohi/nagaur] complex [rajasthan v power transmission limited] |multi-states (madhya pradesh, rajasthan)|03/2025|03/2025|03/2027 |03/2027|5028.0|5028.0|139.2|1.0
+282|400167|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-1] [bikaner complex] part d [neemrana bareilly transmission ltd] |multi-states (rajasthan, uttar pradesh)|12/2023|12/2023|12/2025|12/2025|2056.0|2056.0|1336.4|55.0
+283|400172|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-4 3.5 gw] part a [spv name powergrid ghiror transmission limited] |multi-states (rajasthan, uttar pradesh)|12/2024|12/2024|12/2026 |12/2026|5846.0|5846.0|236.18|3.0
+284|400173|power grid corporation of india limited [powergrid]|transmission system strengthening scheme for evacuation of power from solar energy zones in rajasthan[8.1 gw] under phase-ii- part e |rajasthan|03/2023|03/2023|09/2024|09/2024|1433.28|1433.0|1341.7|93.0
+285|400169|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rez in rajasthan 20gw under phase iii- part e2 |rajasthan|11/2023|11/2023|06/2025|06/2025|428.3|428.3|107.07|46.0
+286|400168|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rez in rajasthan 20 gw under phase-iii part h |rajasthan|10/2023|10/2023|04/2025|04/2025|2211.29|2211.29|1780.53|72.0
+287|617255|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rez in rajasthan 20 gw under phase-iii part c1 |rajasthan|10/2023|10/2023|04/2025|04/2025|1796.02|1796.02|1201.17|79.0
+288|400177|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rez in rajasthan 20 gw under phase-iii part b1 |rajasthan|09/2023|09/2023|04/2025|04/2025|2190.54|2190.54|1740.6|77.0
+289|400178|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rez in rajasthan 20gw under phase-iii part e1 |rajasthan|08/2023|08/2023|02/2025|02/2025|688.74|688.74|585.42|93.0
+290|400179|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-1] [bikaner complex] part a [bikaner neemrana transmission ltd] |rajasthan|12/2023|12/2023|12/2025|12/2025|2998.34|2998.34|1592.11|49.0
+291|400180|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph-iv [part-2 5.5 gw][jaisalmer/barmer complex] part b [spv name powergrid sirohi transmission limited] |rajasthan|08/2024|08/2024|08/2026 |08/2026|3279.0|3279.0|547.59|19.0
+292|400181|power grid corporation of india limited [powergrid]|transmission system strengthening for interconnections of bhadla-iii & bikaner iii complex [spv name powergrid bhadla bikaner transmission limited] |rajasthan|08/2024|08/2024|08/2026 |08/2026|1382.0|1382.0|41.46|2.0
+293|400182|power grid corporation of india limited [powergrid]|additional transmission system for evacuation of power from bhadla-iii ps as part of rajasthan rez phase iii scheme [20 gw] [spv name powergrid bhadla-iii power transmission limited] |rajasthan|08/2024|08/2024|02/2026 |02/2026|369.0|369.0|17.82|6.0
+294|400183|power grid corporation of india limited [powergrid]|transmission system for evacuation of power from rajasthan rez ph -iv [part-2 5.5 gw] [jaisalmer/barmer complex] part f [spv name powergrid barmer i transmission limited] |rajasthan|11/2024|11/2024|11/2026 |11/2026|2735.0|2735.0|81.42|5.0
+295|617272|power grid corporation of india limited [powergrid]|augmentation at fatehgarh-ii ps, fatehgarh-iv ps [section-ii] and barmer-i ps [powergrid fatehgarh barmer augmentation transmission limited] |rajasthan|03/2025|03/2025|12/2026 |12/2026|404.0|404.0|4.04|0.0
+296|400185|power grid corporation of india limited [powergrid]|transmission system under ists for evacuation of power from kudankulam unit-3&4 [2x1000 mw] [spv name powergrid kudankulam tarnsmission limited] |tamil nadu|01/2025|01/2025|12/2026|12/2026|548.0|548.0|10.96|4.0
+297|400186|power grid corporation of india limited [powergrid]|transmission system for strengthening to facilitate evacuation of power from bhadla/bikaner complex |uttar pradesh|12/2024|12/2024|06/2026 |06/2026|212.81|212.81|0.2|0.0
+298|400187|central public works department [cpwd]|c/o 184 ms flats for hon'ble mps at bks marg, new delhi |delhi|05/2022|05/2022|05/2025|05/2025|646.53|646.52|518.46|98.0
+299|400188|chennai metro rail limited [cmrl]|chennai metro rail phase-ii development project |tamil nadu|11/2020|11/2020|08/2029 |08/2029|63246.0|63246.0|47162.73|0.0
+300|617269|smart city mission|integrated command control center [iccc] - construction and development of integrated command control center with security, surveillance, itms, connecting port, ship service, smart solid waste management, smart public transport system |andaman & nicobar|11/2021|11/2021|05/2023 |05/2023|209.88|209.88|0.0|0.0
+301|617278|pmay, ministry of housing and urban affairs|in-situ slum redevelopment project in bihar |bihar|06/2015|06/2015|03/2024 |03/2024|454.65|454.65|204.64|0.0
+302|617279|pmay, ministry of housing and urban affairs|in-situ slum redevelopment project in haryana |chandigarh|06/2015|06/2015|03/2024 |03/2024|285.85|285.85|127.58|0.0
+303|400192|pmay, ministry of housing and urban affairs|affordable housing construction project in chhattisgarh |chhattisgarh|06/2015|06/2015|03/2024 |03/2024|3797.69|3797.69|2694.0|0.0
+304|617280|national buildings construction corporation [nbcc]|redevelopment of seven general pool residential accommodation [gpra] colonies in delhi |delhi|05/2018|05/2018|12/2022|12/2022|32850.0|32850.0|0.0|0.0
+305|617282|ministry of housing & urban affairs|rehablitation in junavadaj area smart city project |gujarat|06/2016|06/2016|07/2022 |07/2022|539.0|539.0|39.63|50.0
+306|617242|pmay, ministry of housing and urban affairs|in-situ slum redevelopment project in gujarat |gujarat|06/2015|06/2015|03/2024 |03/2024|5477.4|5477.4|3035.81|0.0
+307|617284|pmay, ministry of housing and urban affairs|in-situ slum redevelopment project in jharkhand |jharkhand|06/2015|06/2015|03/2024 |03/2024|212.74|212.74|41.0|0.0
+308|617287|pmay, ministry of housing and urban affairs|in-situ slum redevelopment project in uttar pradesh |uttar pradesh|06/2015|06/2015|03/2024 |03/2024|576.99|576.99|141.94|0.0
+309|617288|ministry of housing & urban affairs|green building development project |uttarakhand|08/2019|08/2019|11/2023 |11/2023|150.97|150.97|18.95|0.0
+310|400203|patna metro rail corporation ltd. [pmrcl]|patna metro rail project |bihar|02/2019|02/2019|02/2024|02/2024|13365.77|13365.8|4039.77|40.07
+311|705356|delhi metro rail corporation limited [dmrc]|delhi metro rail phase-iv [2 corridors] |delhi|03/2024|03/2024|03/2029 |03/2029|8399.81|8399.81|5.57|0.0
+312|705357|delhi metro rail corporation limited [dmrc]|dmrts phase - iv [3 priority corridors] |delhi|07/2019|07/2019|03/2025|03/2025|24948.65|24948.7|15423.06|68.0
+313|705358|gujarat metro rail corporation limited [gmrcl]|surat metro rail project |gujarat|04/2019|04/2019|03/2024|03/2024|12020.32|12020.3|7386.41|68.0
+314|701263|gujarat metro rail corporation limited [gmrcl]|ahmedabad metro rail project, phase-ii |gujarat|03/2019|03/2019|03/2024|03/2024|5384.17|5384.17|4151.57|87.0
+315|705359|gujarat metro rail corporation limited [gmrcl]|ahmedabad metro rail project [phase-i] |gujarat|03/2018|03/2018|03/2018|03/2018|10773.0|12924.5|11857.91|99.34
+316|602961|bengaluru metro rail|construction of bangalore metro rail project phase 2. |karnataka|02/2016|02/2016|03/2021|03/2021|26405.14|30695.1|29477.97|94.0
+317|705362|bengaluru metro rail|construction bangalore metro rail project phase-2a & 2b |karnataka|01/2019|01/2019|06/2026|06/2026|14788.1|14788.1|8424.54|53.0
+318|617299|cspcc projects|kochi metro rail phase 2 development project |kerala|11/2022|11/2022|11/2026|11/2026|1957.05|1957.05|306.45|10.0
+319|705363|madhya pradesh metro rail co limited [mpmrcl]|bhopal metro rail project |madhya pradesh|11/2018|11/2018|11/2022|11/2022|6941.4|6941.4|3116.75|43.0
+320|701269|madhya pradesh metro rail co limited [mpmrcl]|indore metro rail project |madhya pradesh|11/2018|11/2018|11/2022|11/2022|7500.8|7500.8|3839.27|54.0
+321|705364|maharashtra metro rail corporation limited [mmrcl]|pcmc to nigdi- extension of north south corridor of phase-1 |maharashtra|10/2023|10/2023|01/2027 |01/2027|910.18|910.18|110.33|21.0
+322|617303|maharashtra metro rail corporation limited [mmrcl]|pune metro phase-1 extension line towards south from swargate to katraj |maharashtra|09/2024|09/2024|03/2029 |03/2029|2954.53|2954.53|18.66|3.0
+323|617304|ministry of housing & urban affairs|new suburba station development project |maharashtra|03/2019|03/2019|07/2022 |07/2022|262.76|262.76|17.62|6.0
+324|705366|ministry of housing & urban affairs|kalyan station precinct imporvement project |maharashtra|07/2020|07/2020|07/2023 |07/2023|600.0|600.0|49.42|0.0
+325|705368|mumbai metro rail corporation limited [mmrc]|mumbai metro line 3 |maharashtra|06/2016|06/2016|03/2023|03/2023|23136.0|23942.0|27519.07|91.9
+326|400220|maharashtra metro rail corporation limited [mmrcl]|nagpur metro rail phase ii development project |maharashtra|12/2022|12/2022|12/2027 |12/2027|6708.0|6708.0|977.38|24.0
+327|705373|delhi metro rail corporation limited [dmrc]|delhi metro rail phase-iv [rithala - kundli corridor] |multi-states (delhi, haryana)|01/2025|01/2025|01/2029 |01/2029|6230.99|6230.99|0.14|0.0
+328|705375|national capital region transport corporation [ncrtc]|delhi-ghaziabad-meerut regional rapid transit system [rrts] corridor |multi-states (delhi, uttar pradesh)|03/2019|03/2019|06/2025 |06/2025|30274.0|30274.0|25812.26|86.0
+329|400223|uttar pradesh metro rail corporation [upmrc]|kanpur metro rail project |uttar pradesh|11/2019|11/2019|05/2024|05/2024|11076.48|11076.5|9079.81|73.0
+330|400231|uttar pradesh metro rail corporation [upmrc]|agra metro rail project |uttar pradesh|12/2020|12/2020|05/2024|05/2024|8379.62|8379.62|6055.19|57.0
+331|617270|ministry of housing & urban affairs|storm water drainag development project |dadra & nagar haveli and daman & diu|12/2021|12/2021|03/2024 |03/2024|210.0|210.0|0.0|0.0
+332|701289|smart city mission|upgradation of sewerage system in gandhinagar city |gujarat|03/2021|03/2021|06/2023 |06/2023|200.0|200.0|100.0|10.0
+333|400234|central public works departmen|construction of basement + ground floor+ 10 storeyed building for state of the art director general, gsi building at plot no.gn-40, sector-v, salt lake, kolkata |west bengal|02/2020|02/2020|08/2026 |08/2026|255.37|255.37|78.34|35.0
+334|400235|hindustan copper limited [hcl]|rakha underground mining project |jharkhand|03/2024|03/2024|03/2033 |03/2033|2705.0|2705.0|0.0|0.0
+335|705385|hindustan copper limited [hcl]|surda underground copper mining project |jharkhand|03/2024|03/2024|03/2028 |03/2028|665.02|665.02|13.33|1.0
+336|617271|hindustan copper limited [hcl]|expansion of malanjkhand copper project |madhya pradesh|04/2015|04/2015|04/2020|04/2020|1856.36|1856.36|924.98|79.0
+337|400232|national aluminium company limited [nalco]|expansion of alumina refinery plant with addition of 5th stream having capacity enhancement of 1.0 million tonee per annum |odisha|04/2017|04/2017|12/2022|12/2022|4103.0|5677.4|3913.98|75.0
+338|617322|national aluminium company limited [nalco]|pottangi bauxite mines project |odisha|05/2018|05/2018|03/2025|03/2025|1381.0|1960.77|650.04|51.0
+339|705392|national aluminium company limited [nalco]|utkal d and e coal block |odisha|02/2016|02/2016|03/2025 |03/2025|1021.97|1021.97|0.0|0.0
+340|400247|ministry of mines|conversion of flat bottom settlers and washers with a single train of hrds and dcws in streams 1 and |odisha|04/2017|04/2017|11/2026 |11/2026|355.0|581.0|0.0|0.0
+341|705400|national aluminium company limited [nalco]|sourcing of bauxite arrangement for 5th stream alumina refinery from south block mining lease of panchpatmaili mines |odisha|11/2019|11/2019|05/2025|05/2025|483.0|483.0|403.44|90.0
+342|705401|national aluminium company limited [nalco]|25.5 mw wind power project at kayathar in tamilnadu |tamil nadu|12/2017|12/2017|03/2025|03/2025|166.0|166.0|135.0|65.0
+343|400253|central tribal university of andhra pradesh|construction of permanent campus of central tribal university of andhra pradesh phase-1 |andhra pradesh|12/2023|12/2023|06/2027 |06/2027|305.0|305.0|83.33|24.0
+346|400254|nit patna|additional campus of nitpatna |bihar|08/2022|08/2022|07/2024|07/2024|499.21|499.21|425.47|91.0
+347|705410|ministry of education|phase 1b - construction of academic block, hostel, residential tower, directors residence and external development works at national institute of technology, delhi campus on engineering, procurement and construction basis |delhi|11/2022|11/2022|09/2025 |09/2025|333.49|333.49|272.95|88.0
+348|400259|delhi university|delhi university eastern campus at surajmal vihar |delhi|01/2025|01/2025|10/2026 |10/2026|373.0|373.0|18.03|15.0
+349|400261|gujarat|construction of permanent campus of central university of gujarat at village kundhela, dist. vadodara, gujarat. |gujarat|02/2021|02/2021|03/2025|03/2025|490.63|490.63|301.44|76.0
+350|705419|indian institute of management, sirmaur|establishment of permanent campus phase 1 of iim sirmaur |himachal pradesh|08/2020|08/2020|10/2023|10/2023|392.51|454.78|320.75|92.0
+351|701324|indian institute of technology, mandi|hostel blocks & dining hall block |himachal pradesh|03/2024|03/2024|03/2026|03/2026|166.66|166.66|72.09|58.0
+352|400271|central university, himachal pradesh|construction of permanent campus of central university of himachal pradesh at dehra, district - kangra, [h.p.] on engineering. procurement and construction [epc mode 1] basis. |himachal pradesh|08/2022|08/2022|11/2024|11/2024|251.98|300.45|183.36|78.0
+353|705424|indian institute of management, jammu|construction of permanent campus for iim jammu phase-1 at jagti, nagrota, jammu, j&k |jammu and kashmir|10/2020|10/2020|06/2023|06/2023|424.93|500.91|484.52|96.0
+354|701329|iisc bangalore|additional infrastructure at iisc bangalore-rcc monolithic for men hostel s14, women hostel s11 , postdoctoral hostel s12 2 block , international hostel s 12 , d&e block s 12 2 block fr. |karnataka|08/2021|08/2021|03/2024|03/2024|420.41|420.41|360.72|99.0
+355|400273|indian institute of technology palakkad|construction of permanent campus for iit palakkad under phase 1a |kerala|03/2020|03/2020|06/2022|06/2022|1006.45|1217.4|615.95|66.0
+356|400275|indian institute of technology, indore|phase iii a works at iit indore [03 hostels, 01 studio apartment, 01 housing, heavy & sophisticated lab complex, academic pod and infrastructure for center of excellence] |madhya pradesh|11/2023|11/2023|12/2026 |12/2026|496.28|496.28|138.6|30.0
+357|705428|indian institute of technology, bombay|hostel 4 -earlier known as hostel 20 |maharashtra|05/2022|05/2022|09/2025 |09/2025|182.33|182.33|132.44|94.0
+358|705429|indian institute of technology, bombay|academic block 1 & 2 |maharashtra|01/2023|01/2023|07/2026|07/2026|68.0|263.93|22.15|16.0
+362|400277|indian institutes of science education and research, behrampur|iiser berhampur |odisha|09/2019|09/2019|03/2021|03/2021|1229.32|773.76|835.55|97.0
+363|705432|national institute of technology, puducherry|establishment of nit puducherry permanent campus [phase-i and phase-ii] |puducherry|07/2013|07/2013|12/2024|12/2024|618.34|544.34|509.24|94.0
+364|705433|indian intitue of management, amritsar|construction of permanent campus of indian institute of management [iim] amritsar, punjab, phase-i |punjab|07/2020|07/2020|06/2023|06/2023|348.31|348.31|290.39|91.0
+365|705434|central university of punjab|construction of girls hostel 400 seater, boys hostel 600 seater, academic block, international hostel 100 seater, vc residence and purchase of equipment |punjab|04/2025|04/2025|10/2027 |10/2027|210.99|210.99|0.0|0.0
+368|400280|indian institute of technology, hyderabad|construction of precast housing and hostels at iit hyderabad |telangana|11/2022|11/2022|10/2024|10/2024|262.0|262.0|164.4|71.0
+369|705436|banaras hindu university|banaras hindu university [ kayakalp of institute of medical sciences] |uttar pradesh|06/2020|06/2020|09/2022|09/2022|246.0|246.0|185.83|93.0
+370|701341|national institute of technology uttarakhand|construction & development of infrastructural facilities in the main campus of nit uttarakhand at sumari, pauri garhwal |uttarakhand|04/2024|04/2024|09/2027 |09/2027|650.85|650.85|130.0|24.0
+371|705437|indian institute of technology, kharagpur|hefa projects on development of student hostels, playgrounds, departmental buildings, class room complex and other campus facilities in iit kharagpur |west bengal|04/2019|04/2019|03/2023|03/2023|500.0|442.0|382.6|87.0
+372|615327|indian institute of technology, kharagpur|ioe projects [civil works], iit kharagpur |west bengal|04/2019|04/2019|03/2023|03/2023|287.2|287.2|310.0|86.0
+373|701343|ministry of petroleum & natural gas|construction of aviation fuel farm facilities at bhogapuram airport |andhra pradesh|08/2024|08/2024|03/2026|03/2026|240.0|240.0|31.23|50.0
+376|615330|bharat petroleum corporation limited [bpcl]|setting up a common user petroleum terminal at jammu, j&k for resitement of existing psu omc's depots from jammu city |jammu and kashmir|04/2023|04/2023|03/2025|03/2025|676.89|676.89|518.22|77.0
+377|615331|ministry of petroleum & natural gas|construction of 80,000 mt lpg cavern at mangalore |karnataka|12/2018|12/2018|12/2022|12/2022|854.0|854.0|712.3|99.0
+378|615332|ministry of petroleum & natural gas|andheri residential towers, mumbai |maharashtra|06/2017|06/2017|05/2025|05/2025|281.35|389.67|227.54|50.0
+379|615333|ministry of petroleum & natural gas|srikakulam angul gas pipeline project |multi-states (andhra pradesh, odisha)|09/2019|09/2019|07/2022|07/2022|2658.34|2810.0|2192.68|94.0
+382|615334|ministry of petroleum & natural gas|new mundra panipat crude oil pipeline |multi-states (gujarat, haryana, rajasthan)|12/2021|12/2021|12/2024|12/2024|9028.0|9028.0|7071.08|84.0
+383|615335|ministry of petroleum & natural gas|kandla gorakhpur lpg pipeline |multi-states (gujarat, madhya pradesh, uttar pradesh)|12/2018|12/2018|12/2021|12/2021|10088.0|10088.0|7598.13|92.0
+384|701346|department of water resources, river development & gr|multi product pipeline from irugur to devangonthi |multi-states (karnataka, tamil nadu)|11/2012|11/2012|02/2017|02/2017|678.0|1732.0|675.25|67.0
+385|615337|hindustan petroleum corporation limited [hpcl]|petrochemical evacuation marketing terminal at barmer, rajasthan |rajasthan|12/2023|12/2023|12/2026|12/2026|461.05|461.05|111.57|51.0
+386|615338|ministry of petroleum & natural gas|laying of pol pipelines in common corridor for proposed grass root terminal at vallur [chennai] |tamil nadu|01/2022|01/2022|05/2026|05/2026|829.0|829.0|297.77|62.0
+387|615339|indian oil corporation limited [iocl]|grass root pol terminal at vallur, chennai |tamil nadu|01/2022|01/2022|12/2024|12/2024|827.0|887.71|619.5|85.0
+389|615340|ministry of petroleum & natural gas|grass-root terminal at mirzapur, uttar pradesh |uttar pradesh|09/2022|09/2022|11/2026|11/2026|980.45|980.45|236.22|50.0
+390|701349|oil and natural gas corporation limited [ongc]|kg-dwn-98/2 cluster - ii development project - nelp block |andhra pradesh|03/2016|03/2016|06/2020|06/2020|34012.0|34012.0|35498.35|96.0
+391|615342|hindustan petroleum corporation limited|hp-coat [crude to olefins and aromatics technology] demo unit at visakh refinery |andhra pradesh|09/2021|09/2021|06/2024|06/2024|160.0|220.0|77.06|64.0
+392|615343|hindustan petroleum corporation limited|hp trijet unit in visakh refinery |andhra pradesh|07/2024|07/2024|07/2027|07/2027|193.0|193.0|0.43|23.0
+393|615344|ministryofpetroleumnaturalgas|city gas distribution project at kurnool, guntur & prakasam districts |andhra pradesh|03/2022|03/2022|03/2030|03/2030|1420.0|1420.0|162.47|6.0
+405|615345|ministry of petroleum & natural gas|city gas distribution project at khagaria, saharsa and madhepura |bihar|03/2019|03/2019|03/2030|03/2030|163.0|163.0|95.54|40.0
+406|615346|ministryofpetroleumnaturalgas|setting up of lpg plant with rail unloading facility at hathua, dist. gopalganj, bihar |bihar|10/2023|10/2023|03/2027|03/2027|340.15|340.15|88.08|24.0
+407|615347|ministry of petroleum & natural gas|barauni refinery capacity expansion from 6.0 to 9.0 mmtpa |bihar|01/2020|01/2020|04/2023|04/2023|14810.0|16724.0|11728.01|87.0
+408|400299|ministryofpetroleumnaturalgas|installation of bitumen manufacturing unit along with allied facilities at barauni refinery |bihar|01/2022|01/2022|04/2025|04/2025|389.35|340.0|46.94|37.0
+409|615349|bharat petroleum corporation limited [bpcl]|city gas distribution projects at darbhanga, madhubani, supaul, sitamarhi and sheohar districts |bihar|12/2022|12/2022|03/2030|03/2030|3638.0|3638.0|396.42|21.0
+410|400301|bharat petroleum corporation limited [bpcl]|city gas distribution projects at gopalganj, siwan, west champaran, east champaran and deoria districts |bihar|12/2022|12/2022|06/2030|06/2030|3919.0|3919.0|392.59|14.0
+411|705458|oil and natural gas corporation limited [ongc]|redevelopment of sobhasan complex |gujarat|08/2021|08/2021|02/2026|02/2026|885.63|1286.67|765.43|73.0
+412|400312|oil and natural gas corporation limited [ongc]|redevelopment of santhal field [onshore-mehsana asset] |gujarat|02/2017|02/2017|03/2026|03/2026|1162.56|1162.56|1156.9|94.0
+413|400313|oil and natural gas corporation limited [ongc]|redevelopment of linch field |gujarat|04/2021|04/2021|03/2025|03/2025|631.03|860.04|505.07|77.0
+414|701370|ministry of petroleum & natural gas|petrochemical and lube integration project at gujarat refinery |gujarat|09/2020|09/2020|08/2024|08/2024|18936.0|17825.0|12190.08|83.0
+415|400315|ministryofpetroleumnaturalgas|installation of new biturox unit along with allied facilities at gujarat refinery |gujarat|01/2022|01/2022|08/2025|08/2025|328.29|287.0|144.16|55.0
+416|400321|oil and natural gas corporation limited [ongc]|commercial polymer flooding project in bechraji field |gujarat|01/2022|01/2022|11/2024|11/2024|621.4|621.4|137.71|21.0
+417|701377|oil and natural gas corporation limited [ongc]|restoration of gas terminal, phase-i [part-a], hazira |gujarat|05/2022|05/2022|02/2025|02/2025|249.43|249.43|209.42|93.0
+418|705479|oil and natural gas corporation limited [ongc]|old pipe line replacement [oprp] group-a |gujarat|07/2021|07/2021|07/2025|07/2025|173.03|169.84|148.0|87.0
+419|705480|oil and natural gas corporation limited [ongc]|kalol redevelopment project, ahmedabad asset |gujarat|08/2022|08/2022|03/2027|03/2027|1487.41|1487.41|776.61|61.0
+420|705481|oil and natural gas corporation limited [ongc]|revamping of sv stations, gas terminal & kribhco terminal |gujarat|11/2022|11/2022|08/2026|08/2026|837.34|837.34|205.78|49.0
+421|705482|ministry of petroleum & natural gas|indian oil technology development and deployment centre at r&d campus-ii, faridabad |haryana|06/2019|06/2019|12/2022|12/2022|2281.94|3200.0|1800.61|63.0
+422|701383|indian oil corporation limited [iocl]|poly butadiene rubber plant at panipat |haryana|03/2022|03/2022|03/2025|03/2025|1459.0|2531.44|1043.9|70.0
+423|701384|ministry of petroleum & natural gas|capacity expansion of panipat refinery from 15 to 25 mmtpa |haryana|02/2021|02/2021|09/2024|09/2024|34627.0|36225.0|23977.47|88.0
+424|701386|ministryofpetroleumnaturalgas|installation of multiple effect evaporator [mee] for etp-1, 2 & 4 of panipat refinery and petrochemical complex. |haryana|12/2020|12/2020|06/2023|06/2023|165.13|247.69|129.27|70.0
+425|701388|ministryofpetroleumnaturalgas|city gas distribution project at jammu, udhampur, reasi, samba and kathua districts |jammu and kashmir|03/2022|03/2022|03/2032|03/2032|538.0|538.0|4.09|0.0
+426|701390|oil and natural gas corporation limited [ongc]|development of jharia cbm block [phase-1] |jharkhand|11/2019|11/2019|01/2024|01/2024|431.0|431.0|211.34|58.0
+427|701391|ministryofpetroleumnaturalgas|laying of natural gas pipeline from hazaribagh to ranchi [hrpl] |jharkhand|02/2023|02/2023|02/2026|02/2026|202.07|202.07|55.46|45.0
+428|701392|mangalore refinary and petrochemicals limited|power system upgradation project |karnataka|10/2023|10/2023|11/2025|11/2025|385.0|385.0|132.73|63.0
+429|705490|ministry of petroleum & natural gas|demo bio-atf project |karnataka|03/2024|03/2024|01/2027|01/2027|364.0|364.0|22.82|10.0
+430|705491|ministry of petroleum & natural gas|revamping/ augmentation of facilities at existing port terminal at mangalore |karnataka|01/2022|01/2022|12/2025|12/2025|463.0|500.62|264.44|82.0
+431|705492|bharat petroleum corporation limited [bpcl]|replacement and extension of jetty pipelines [rejp] at kr |kerala|03/2023|03/2023|03/2026|03/2026|621.87|621.87|192.66|83.0
+432|701396|ministryofpetroleumnaturalgas|setting up polypropylene unit at kochi refinery |kerala|12/2023|12/2023|10/2027|10/2027|4460.0|4460.0|255.64|12.0
+433|705494|ministryofpetroleumnaturalgas|ethylene cracker project at bina refinery including downstream petrochemical plants and expansion of refinery |madhya pradesh|05/2023|05/2023|05/2028|05/2028|43367.0|43367.0|1788.6|13.0
+434|705495|department of water resources, river development & gr|debottlenecking and augmentation of cryogenic facilities at uran lpg import terminal |maharashtra|04/2021|04/2021|02/2024|02/2024|1164.69|1629.86|901.73|84.0
+435|701400|ministry of petroleum & natural gas|500 kta pdhpp project, usar |maharashtra|04/2021|04/2021|04/2025|04/2025|8797.0|11256.0|6768.36|85.0
+436|705496|ministry of petroleum & natural gas|construction of lube oil blending plant at rasayani |maharashtra|05/2022|05/2022|12/2023|12/2023|423.39|526.26|287.49|78.0
+437|705498|ministry of petroleum and natural gas|lube modernization & bottom upgradation project at mumbai refinery |maharashtra|12/2024|12/2024|03/2028|03/2028|4679.0|4679.0|188.88|4.0
+438|701398|hindustan petroleum corporation limited|hp tdae unit in mumbai refinery |maharashtra|06/2024|06/2024|04/2026|04/2026|240.0|240.0|34.4|37.0
+439|705500|ministryofpetroleumnaturalgas|city gas distribution project at beed, jalgaon and jalna districts |maharashtra|03/2022|03/2022|09/2031|09/2031|865.0|865.0|68.01|2.0
+440|701404|ministryofpetroleumnaturalgas|construction of additional tankages and allied facilities at jnpt terminal |maharashtra|04/2022|04/2022|08/2026|08/2026|341.43|436.14|279.19|50.0
+441|705502|indian oil corporation limited [iocl]|atf pipeline from jawaharlal nehru port trust to navi mumbai international airport |maharashtra|08/2022|08/2022|08/2025|08/2025|165.0|165.0|89.94|72.0
+442|705503|bharat petroleum corporation limited [bpcl]|installation of independent de- aromatized solvents [das] production facilities at mr |maharashtra|03/2023|03/2023|07/2025|07/2025|405.0|343.0|201.28|84.0
+443|400352|bharat petroleum corporation limited [bpcl]|pol & lobs installations with receipt pipelines at rasayani |maharashtra|05/2023|05/2023|05/2026|05/2026|2585.0|2585.0|564.58|58.0
+444|400353|oil and natural gas corporation limited [ongc]|part replacement pipeline project [prpp] |maharashtra|11/2022|11/2022|05/2024|05/2024|1219.48|1145.1|745.24|90.0
+445|400354|ministry of petroleum and natural gas|visakh raipur pipeline project |multi-states (andhra pradesh, chhattisgarh, odisha)|09/2024|09/2024|09/2027|09/2027|2212.0|2212.0|11.52|7.0
+446|605155|ministry of petroleum & natural gas|multi-product pipeline from krishnapatnam coastal installation to the proposed installation at hyderabad [malkapur] |multi-states (andhra pradesh, telangana)|09/2019|09/2019|03/2025|03/2025|1932.0|2208.0|1552.37|98.0
+449|605156|hindustan petroleum corporation limited|cgd project in banka, dumka, godda, jamtara, pakur, sahibganj ga id 11a.02 |multi-states (bihar, jharkhand)|06/2022|06/2022|06/2030|06/2030|1377.0|1377.0|329.43|26.0
+450|705504|south central railway [scr] - ii|gooty-pendekallu doubling 29.225 km |andhra pradesh|06/2023|06/2023|03/2027|03/2027|351.83|351.83|18.0|25.0
+451|705505|south central railway [scr] - ii|guntakal west-mallappa gate rail over rail - ror track |andhra pradesh|07/2023|07/2023|07/2026 |07/2026|293.3|293.3|0.0|0.0
+452|705506|wpo/patna|kurnool - setting up facilities for coach midlife rehabilitation workshop |andhra pradesh|10/2017|10/2017|12/2023 |12/2023|560.72|560.72|276.66|65.0
+453|705512|east coast railway [ecor] - ii|flyover between pendurthi and simhachalam north to avoid surface crossing at simhachalam 7.135 km pb 73 of 2023 24 nr |andhra pradesh|05/2024|05/2024|04/2027 |04/2027|183.65|183.65|4.16|11.0
+454|705511|east coast railway [ecor] - ii|3rd & 4th line between vadlapudi -gate jn. cabin and tie line between gate junction to gangavaram port |andhra pradesh|03/2024|03/2024|06/2026 |06/2026|154.28|154.28|10.79|16.0
+455|705507|south central railway [scr] - ii|tiupati katpadi 104.39 kms |andhra pradesh|04/2025|04/2025|03/2029 |03/2029|1215.56|1215.56|0.0|0.0
+456|705510|south central railway [scr] - ii|3rd line between gudur renigunta 83.17 km |andhra pradesh|10/2024|10/2024|03/2027 |03/2027|877.34|877.34|2.97|0.0
+457|705513|south central railway [scr] - ii|kotapalli - narasapur new line |andhra pradesh|09/2013|09/2013|03/2028|03/2028|2501.0|2501.0|1264.18|29.0
+458|705514|south central railway [scr] - ii|guntur-guntakal doubling project |andhra pradesh|11/2017|11/2017|12/2025|12/2025|3733.0|4295.0|4112.59|92.0
+459|400369|rvnl - ii|vijaywada-gudur 3rd line |andhra pradesh|04/2018|04/2018|11/2024|11/2024|6654.0|6654.0|5922.0|90.0
+460|705526|south western railway [swr] - ii|penukonda - dharmavaram doubling project [41.5 km] |andhra pradesh|12/2018|12/2018|03/2026|03/2026|307.66|307.66|267.83|60.0
+464|705527|east central railway [ecr] - i|sakri -hasanpur [via harnagar - kusheshwar asthan] new railway line |bihar|08/1997|08/1997|12/2024|12/2024|735.2|735.2|585.09|81.0
+465|705528|east central railway [ecr] - i|construction of bulb line at nabinagar ankorah of east central railway |bihar|05/2026|05/2026|06/2028 |06/2028|611.74|611.74|0.0|0.0
+466|400392|east central railway [ecr] - i|sakri-hasanpur road new rail line project |bihar|03/2011|03/2011|12/2024|12/2024|735.0|735.0|605.0|78.0
+467|705562|east central railway [ecr] - i|khagaria-kusheshwar asthan [42km] new line project |bihar|12/1998|12/1998|12/2024|12/2024|614.0|1384.0|479.22|55.0
+468|705566|east central railway [ecr] - i|hajipur-sagauli new line |bihar|10/2004|10/2004|03/2020|03/2020|2067.0|2087.0|1908.49|74.0
+469|705567|east central railway [ecr] - ii|araria supaul new bg line |bihar|03/2009|03/2009|03/2024|03/2024|1605.0|2514.0|1311.39|33.0
+470|400416|east central railway [ecr] - ii|fatuha-islampur incl. mm for extn.of nl from neora to daniawan , daniawan to biharsharif, biharsharif to barbigha , barbigha to shekhpura |bihar|03/2002|03/2002|03/2023|03/2023|1473.0|2882.0|2824.8|91.0
+471|705572|northeast frontier railway [nfr]|new b.g. railway line- araria to galgalia [thakurgunj] |bihar|06/2007|06/2007|12/2024|12/2024|2650.0|4412.0|4152.4|96.0
+472|400424|indian railway construction international limited [ircon]|jogbani-biratnagar new rail line project |bihar|01/2011|01/2011|03/2022|03/2022|402.0|486.0|361.0|86.0
+473|400425|east central railway [ecr] - i|samastipur-darbhanga doubling railway project |bihar|12/2015|12/2015|03/2025|03/2025|519.0|519.0|337.03|82.0
+474|400426|east central railway [ecr] - ii|sagauli-valmiknagar |bihar|03/2017|03/2017|12/2025|12/2025|1216.0|2222.0|2039.0|91.0
+475|400429|east central railway [ecr] - ii|muzaffarpur-sugauli |bihar|03/2017|03/2017|06/2024|06/2024|1586.0|1586.0|1586.82|99.0
+476|705588|indian railway construction international limited [ircon]|rampur dumra-tal-rajendrapul additional bridge and railway line doubling |bihar|05/2017|05/2017|12/2024|12/2024|2374.0|2374.0|1777.0|85.0
+477|705598|indian railway construction international limited [ircon]|kharsia-dharamjaygarh with spur line [east corridor-phase 1] |chhattisgarh|01/2014|01/2014|09/2018|09/2018|3055.0|3438.0|2574.54|94.0
+478|705608|east coast railway [ecor] - ii|doubling of kirandul-jagdalpur line [150 km] |chhattisgarh|03/2013|03/2013|03/2020|03/2020|1589.0|1798.0|1541.7|92.0
+479|705610|secr|gauge conversion of kendri-dhamtari including abhanpur - rajim branch line 67.20 kms - 2nd material modification to raipur titlagarh doubling. |chhattisgarh|05/2021|05/2021|02/2025|02/2025|1171.0|1171.0|848.0|82.0
+480|705612|south east central railway [secr] - ii|4th line between nipania bhatapara 14.4 km |chhattisgarh|05/2024|05/2024|03/2027 |03/2027|170.49|170.49|0.0|0.0
+481|705613|cerl|dharamjaigarh-korba 63 km |chhattisgarh|07/2022|07/2022|08/2026 |08/2026|1686.26|1686.26|288.83|18.5
+482|705616|cao/c/secr|kharsia- naya raipur-parmalkasa 5th and 6th line [278km] |chhattisgarh|04/2025|04/2025|03/2031 |03/2031|7853.84|7853.84|0.0|0.0
+483|705617|rvnl - ii|dallirajhra- rowghat new railway line - phase i [95 km] |chhattisgarh|12/2009|12/2009|09/2025|09/2025|1628.0|1628.0|1440.85|82.0
+484|705628|indian railway construction international limited [ircon]|gevra road-pendra road new railway line [135 km] |chhattisgarh|04/2014|04/2014|03/2022|03/2022|4970.0|4970.0|4271.55|72.0
+485|705629|south east central railway [secr] - ii|chirimiri-nagpur halt new railway line project |chhattisgarh|06/2020|06/2020|06/2030|06/2030|241.0|656.52|71.0|0.0
+486|705632|south east central railway [secr] - ii|boridand - ambikapur doubling line project |chhattisgarh|04/2022|04/2022|06/2030|06/2030|1376.0|1576.23|218.0|18.0
+487|705633|secr|nipania-bhatapra [14.4 km] 4th line [pb-72/nr/2022-23] |chhattisgarh|05/2024|05/2024|12/2026|12/2026|170.0|184.0|0.0|0.0
+488|703585|secr|4th line - bhatapara-hathband [8.8 km] [pb-72/nr/2022-23] |chhattisgarh|05/2024|05/2024|01/2027|01/2027|177.03|177.03|0.0|0.0
+489|703586|secr|4th line - bhilai-bhilai nagar [8.8 km] [pb-72/nr/2022-23] |chhattisgarh|05/2024|05/2024|02/2027|02/2027|177.34|177.34|0.76|2.0
+490|705635|secr|4th line - dadhapara-belha [9.2 km] [pb-72/nr/2022-23] |chhattisgarh|05/2024|05/2024|11/2026|11/2026|169.06|169.06|10.13|4.0
+491|705638|secr|4th line rajnandgaon-dongarhgarh [31.2 km] [pb-72/nr/2022-23] |chhattisgarh|05/2024|05/2024|01/2027|01/2027|328.34|328.34|48.02|25.0
+492|705639|secr|3rd and 4th line - saragbundia and madwarani |chhattisgarh|09/2022|09/2022|12/2026|12/2026|177.0|177.0|0.0|0.0
+493|605292|ministry of railways|redevelopment of new delhi railway station and construction of associated infrastructure |delhi|06/2024|06/2024|12/2028 |12/2028|4744.0|4744.0|31.77|0.0
+494|611440|rcil|north region video surveillance project |delhi|04/2023|04/2023|03/2024 |03/2024|274.39|274.39|0.0|0.0
+495|705648|edtk[mc]/rb|provision of work-site tampers [wst] railway project |delhi|01/2016|01/2016|12/2023|12/2023|187.72|187.72|141.91|100.0
+496|705650|edtk[mc]/rb|wst machine procurement project |delhi|06/2018|06/2018|03/2024|03/2024|176.0|176.0|0.0|0.0
+497|709747|edtk[mc]/rb|pct machine procurement project |delhi|04/2019|04/2019|04/2024|04/2024|336.0|336.0|74.32|81.25
+498|709748|edtk[mc]/rb|rbmv machine procurement project |delhi|10/2019|10/2019|06/2024|06/2024|480.0|480.0|0.33|3.75
+499|705651|edtk[mc]/rb|srgm machine procurement project |delhi|10/2019|10/2019|12/2023|12/2023|440.0|440.0|390.03|75.0
+500|709749|edtk[mc]/rb|wst machine procurement project |delhi|12/2019|12/2019|04/2024|04/2024|384.0|384.0|0.0|0.0
+501|709752|edtk[mc]/rb|dts machine procurement project |delhi|12/2019|12/2019|12/2024|12/2024|447.6|447.6|0.0|0.0
+502|709754|edtk[mc]/rb|brm machine procurement project |delhi|09/2019|09/2019|06/2024|06/2024|210.0|210.0|0.02|0.0
+503|709755|edtk[mc]/rb|track machine procurement project |delhi|04/2020|04/2020|03/2025|03/2025|6339.0|6339.0|4166.47|41.0
+504|705659|pce/wr|kosamba umarpada 70 km |gujarat|07/2022|07/2022|03/2027 |03/2027|468.0|468.0|20.0|0.0
+505|709757|western railway [wr] - ii|adraj moti vijapur 40 kms |gujarat|05/2022|05/2022|05/2026|05/2026|417.53|417.53|223.0|86.0
+506|705660|pce/wr|vijapur ambliyasan 42 km |gujarat|05/2022|05/2022|05/2026|05/2026|415.38|415.38|364.0|96.0
+507|709759|wr|himatnagar khedbrahma 55 km |gujarat|04/2017|04/2017|06/2001|06/2001|482.42|482.42|461.0|96.0
+508|709760|pce/wr|new broad gauge line between naliya jakhau port 25 kms |gujarat|02/2023|02/2023|01/2028|01/2028|410.26|410.26|6.0|4.0
+509|709761|pce/wr|quadrupling between gandhidham adipur with y connection at adipur for providing direct entry towards mundra port and bhuj and high level platform at gopalpur 11kms |gujarat|02/2023|02/2023|03/2026|03/2026|152.44|152.44|20.0|68.0
+510|705661|pce/wr|petlad bhadran 23 kms |gujarat|05/2022|05/2022|05/2030|05/2030|307.11|307.11|82.0|8.0
+511|611452|pce/wr|choranda motikoral 18 kms |gujarat|08/2023|08/2023|10/2026 |10/2026|246.0|246.0|0.0|0.0
+512|705668|pce/wr|samlaya timba road 54 km |gujarat|02/2023|02/2023|03/2030|03/2030|670.17|670.17|102.0|12.0
+513|705662|pce/wr|samni jambusar 24 km |gujarat|05/2022|05/2022|03/2030|03/2030|350.0|349.93|87.0|32.0
+514|709766|pce/wr|jambusar kavi 26 kms |gujarat|04/2023|04/2023|12/2026 |12/2026|318.0|318.0|0.0|0.0
+515|705667|pce/wr|miyagam karjan choranda maalsar 37 kms |gujarat|06/2023|06/2023|12/2026 |12/2026|450.0|450.0|0.0|0.0
+516|705663|pce/wr|western railway samakhiali gandhidham quadrupiling 53 kms |gujarat|08/2023|08/2023|12/2026 |12/2026|1430.0|1430.0|0.0|0.0
+517|709771|pce/wr|dahod creation of infrastructure facilities for 9000 hp electric locomotives manufacturing at |gujarat|02/2023|02/2023|02/2025 |02/2025|487.0|487.0|108.69|0.0
+518|709773|pce/wr|dahod rolling stock workshop provision of infrastructure for cbs at |gujarat|03/2023|03/2023|03/2025 |03/2025|158.0|158.0|47.31|0.0
+519|709774|pce/wr|sabarmati setting up of maintenance facilities for train sets phase ii |gujarat|04/2023|04/2023|06/2025 |06/2025|250.0|250.0|0.0|0.0
+520|709776|western railway|4th line between barejadi nandej-sanand-ahmedabad bypass |gujarat|02/2023|02/2023|03/2027|03/2027|961.67|961.67|132.63|16.0
+521|709777|ministry of railways|redevelopment of ahmedabad railway station and associated infrastructure on engineering, procurement and construction mode |gujarat|11/2023|11/2023|03/2028 |03/2028|2379.0|2379.0|607.69|15.0
+522|709778|western railway [wr] - ii|miyagam-karjan-dabhoi-samlaya [gc] |gujarat|01/2017|01/2017|03/2021|03/2021|844.0|1600.0|693.0|68.0
+523|709779|secr|modasa-shamlaji road railway line project |gujarat|04/2008|04/2008|03/2025|03/2025|262.0|262.0|203.0|58.0
+524|709780|western railway [wr] - ii|rajkot - kanalus doubling project [111.2 kms] |gujarat|12/2021|12/2021|10/2026|10/2026|1080.58|1080.58|731.0|72.0
+525|709782|north western railway [nwr]|bhiwani - dobh bahali doubling project [42.30 km] |haryana|02/2023|02/2023|02/2028|02/2028|471.0|471.0|187.33|57.0
+526|709783|east central railway [ecr] - ii|gomoh - flyover for dn trains |jharkhand|01/2018|01/2018|03/2026|03/2026|686.0|686.0|536.04|59.0
+527|709785|south eastern railway [ser] - i|lodhma - piska - link line bypassing hatia/ranchi with y connection |jharkhand|03/2019|03/2019|06/2026|06/2026|473.0|473.0|284.26|4.0
+528|709786|south western railway [swr] - ii|construction of new bg line between hassan to belur [27 km] |karnataka|12/2025|12/2025|04/2028|04/2028|749.0|749.0|0.0|0.0
+529|701597|karnataka rail infrastructure development company limited [k-ride]|yeshvanthpur - channasandra doubling project [21.70 km] |karnataka|10/2019|10/2019|12/2024|12/2024|314.0|314.0|144.0|59.0
+530|701598|south western railway [swr] - ii|new railway line between ginigera and raichur [165.57 km] |karnataka|05/2009|05/2009|03/2019|03/2019|2565.0|3034.98|2063.57|66.0
+531|603293|south western railway [swr] - ii|gadag-wadi new railway line [257 km] |karnataka|08/2017|08/2017|03/2027|03/2027|2842.0|6700.0|1721.14|30.0
+532|709792|south western railway [swr] - ii|kadur - chickamagalur - sakleshpur [93km] |karnataka|11/2016|11/2016|06/2025|06/2025|825.0|825.0|770.18|83.0
+533|709793|south western railway [swr] - ii|bagalkot-kudachi new railway line [142 km] |karnataka|11/2012|11/2012|03/2027|03/2027|1378.0|1649.0|670.74|35.0
+534|709790|south western railway [swr] - ii|tumkur-chitradurga-davangere new rail line project [191 km] |karnataka|01/2017|01/2017|03/2019|03/2019|1876.0|1876.0|516.17|13.0
+535|709789|south western railway [swr] - ii|shimoga - shikaripura - ranebennur [96 km] |karnataka|02/2023|02/2023|12/2027|12/2027|1454.0|1454.0|69.58|11.0
+536|705694|south western railway [swr] - ii|belgaum-dharwad via kittur [73.10km] |karnataka|03/2025|03/2025|12/2027|12/2027|1591.0|1591.0|0.75|0.0
+537|709797|southern railway [sr] - ii|kumbalam-turavur doubling project [15.59 km] |kerala|04/2023|04/2023|03/2027|03/2027|813.0|813.0|292.15|15.0
+538|709798|sr-ers|ernakulam-kumbalam doubling project [7.71 km] |kerala|04/2023|04/2023|03/2028|03/2028|601.0|601.0|283.0|17.0
+539|611495|north central railway|lalitpur-satna, rewa-singrauli & mahoba-khajuraho |madhya pradesh|03/1998|03/1998|03/2027|03/2027|8914.0|8914.0|4971.65|70.0
+540|709799|west central railway wcr i|katni - bina third railway line [279 km] |madhya pradesh|01/2017|01/2017|03/2022|03/2022|2478.23|4127.23|3295.49|90.0
+541|701602|west central railway [wcr] - ii|satna-rewa railway line doubling project |madhya pradesh|08/2017|08/2017|03/2026|03/2026|500.0|584.0|561.26|80.0
+542|705708|indian railway construction international limited [ircon]|doubling of katni - singrauli railway line [261 km] |madhya pradesh|03/2017|03/2017|12/2026|12/2026|2445.0|4377.0|3122.0|100.0
+543|705710|indian railway construction international limited [ircon]|katni grade separator/bye pass |madhya pradesh|09/2017|09/2017|09/2024|09/2024|1248.0|1248.0|1537.77|92.0
+544|705712|rvnl - ii|indore - budni new railway line [198 kms] |madhya pradesh|10/2020|10/2020|09/2030|09/2030|7474.0|7474.0|1658.03|22.0
+545|709808|western railway [wr] - ii|nimach-ratlam doubling [133 km] |madhya pradesh|10/2021|10/2021|10/2027|10/2027|1095.88|1095.88|1056.18|89.0
+546|709809|cr|dhule [borvihir] - nardana new line [50.60 kms] |maharashtra|04/2023|04/2023|12/2026|12/2026|493.0|1171.0|234.48|9.0
+547|709810|central railway [cr] - ii|wardha-nanded via yavatmal new bg line |maharashtra|04/2008|04/2008|03/2028|03/2028|3445.0|3445.0|3002.93|50.0
+548|709811|south central railway [scr] - ii|aurangabad-ankai - doubling project 98.25 km |maharashtra|05/2023|05/2023|03/2027 |03/2027|960.64|960.64|0.0|0.01
+549|611509|pce/wr|western railway vasai bypass double line between naigaon juchandra 6 km |maharashtra|07/2023|07/2023|03/2026 |03/2026|176.0|176.0|0.0|0.0
+550|709814|pce/wr|jogeshwari at development of jos-at as trainset maintenance depot for energy efficient vande bharat sleeper trains |maharashtra|06/2023|06/2023|10/2025 |10/2025|221.0|221.0|0.0|0.0
+551|709815|ministry of railways|redevelopment of chhatrapati shivaji maharaj terminus [csmt] and construction of associated infrastructure |maharashtra|07/2023|07/2023|03/2027 |03/2027|1813.0|1813.0|525.2|12.0
+552|709816|south east central railway|gondia-balharshah [chanda fort] doubling [240 km] |maharashtra|04/2025|04/2025|04/2030 |04/2030|4373.04|4373.04|0.0|0.0
+553|709817|south central railway [scr] - ii|doubling between parbhani parli vaijanath stations 64.71 km |maharashtra|12/2023|12/2023|03/2028 |03/2028|769.93|769.93|0.0|0.0
+554|709818|rcil|western region video surveillance project |maharashtra|04/2023|04/2023|12/2023 |12/2023|227.59|227.59|0.0|0.0
+555|709819|central railways|ahmednagar - beed - parli - vaijnath new broad gauge line railway project [261.3 km] |maharashtra|10/2002|10/2002|03/2026|03/2026|2539.0|4957.0|4725.34|92.0
+556|709820|central railway [cr] - ii|baramati lonand new line project |maharashtra|03/1999|03/1999|03/2027|03/2027|736.0|1844.0|712.0|50.0
+557|705717|south east central railway|wadsa-gadchiroli |maharashtra|03/2012|03/2012|03/2027|03/2027|1886.0|1886.0|706.28|49.0
+558|705720|central railway [cr] - ii|3rd line kalyan - kasara [67.35 kilometres] |maharashtra|09/2015|09/2015|12/2026|12/2026|793.0|1432.0|894.16|50.0
+559|705721|central railway [cr] - ii|3rd line wardha - sewagram - nagpur |maharashtra|05/2016|05/2016|12/2025|12/2025|540.0|698.0|724.75|80.0
+560|705722|central railway [cr] - ii|3rd line wardha - ballarshah [132 kilometres] |maharashtra|12/2016|12/2016|12/2025|12/2025|1385.0|1385.0|1102.48|77.0
+561|705726|central railway [cr] - ii|pune - miraj-londa [467 kilometres] |maharashtra|06/2016|06/2016|02/2025|02/2025|3627.0|6689.0|6548.0|84.0
+562|705728|central railway [cr] - ii|doubling of daund manmad line [247.6 km] |maharashtra|03/2017|03/2017|12/2025|12/2025|2081.0|3075.0|2769.0|88.0
+563|705730|central railway [cr] - ii|4th line wardha - nagpur [78.7 kilometres] |maharashtra|05/2018|05/2018|12/2025|12/2025|638.0|1137.0|969.0|80.0
+564|709826|central railway [cr] - ii|3rd line manmad - jalgaon [160 kilometres] |maharashtra|04/2018|04/2018|12/2024|12/2024|1035.0|1559.0|1692.0|97.0
+565|709829|wr|solapur-tuljapur-osmanabad |maharashtra|12/2023|12/2023|03/2028|03/2028|905.0|3296.0|1150.0|10.0
+566|709830|mridc|nagpur- nagbhir railway line gauge conversion project |maharashtra|04/2020|04/2020|12/2025|12/2025|1400.0|1400.0|1472.0|80.0
+567|709831|mumbai rail vikas corporation ltd.[mrvc]|mumbai urban transport project [mutp] - phase ii |maharashtra|04/2008|04/2008|03/2014|03/2014|8087.0|8087.0|7364.0|87.0
+568|709832|mumbai rail vikas corporation ltd.[mrvc]|mumbai urban transport project [mutp] phase-iiia |maharashtra|04/2019|04/2019|12/2027|12/2027|33690.0|33690.0|2246.15|16.0
+569|705735|mumbai rail vikas corporation ltd.[mrvc]|mumbai urban transport project phase-iii |maharashtra|12/2016|12/2016|03/2022|03/2022|10947.0|10947.0|5057.67|60.0
+570|709827|cr|pachora-jamner with extension upto malkapur ng to bg |maharashtra|01/2022|01/2022|08/2027|08/2027|955.0|2094.0|118.0|2.0
+571|701600|central railway [cr] - ii|kalyan-murbad via ulhasnagar [umbrella work] |maharashtra|04/2023|04/2023|03/2027|03/2027|836.0|836.0|9.29|1.0
+572|709837|south western railway [swr] - ii|marikuppam - kuppam new line project [23.70 km] |multi-states (andhra pradesh, karnataka)|10/2018|10/2018|06/2026|06/2026|297.0|297.0|123.17|15.0
+573|709838|south western railway [swr] - ii|rayadurg-tumkur via kalyandurg new line [207 km] |multi-states (andhra pradesh, karnataka)|07/2010|07/2010|09/2015|09/2015|2496.0|2496.0|1691.88|67.0
+574|709840|south central railway [scr] - i|renigunta, wadi & gooty bypass railway project |multi-states (andhra pradesh, karnataka)|04/2016|04/2016|12/2025|12/2025|302.0|543.0|381.0|50.0
+575|709841|south central railway [scr] - ii|doubling between mudkhed medchal & mahbubnagar dhone section 417.88 km |multi-states (andhra pradesh, maharashtra, telangana)|08/2023|08/2023|03/2029 |03/2029|4686.09|4686.09|0.0|0.0
+576|709842|rvnl - ii|vizianagaram - titlagarh 3rd line [272 km including by - pass line of 7.68 km] |multi-states (andhra pradesh, odisha)|11/2016|11/2016|12/2026|12/2026|4803.0|6670.0|5722.01|89.0
+577|709845|east coast railway [ecor] - ii|doubling of kottavalasa-koraput rail line [189 km] |multi-states (andhra pradesh, odisha)|01/2016|01/2016|03/2022|03/2022|2500.0|2500.0|2033.31|70.0
+578|709846|indian railways|malkangiri pandurangapuram new railway line project |multi-states (andhra pradesh, odisha, telangana)|01/2027|01/2027|11/2031 |11/2031|3591.76|3591.76|0.0|0.0
+579|709847|southern railway [sr] - ii|tindivanam-nagari new line project [184.5 km] |multi-states (andhra pradesh, tamil nadu)|10/2008|10/2008|09/2016|09/2016|3631.0|3631.0|1113.53|18.0
+580|705752|south central railway [scr] - ii|doubling between motumari vishnupuram - 88.81 km and rail over rail - ror at motumari - 10.877 km |multi-states (andhra pradesh, telangana)|03/2025|03/2025|03/2029 |03/2029|1595.55|1595.55|7.69|1.0
+581|701657|south central railway [scr] - ii|doubling of guntur bibinagar 239 km |multi-states (andhra pradesh, telangana)|08/2023|08/2023|03/2029 |03/2029|2853.23|2853.23|43.88|1.0
+582|709850|south central railway [scr] - ii|rail connectivity to errupalem amravati namburu 57 km |multi-states (andhra pradesh, telangana)|11/2024|11/2024|03/2027 |03/2027|2047.4|2047.4|0.0|0.0
+583|705755|south central railway [scr] - ii|kazipet-vijayawada 3rd line with electrification [220 km] |multi-states (andhra pradesh, telangana)|08/2014|08/2014|02/2025|02/2025|1953.0|3363.0|2915.49|90.0
+584|705756|south central railway [scr] - ii|vijayawada - kazipet byepass line |multi-states (andhra pradesh, telangana)|04/2016|04/2016|01/2025|01/2025|647.0|904.0|870.0|91.0
+588|701658|pce/ncr|new delhi- howrah speed booster[160kmph] project |multi-states (bihar, delhi, jharkhand, uttar pradesh, west bengal)|09/2019|09/2019|03/2024 |03/2024|6684.81|6684.81|127.03|0.0
+589|705761|rvnl - ii|third railway line between patratu-sonnagar [281 kms] |multi-states (bihar, jharkhand)|08/2018|08/2018|03/2026|03/2026|8975.0|8975.0|4950.0|88.0
+590|705763|east central railway [ecr] - i|multi tracking of son nagar-andal [374.53 rkm & 814.38 tkm] |multi-states (bihar, jharkhand)|08/2023|08/2023|03/2028 |03/2028|12333.57|12333.6|444.74|10.0
+591|705764|east central railway [ecr] - ii|koderma-tilaiya new line |multi-states (bihar, jharkhand)|03/2002|03/2002|02/2025|02/2025|1626.0|2020.0|2060.97|92.0
+592|705765|eastern railway [er] - i|pirpainti - jasidih [100.52 km] new bg line |multi-states (bihar, jharkhand)|03/2022|03/2022|03/2028|03/2028|2555.0|2555.0|763.08|48.0
+593|705766|north eastern railway [ner]|ner provision of automatic block signalling on gorakhpur cantt[excl] chhapra gramin & burhwal jn [excl] sitapur jn section of high density routes |multi-states (bihar, uttar pradesh)|06/2023|06/2023|03/2027 |03/2027|380.47|380.47|24.53|0.0
+594|705767|ner|gorakhpur-valmikinagar doubling project |multi-states (bihar, uttar pradesh)|03/2024|03/2024|12/2027 |12/2027|1120.0|1120.0|181.86|20.0
+595|709864|north eastern railway [ner]|chhapra-ballia patch doubling |multi-states (bihar, uttar pradesh)|11/2015|11/2015|02/2025|02/2025|963.0|1046.0|906.0|95.4
+596|709865|south east central railway [secr] - ii|rajnandgaon - nagpur [kalumna] third railway line [228.30 km] |multi-states (chhattisgarh, maharashtra)|12/2016|12/2016|12/2024|12/2024|3545.0|3545.0|3163.08|95.0
+597|709859|east coast railway [ecor] - ii|jagdalpur-koraput |multi-states (chhattisgarh, odisha)|03/2016|03/2016|03/2024|03/2024|1547.0|1547.0|1308.2|90.0
+598|705772|secr|jharsuguda-bilaspur fourth railway line [206 km] |multi-states (chhattisgarh, odisha)|09/2016|09/2016|10/2024|10/2024|2140.0|2979.0|2124.15|88.0
+599|705774|national high speed rail corporation [nhsrc]|mumbai-ahmedabad high speed rail project- 508 km |multi-states (dadra & nagar haveli and daman & diu, gujarat, maharashtra)|09/2017|09/2017|08/2027|08/2027|108000.0|108000.0|78690.89|53.0
+600|705777|pce/wr|new delhi- mumbai speed booster[160kmph] project |multi-states (delhi, gujarat, madhya pradesh, maharashtra, rajasthan)|09/2019|09/2019|03/2024 |03/2024|6806.44|6806.44|135.65|0.0
+601|611570|rvnl - ii|hospet - tinaighat - vasco rail doubling project |multi-states (goa, karnataka)|07/2012|07/2012|03/2027|03/2027|5060.0|5060.0|5007.82|86.0
+602|705779|rvnl|hospet-hubli-vasco da gama line electrification project |multi-states (goa, karnataka)|05/2018|05/2018|03/2023|03/2023|744.49|1122.62|969.05|95.0
+603|705780|dfccil|western dedicated freight corridor |multi-states (gujarat, haryana, maharashtra, rajasthan, uttar pradesh)|01/2012|01/2012|03/2022|03/2022|51101.0|124005.0|124623.0|96.0
+604|705782|western railway [wr] - ii|new line dahod-indore via sardarpur, jabuwa and dhar |multi-states (gujarat, madhya pradesh)|06/2012|06/2012|02/2027|02/2027|1942.0|2691.0|3412.98|67.0
+605|705783|western railway [wr] - ii|chhota udaipur - dhar new line project [157 km] |multi-states (gujarat, madhya pradesh)|01/2014|01/2014|12/2025|12/2025|1794.0|1794.0|1800.85|80.0
+606|705784|western railway|mumbai central virar vadodara ahmedabaad train protection system 500 rkm |multi-states (gujarat, maharashtra)|03/2023|03/2023|12/2025|12/2025|311.0|311.0|208.0|92.0
+607|705785|north western railway [nwr]|taranga hill-abu road via ambaji |multi-states (gujarat, rajasthan)|07/2022|07/2022|07/2030|07/2030|2798.0|2798.0|1891.9|14.0
+608|705789|north western railway [nwr]|luni- samdari- bhildi doubling |multi-states (gujarat, rajasthan)|02/2024|02/2024|07/2027 |07/2027|3085.59|3085.59|154.46|7.0
+609|705793|northen railway [nr]|chandigarh-baddi new rail line- 36 km |multi-states (haryana, himachal pradesh)|02/2018|02/2018|12/2026|12/2026|1540.0|1540.0|506.73|31.0
+610|611586|north western railway [nwr]|rewari - kathuwas doubling project [27.72 km] |multi-states (haryana, rajasthan)|12/2022|12/2022|06/2027|06/2027|352.0|352.0|239.01|59.0
+611|705794|northen railway [nr]|nangal dam-talwara new broad gauge line [84 km] and taking over siding mukerian-talwara [29 km] |multi-states (himachal pradesh, punjab)|05/1985|05/1985|12/2025|12/2025|2018.0|2018.0|1848.0|74.0
+612|705799|rvnl - ii|bhanupalli-bilaspur-beri new railway line project |multi-states (himachal pradesh, punjab)|04/2015|04/2015|12/2026|12/2026|13447.0|13447.0|6391.15|59.0
+613|611602|south eastern railway - jh|doubling of hatia [ranchi]-bondamunda rail line - 159 km |multi-states (jharkhand, odisha)|02/2017|02/2017|06/2025|06/2025|3029.0|3029.0|2458.15|85.0
+614|701719|south eastern railway [ser] - i|buramara-chakulia new line [59.96 km] |multi-states (jharkhand, odisha, west bengal)|12/2024|12/2024|12/2029 |12/2029|1459.13|1459.13|1.04|0.0
+615|611614|cao/c/ser|chandil - anara - damodar - 3rd line [121.26 km] |multi-states (jharkhand, west bengal)|07/2025|07/2025|09/2029 |09/2029|1932.01|1932.01|0.03|0.0
+616|701745|eastern railway [er] - ii |murarai - barharwa 3rd line |multi-states (jharkhand, west bengal)|01/2026|01/2026|05/2028 |05/2028|935.19|935.19|0.0|0.0
+617|701766|rvnl - ii|kharagpur-adityapur third rail line- 132 km |multi-states (jharkhand, west bengal)|01/2018|01/2018|03/2025|03/2025|3250.0|3250.0|3176.46|97.0
+618|705863|south western railway [swr] - ii|hotgi-kudgi-gadag doubling project |multi-states (karnataka, maharashtra)|01/2016|01/2016|12/2024|12/2024|1878.0|2459.0|2628.8|89.0
+619|611656|karnataka rail infrastructure development company limited [k-ride]|baiyyappanahalli - hosur doubling project [48 km] |multi-states (karnataka, tamil nadu)|02/2019|02/2019|12/2024|12/2024|499.0|499.0|595.0|97.0
+620|611657|sr-ers|trivandrum- kanyakumari |multi-states (kerala, tamil nadu)|03/2016|03/2016|03/2024|03/2024|1432.0|3785.0|2451.0|46.0
+621|611659|western railway [wr] - ii|ratlam-mhow-khandwa-akola gauge conversion |multi-states (madhya pradesh, maharashtra)|03/2010|03/2010|03/2027|03/2027|5678.0|6531.9|4314.0|87.0
+622|611660|central railway [cr] - ii|itarsi - nagpur third railway line [280 km] |multi-states (madhya pradesh, maharashtra)|09/2016|09/2016|03/2027|03/2027|2450.0|2450.0|1815.49|52.0
+623|400093|north central railway|gwalior - seopurkala with extension to kota [gauge conversion] |multi-states (madhya pradesh, rajasthan)|07/2018|07/2018|03/2025|03/2025|2913.0|2913.0|2751.0|83.0
+624|611669|west central railway [wcr] - ii|ramganjmandi-bhopal new line project [262 km] |multi-states (madhya pradesh, rajasthan)|10/2004|10/2004|12/2025|12/2025|3032.0|5073.0|3592.92|70.0
+625|611698|western railway [wr] - ii|nimach-badi sadri new rail line project |multi-states (madhya pradesh, rajasthan)|09/2021|09/2021|03/2026|03/2026|495.0|825.0|306.0|46.0
+626|611699|rvnl - ii|mathura-jhansi third railway line [274 km] |multi-states (madhya pradesh, rajasthan, uttar pradesh)|03/2018|03/2018|12/2024|12/2024|5961.0|5961.0|4928.62|94.0
+627|705298|cao/c/ncr|jhansi - bina third railway line [153 km] |multi-states (madhya pradesh, uttar pradesh)|03/2018|03/2018|03/2022|03/2022|2002.0|2002.0|1884.84|93.0
+628|705912|north central railway|jhansi-khairar-manikpur & khirar-bhimsen |multi-states (madhya pradesh, uttar pradesh)|03/2017|03/2017|03/2026|03/2026|4330.0|4330.0|1989.0|53.0
+629|705300|south central railway [scr] - ii|third line [new] between kazipet - balharshah with electrification [201.04 km] |multi-states (maharashtra, telangana)|10/2016|10/2016|01/2025|01/2025|2595.0|3071.0|3142.35|92.0
+630|705918|south eastern railway [ser] - i|narayangarh-bhadrak 3rd line |multi-states (odisha, west bengal)|03/2017|03/2017|12/2025|12/2025|2400.0|2400.0|2188.0|65.0
+631|705919|southern railway [sr] - ii|nagapattinam-tiruturaipundi and karaikal-peralam new line |multi-states (puducherry, tamil nadu)|01/2019|01/2019|03/2026|03/2026|713.0|981.0|598.38|80.0
+633|603945|eastern railway [er] - i|sainthia, sitarampur, mughalsarai, allahabad & etawah - bypass line project |multi-states (uttar pradesh, west bengal)|12/2017|12/2017|03/2027|03/2027|461.64|461.64|178.45|6.0
+634|615818|east coast railway [ecor] - ii|proposed 6 nos road over bridge [rob] at different locations under mcl talcher under deposit scheme. |odisha|07/2022|07/2022|03/2025|03/2025|168.32|168.32|69.85|82.0
+635|615820|east coast railway [ecor] - ii|brundamal-jharsuguda- flyover connection for joining downline |odisha|01/2014|01/2014|12/2026|12/2026|297.0|297.0|193.22|30.0
+636|615821|east coast railway [ecor] - ii|3rd & 4th line between sarla - sason [8 km] [pb 73/2023-24/nr] |odisha|04/2023|04/2023|12/2025 |12/2025|252.0|252.0|79.55|45.0
+637|615822|cao/c/ser|bangriposi-gorumahisani new line [ 85.60 km ] |odisha|09/2025|09/2025|12/2029 |12/2029|2269.49|2269.49|0.0|0.0
+638|705933|cao/c/ser|badampahar-kendujhargarh new line [82.06 km] |odisha|09/2025|09/2025|12/2029 |12/2029|1875.72|1875.72|0.0|0.0
+639|611735|east coast railway [ecor] - ii|flyover between siju and paradeep coaching yard to avoid surface crossing of trains |odisha|10/2025|10/2025|07/2028 |07/2028|200.77|200.77|0.0|0.0
+640|611737|east coast railway [ecor] - ii|paradeep - badabandha 3rd & 4th line / 18.51kms |odisha|04/2025|04/2025|11/2028 |11/2028|300.15|300.15|0.01|0.0
+641|613785|east coast railway [ecor] - ii|khurda-bolangir new broad gauge rail link [301km] |odisha|03/2001|03/2001|12/2026|12/2026|3792.0|5089.0|4983.45|89.0
+642|613786|east coast railway [ecor] - ii|talcher-bimlagarh new railway line |odisha|12/2004|12/2004|03/2025|03/2025|1928.0|1928.0|1902.91|47.0
+643|613788|east coast railway [ecor] - ii|bhadrak-nergundi third line |odisha|04/2015|04/2015|11/2024|11/2024|1284.0|1284.0|1298.0|80.0
+644|613787|east coast railway [ecor] - ii|koraput - singapur railway doubling |odisha|12/2015|12/2015|12/2027|12/2027|2362.0|2362.0|1787.49|68.0
+645|613793|east coast railway [ecor] - ii|jarapada- budhapank with flyover at talcher road 3rd and 4th line |odisha|12/2015|12/2015|11/2018|11/2018|1000.0|810.02|401.61|36.0
+646|613794|cao/c/ecor|baghuapal flyover construction project |odisha|10/2022|10/2022|03/2028|03/2028|257.97|258.0|0.83|0.0
+647|613795|south eastern railway [ser] - i|rourkela - bondamunda 5th line doubling project |odisha|03/2022|03/2022|09/2026|09/2026|245.0|245.0|82.0|35.0
+648|615843|indian railway|kodingamali bauxite mines to singaram railway station |odisha|01/2026|01/2026|08/2027|08/2027|190.9|190.9|0.0|0.0
+649|613798|east coast railway [ecor] - ii|gandhamardan iron ore mines to goaldih station/12.76kms |odisha|05/2025|05/2025|09/2027|09/2027|190.0|190.0|0.0|0.0
+650|613799|wr|junagarh visavadar 42 kms |offshore|02/2023|02/2023|09/2028|09/2028|492.83|492.83|3.0|1.0
+651|613800|east central railway [ecr] - i|jaynagar-bijalpura, incl. extn. bet, bijalpura-bardibas [nepal] |offshore|03/2011|03/2011|03/2022|03/2022|819.0|819.0|588.32|75.0
+652|613801|cao/c/nr|ludhiana- killa raipur railway doubling project |punjab|12/2022|12/2022|03/2025|03/2025|237.64|237.64|118.0|55.0
+653|613802|north western railway [nwr]|dedicated test track for rdso phase ii |rajasthan|11/2021|11/2021|11/2026|11/2026|819.48|967.06|471.0|86.0
+654|613803|north western railway [nwr]|devgarh madariya - nathdwara gauge conversion [82.54 km] part of marwar - mavli gauge conversion [152 km] |rajasthan|01/2023|01/2023|06/2028|06/2028|969.0|969.0|411.0|45.0
+655|613804|wpo/patna|maintenance cum workshop depot for vande bharat sleeper trains as per conditions under wta 527 |rajasthan|06/2023|06/2023|12/2024 |12/2024|166.86|166.86|0.0|0.0
+656|611752|north western railway [nwr]|ringus khatushyamji new line |rajasthan|03/2024|03/2024|03/2028 |03/2028|254.06|254.06|1.65|0.0
+657|611754|north western railway [nwr]|ras- merta city new line incl bypass at merta road |rajasthan|02/2024|02/2024|03/2028 |03/2028|947.0|947.0|1.36|0.0
+658|611751|north western railway [nwr]|pushkar- merta city new line |rajasthan|02/2024|02/2024|12/2026 |12/2026|799.64|799.64|13.91|3.0
+659|613808|north western railway [nwr]|ajmer- chanderiya doubling |rajasthan|02/2024|02/2024|06/2027 |06/2027|1634.79|1634.79|59.51|5.0
+660|615857|north central railway|dholpur - sirmuttra gauge conversion |rajasthan|04/2020|04/2020|02/2019|02/2019|747.0|747.0|392.0|39.0
+661|615858|north western railway [nwr]|gudha-thatha mithri construction of railway track project |rajasthan|04/2019|04/2019|11/2026|11/2026|819.48|967.06|471.0|98.0
+662|615859|north western railway [nwr]|sawai madhopur-jaipur railway line project |rajasthan|04/2023|04/2023|03/2027 |03/2027|1203.89|1203.89|35.05|9.0
+663|615860|cao/c/ncr|agra fort-bandikui doubling line project |rajasthan|02/2021|02/2021|06/2027|06/2027|1390.0|1390.0|123.0|25.0
+664|615861|north western railway [nwr]|sawaimadhopur bye pass line project |rajasthan|01/2023|01/2023|03/2026|03/2026|304.0|304.0|134.0|35.0
+665|615862|southern railways [sr] - construction|ph ii extension of mrts from velachery to st thomas mount |tamil nadu|11/2008|11/2008|07/2024|07/2024|734.0|982.0|475.73|99.0
+666|615863|wr|redevelopment of chennai egmore station |tamil nadu|10/2022|10/2022|03/2026 |03/2026|842.0|842.0|340.0|0.0
+667|615864|cpm/icf|coach production factory upgradation project |tamil nadu|07/2018|07/2018|12/2021 |12/2021|520.0|520.0|192.25|0.0
+668|615865|southern railway [sr] - i|morappur - dharmpuri new railway line project |tamil nadu|12/2016|12/2016|03/2028|03/2028|359.0|359.0|40.0|1.0
+669|609736|south central railway [scr] - ii|doubling between bhadrachalam road and dornakal |telangana|04/2025|04/2025|04/2029 |04/2029|770.12|770.12|0.0|0.0
+670|607701|south central railway [scr] - ii|manoharabad-kothapalli new rail line [151 km] |telangana|01/2017|01/2017|03/2027|03/2027|1160.0|2781.0|1713.38|71.0
+671|611798|north eastern railway [ner]|bahraich-shravasti-balrampur-siddharthnagar -santkabir nagar |uttar pradesh|03/2017|03/2017|10/2030|10/2030|4939.78|4939.78|1217.13|8.0
+672|611800|north eastern railway [ner]|sahjanwa-dohrighat |uttar pradesh|03/2017|03/2017|03/2029|03/2029|1319.75|1319.75|457.35|3.0
+673|607709|construction ner|anandnagar - ghugli via maharajganj 50 km |uttar pradesh|11/2023|11/2023|03/2028 |03/2028|958.27|958.27|432.01|23.0
+674|615914|north central railway|chunar-chopan doubling project |uttar pradesh|01/2025|01/2025|03/2028 |03/2028|1423.96|1423.96|26.0|2.0
+675|615916|north eastern railway [ner]|domingarh-gorakhpur-gorakhpur cantt.-kusumhi - 3rd railway line project |uttar pradesh|06/2018|06/2018|02/2025|02/2025|351.0|521.47|494.0|98.0
+676|615917|north eastern railway [ner]|burhwal gonda 3rd line |uttar pradesh|07/2019|07/2019|03/2025|03/2025|1016.0|1118.0|1113.75|70.0
+677|615918|cao/c/ii/nr|janghai-pratapgarh- amethi |uttar pradesh|03/2017|03/2017|03/2025|03/2025|722.0|1194.0|1100.0|70.0
+678|615919|north central railway|lalitpur-birari with flyover at lalitpur- 16 km |uttar pradesh|03/2017|03/2017|12/2024|12/2024|304.44|356.0|214.0|65.0
+679|611849|north central railway|mughalsarai-allahabad, 3rd line |uttar pradesh|03/2016|03/2016|12/2026|12/2026|2649.0|2649.0|1399.0|62.0
+680|611861|cao/c/ncr|aligarh -daud khan flyover construction & 3rd railway line project |uttar pradesh|09/2020|09/2020|01/2025|01/2025|758.0|779.49|315.37|55.0
+681|611864|cao/c/ncr|bhandai flyover construction project |uttar pradesh|04/2021|04/2021|02/2026|02/2026|250.18|250.18|118.0|15.0
+682|701991|south eastern railway [ser] - i|phephna-indara, mau-shahganj doubling excluding indara-mau |uttar pradesh|03/2017|03/2017|12/2024|12/2024|1178.0|1777.0|1489.5|85.0
+683|611884|rvnl - ii|bhatni-aurnihar with electrification excluding indara-mau |uttar pradesh|03/2017|03/2017|12/2024|12/2024|2529.0|2529.46|2051.69|94.0
+684|615982|cao/c/nr|barabanki-malhaur 3rd & 4th railway line project |uttar pradesh|04/2017|04/2017|03/2025|03/2025|407.0|407.0|317.0|75.0
+685|611917|rvnl|janghai-phaphamau doubling rail line project |uttar pradesh|03/2020|03/2020|03/2025|03/2025|357.0|978.77|579.0|95.0
+686|611918|north eastern railway [ner]|bahraich - nanpara - nepalganj road gauge conversion |uttar pradesh|04/2021|04/2021|07/2025|07/2025|950.0|950.0|507.02|86.0
+687|611927|north central railway|allahabad division - aligarh - harduaganj flyover |uttar pradesh|02/2021|02/2021|06/2026|06/2026|1457.0|1457.0|50.0|8.0
+688|611929|rvnl - ii|rishikesh-karnaprayag new rail line- 125 km |uttarakhand|08/2018|08/2018|12/2025|12/2025|38953.0|38953.0|24645.15|65.0
+689|611930|eastern railway [er] - i|kalinarayanpur-krishnanagar doubling alongwith krishnanagar - chapra new line and naihati-ranaghat 3rd line. |west bengal|11/2005|11/2005|02/2027|02/2027|1000.0|1000.0|1029.97|67.0
+690|611937|eastern railway [er] - i|tarakeshwar-bishnupur new line [82.47 km] |west bengal|02/2008|02/2008|03/2019|03/2019|1189.0|1542.0|1287.05|90.0
+691|611938|rvnl - ii|dum dum airport-new garia via rajarhat-construction of metro railway |west bengal|10/2011|10/2011|12/2025|12/2025|8964.0|8964.0|8097.47|80.0
+692|611939|northeast frontier railway [nfr]|construction of balurghat-hilli new bg line |west bengal|12/2010|12/2010|03/2027|03/2027|1209.0|1209.0|405.31|9.0
+693|611943|eastern railway [er] - i|kalipahari bakhtarnagar 5th line |west bengal|07/2025|07/2025|06/2027|06/2027|350.46|350.46|0.0|0.0
+694|611944|rvnl - ii|joka-bbd bag new metro project |west bengal|04/2010|04/2010|12/2026|12/2026|4835.0|10362.0|4361.23|59.0
+695|611945|metro railway, kolkata|noapara-barasat via bimanbandar - construction of metro railway [18 km] |west bengal|03/2010|03/2010|08/2026|08/2026|4830.0|4830.0|2764.13|32.0
+696|611947|south western railway [swr] - ii|bangalore-whitefield-bangalore city-krishnarajapuram [23.08 km] - quadrupling |karnataka|06/2022|06/2022|02/2026|02/2026|493.0|493.0|252.45|82.0
+697|616044|rvnl - ii|baranagar-barrackpore and dakshineshwar- construction of metro railway |west bengal|03/2010|03/2010|12/2026|12/2026|2298.0|2734.0|393.0|17.0
+698|611948|national mineral development corporation limited [nmdc]|capacity expansion of deposit-14 and 14 nmz at kirandul |chhattisgarh|07/2022|07/2022|12/2028|12/2028|1700.0|1756.2|65.44|2.0
+699|611949|steel authority of india limited [sail]|replacement of hot leveller no.1 of plate mill at bhilai steel plant |chhattisgarh|08/2024|08/2024|07/2026 |07/2026|198.62|198.62|10.53|8.0
+700|611951|steel authority of india limited [sail]|replacement of converter vessels, trunnion rings, support system & installation of secondary emission at bhilai steel plant |chhattisgarh|12/2023|12/2023|06/2026 |06/2026|471.83|471.83|111.75|35.0
+701|611950|steel authority of india limited [sail]|rebuilding of coke oven battery no.7 & 8 at bhilai steel plant |chhattisgarh|01/2024|01/2024|10/2025 |10/2025|884.1|884.1|453.2|75.0
+702|616050|national mineral development corporation limited [nmdc]|nmdc slurry pipeline project phase-1 |chhattisgarh|09/2020|09/2020|06/2023|06/2023|2907.0|5427.0|3012.02|84.0
+703|611957|national mineral development corporation limited [nmdc]|screening plant-iii at kirandul |chhattisgarh|10/2021|10/2021|01/2026 |01/2026|2718.84|2718.84|1327.11|72.0
+704|611963|national mineral development corporation limited [nmdc]|construction of residential towers at biom kirandul complex |chhattisgarh|10/2022|10/2022|12/2025 |12/2025|349.75|349.75|247.42|85.0
+705|612135|steel authority of india limited [sail]|new sinter plant at bsl, sail |jharkhand|05/2015|05/2015|10/2017|10/2017|1034.01|1752.3|883.23|51.0
+706|611966|steel authority of india limited [sail]|replacement of existing grinders in crm-i & ii at bokaro steel plant |jharkhand|02/2025|02/2025|01/2027 |01/2027|211.94|211.94|7.52|6.0
+707|611967|steel authority of india limited [sail]|secondary emission control in converters of sms-ii at bokaro steel plant |jharkhand|02/2025|02/2025|10/2026 |10/2026|207.13|207.13|7.91|6.0
+708|611969|steel authority of india limited [sail]|revamping of old sub-systems of blast furnace 3 at bokaro steel plant |jharkhand|10/2023|10/2023|07/2025|07/2025|513.82|513.82|220.42|69.0
+709|611970|steel authority of india limited [sail]|replacement of remaining 04 sets of battery cyclones with 04 nos. of esps in sinter plant-1 at bokaro steel plant |jharkhand|04/2024|04/2024|06/2026 |06/2026|260.37|260.37|44.22|22.0
+710|611971|steel authority of india limited [sail]|rebuilding of coke oven battery no.6 at bokaro steel plant |jharkhand|12/2023|12/2023|11/2026 |11/2026|627.31|627.31|88.21|37.0
+711|611972|national mineral development corporation limited [nmdc]|construction of screening plant-ii for donimalai and kumaraswamy iron ore mining complex of nmdc limited at ballari dt, karnataka. |karnataka|06/2024|06/2024|08/2026 |08/2026|1043.63|1043.63|214.48|25.0
+712|611973|steel authority of india limited [sail]|installation of 4th slab caster along with its auxiliaries and a new ladle furnace in sms-ii at rourkela steel plant |odisha|02/2022|02/2022|05/2025|05/2025|1105.23|1105.23|736.47|96.0
+713|611974|steel authority of india limited [sail]|rebuilding of cob 4 at durgapur steel plant |west bengal|12/2023|12/2023|12/2026 |12/2026|916.78|916.78|118.63|12.0
+714|611975|steel authority of india limited [sail]|installation of new bar mill at durgapur steel plant |west bengal|10/2024|10/2024|06/2027 |06/2027|2115.44|2115.44|206.67|24.0
+715|611976|steel authority of india limited [sail]|up-gradation of blast furnace no. 3 at durgapur steel plant |west bengal|10/2024|10/2024|06/2026 |06/2026|758.09|758.09|53.31|3.0
+716|611977|steel authority of india limited [sail]|third ladle furnace in secondary refinery unit at iisco steel plant |west bengal|12/2024|12/2024|07/2026 |07/2026|227.96|227.96|16.24|29.0
+717|611978|steel authority of india limited [sail]|revamping of air pollution control systems of sp-1 at durgapur steel plant |west bengal|12/2024|12/2024|05/2026 |05/2026|196.4|196.4|0.19|2.0
+718|611979|national industrial corridor development corporation|krishnapatnam node - phase 1 - roads and services development |andhra pradesh|02/2024|02/2024|02/2028 |02/2028|2139.44|2139.44|327.99|14.0
+719|611980|national highways & infrastructure development corporation ltd. [nhidcl]|tumakuru node - phase 1 - roads and services development |karnataka|02/2023|02/2023|09/2026 |09/2026|1701.81|1701.81|95.0|8.0
+720|900808|india international convention & expo centre|exhibition cum convention centre dwarka [phase i] |delhi|12/2017|12/2017|10/2019|10/2019|5178.0|5401.0|4470.0|97.4
+721|609996|national communication academy - financ|setting up of physical infrastructure for the national institute of communication finance [nicf] at ghitorni |delhi|04/2018|04/2018|02/2020|02/2020|248.2|248.2|236.91|98.0
+723|612063|department of telecommunications [dot]|mobile connectivity in left wing extremism [lwe] affected areas-phase2 |multi-states (andhra pradesh, bihar, chhattisgarh, jharkhand, madhya pradesh, maharashtra, odisha, telangana, uttar pradesh, west bengal)|09/2021|09/2021|03/2023|03/2023|1577.57|1577.57|596.17|87.0
+724|612072|department of telecommunications [dot]|provision of 4g based mobile services in 7,287 uncovered villages of 44 aspirational district across 5 states of andhra pradesh, chhattisgarh, jharkhand, maharashtra & odisha |multi-states (andhra pradesh, chhattisgarh, jharkhand, maharashtra, odisha)|05/2022|05/2022|11/2023|11/2023|3685.0|3685.0|1101.39|79.0
+726|612096|department of telecommunications [dot]|354 uncovered villages scheme |multi-states (bihar, gujarat, himachal pradesh, jammu and kashmir, ladakh, rajasthan, uttar pradesh)|04/2020|04/2020|10/2021|10/2021|336.89|301.13|225.71|97.0
+727|616223|department of telecommunications [dot]|502 aspirational district scheme in four states - bihar, madhya pradesh, rajastha and uttar pradesh |multi-states (bihar, madhya pradesh, rajasthan, uttar pradesh)|03/2021|03/2021|03/2022|03/2022|421.65|228.94|126.45|96.0
+728|612128|bsnl|phase-i of consolidation of existing cdr data centers and nib-p3 data centers with state of the art |multi-states (maharashtra, telangana)|03/2020|03/2020|06/2021|06/2021|461.42|461.42|166.02|81.0
+729|616225|water resources-ka|upper tunga irrigation project |karnataka|04/2014|04/2014|12/2019|12/2019|770.16|1606.07|1511.22|99.0
+730|616226|water resource-mp|omkareshwar cadwm project |madhya pradesh|04/2015|04/2015|12/2019|12/2019|648.09|648.09|172.56|3.0
+731|616227|water resources-mp|bargi diversion project phase - iv [km. 154 to km 197] |madhya pradesh|01/2009|01/2009|12/2019|12/2019|751.03|893.35|777.99|74.0
+732|612132|water resources-mp|bargi diversion project phase - iii [km. 104 to km 154] |madhya pradesh|04/2007|04/2007|12/2019|12/2019|1229.15|1399.7|1807.2|79.0
+733|612133|department of water resources-mh - ii|gosikhurd cadwm project |maharashtra|04/2017|04/2017|12/2019|12/2019|743.73|743.73|252.0|50.0
+734|612134|department of water resources-mh - ii|urmodi irrigation project |maharashtra|04/2018|04/2018|06/2022|06/2022|580.79|895.81|713.46|76.22
+735|616230|department of water resources-mh - ii|sulwade-jamphal-kanoli lift irrigation scheme |maharashtra|02/2019|02/2019|06/2023|06/2023|2407.67|2407.67|2436.43|80.0
+736|616229|department of water resources-mh - ii|purna barrage-2 [ner dhamana] medium irrigation project |maharashtra|04/2018|04/2018|06/2020|06/2020|848.07|888.43|690.49|69.0
+737|616231|department of water resources-mh - ii|jigaon irrigation project |maharashtra|04/2018|04/2018|06/2028 |06/2028|7222.95|7222.95|8501.45|90.0
+738|612138|department of water resources-mh - ii|waghur project |maharashtra|04/1996|04/1996|12/2019|12/2019|1058.99|1758.51|1530.36|89.0
+739|612139|department of water resources-mh - ii|tillari irrigation project |maharashtra|01/2006|01/2006|12/2019|12/2019|368.34|649.6|724.36|99.0
+740|612140|department of water resources-mh - ii|gosikhurd project |maharashtra|04/2008|04/2008|12/2019|12/2019|7196.47|12770.1|13533.29|72.0
+741|616234|department of water resources-mh - ii|bembla irrigation project |maharashtra|04/2007|04/2007|12/2019|12/2019|1352.53|2685.41|2689.7|98.0
+742|612142|department of water resources-mh - ii|arjuna medium irrigation project |maharashtra|01/2008|01/2008|12/2019|12/2019|333.87|611.0|803.89|100.0
+743|616236|department of water resources-mh - ii|aruna medium irrigation project |maharashtra|01/2010|01/2010|12/2019|12/2019|210.45|1472.14|1697.94|97.0
+744|616232|department of water resources-mh - ii|krishna koyana lift irrigation project |maharashtra|04/2009|04/2009|12/2019|12/2019|973.62|2774.9|1069.82|90.0
+745|616233|department of water resources-mh - ii|lower pedhi project |maharashtra|04/2008|04/2008|12/2019|12/2019|255.97|1480.7|1324.78|64.0
+746|616235|department of water resources-mh - ii|nardave medium irrigation project |maharashtra|04/2009|04/2009|12/2019|12/2019|211.46|781.85|623.5|72.59
+748|400094|department of water resources, river development & gr|north koel reservoir project |multi-states (bihar, jharkhand)|01/2021|01/2021|03/2021|03/2021|1622.27|2430.76|142.1|32.0
+749|612151|water resources-or|integrated anandpur barrage project |odisha|01/1998|01/1998|12/2019|12/2019|567.03|2990.05|2629.74|62.0
+750|616253|irrigation and cad-tg|kanupur irrigation project |odisha|01/2004|01/2004|12/2019|12/2019|989.43|2301.28|2563.56|79.0
+751|606013|department of water resources-pb|relining of rajasthan feeder and sirhind feeder canal |punjab|04/2018|04/2018|06/2021|06/2021|1441.26|2462.16|2962.99|80.0
+752|616254|department of water resources-pb|shahpur kandi dam project |punjab|04/2018|04/2018|06/2022|06/2022|2285.81|2715.7|2072.33|80.0
+753|612183|irrigation and cad-tg|j. chokharao lis cadwm project |telangana|04/2016|04/2016|12/2019|12/2019|759.94|13445.4|0.0|0.0
+754|612194|irrigation and cad-tg|sri ram sagar project stage - ii |telangana|04/2005|04/2005|12/2019|12/2019|736.13|949.87|940.7|96.0
+755|612203|irrigation and cad-tg|indiramma flood flow canal project |telangana|01/2006|01/2006|12/2019|12/2019|1331.3|5940.09|4491.08|92.0
+756|702355|irrigation and cad-tg|j. chokka rao devadula lift irrigation scheme |telangana|04/2006|04/2006|12/2019|12/2019|8200.71|14730.0|4558.89|87.0
+757|606112|irrigation and cad-tg|rajiv bhima lift irrigation scheme |telangana|01/2008|01/2008|12/2019|12/2019|1402.0|2509.66|1839.76|100.0
+758|701350|irrigation & water resources-up|saryu nahar cadwm project |uttar pradesh|04/2017|04/2017|12/2019|12/2019|1672.7|1672.7|0.0|0.0
+759|704495|irrigation & water resources-up|arjun sahayak project |uttar pradesh|04/2009|04/2009|12/2019|12/2019|741.38|2465.68|3218.3|100.0
+760|602096|department of water resources, river development & gr|morna [gureghar] irrigation project |uttar pradesh|12/2007|12/2007|06/2023 |06/2023|219.9|219.9|0.0|0.0
+761|602098|irrigation & water resources-up|madhya ganga canal phase-ii |uttar pradesh|07/2007|07/2007|12/2019|12/2019|1060.67|4417.21|4415.24|82.0
+762|602099|irrigation-uk|jamrani dam multipurpose project |uttarakhand|04/2023|04/2023|06/2029 |06/2029|2584.1|2584.1|486.52|16.0
