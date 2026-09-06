@@ -162,7 +162,8 @@ def process_new(file_path):
     #     print("Failed to process file. Too many rows failed to parse")
 
 
-for f in  os.scandir('csv/raw'):
-    print("Processing:",f.path)
-    process_new(f.path)
+def preprocess(folder):
+    for f in  os.scandir(folder):
+        print("Processing:",f.path)
+        process_new(f.path)
     
