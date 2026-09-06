@@ -18,7 +18,7 @@ def get_month_yr(file_path):
 
     return datetime.datetime(yr,month)
 
-def process_new(file_path):
+def process_new(file_path,preprocess_folder):
     uids = set()
     dept_table = {}
     department = []
@@ -154,16 +154,12 @@ def process_new(file_path):
         "progress"
     ])
     df2 = np.column_stack((np.array(ids),np.array(list(uids)),np.array(department),np.array(names),np.array(state),np.array(date_start),np.array(date_revised),np.array(date_end),np.array(date_end_revised),np.array(money_expected),np.array(money_expected_revised),np.array(cspent),np.array(progress)))
-    np.savetxt(os.path.join('csv','preprocessed',"preprocessed_"+os.path.basename(file_path)),np.vstack((df,df2)),"%s","|")
+    np.savetxt(os.path.join(preprocess_folder,"preprocessed_"+os.path.basename(file_path)),np.vstack((df,df2)),"%s","|")
 
 
 
-    # if len(uids) / def_dropped.shape[0] <:
-    #     print("Failed to process file. Too many rows failed to parse")
-
-
-def preprocess(folder):
+def preprocess(folder,preprocessed_folder):
     for f in  os.scandir(folder):
         print("Processing:",f.path)
-        process_new(f.path)
+        process_new(f.path,preprocessed_folder)
     

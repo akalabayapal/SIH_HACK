@@ -31,7 +31,7 @@ table_settings = {
 }
 
 
-def extract_month_year(file_path:str):
+def extract_month_year(file_path: str):
     # get the basename
     base_name_parts = os.path.basename(file_path).split(".")[0].split("_")
 
@@ -40,7 +40,7 @@ def extract_month_year(file_path:str):
 
     return datetime.datetime(int(year),month_map[month],1)
 
-def get_all_tables(file_path:str):
+def get_all_tables(file_path:str,folder_path: str):
 
 
     data_frames = []
@@ -59,10 +59,7 @@ def get_all_tables(file_path:str):
                     if df2.shape[1] == 8:
                         df2_clean = df2.replace(r'^\s*$', pd.NA, regex=True)
                         data_frames.append((page_num+1,df2_clean.dropna().to_numpy()))
-                  
-                    # if df2.shape[1] == 9:
-                    #     df2_clean = df2.replace(r'^\s*$', pd.NA, regex=True)
-                    #     data_frames.append((page_num+1,df2_clean.iloc[:,2:].dropna().to_numpy()))
+
 
     print("Stacking the data to stack_frame for file:",os.path.basename(file_path))
 
@@ -74,7 +71,6 @@ def get_all_tables(file_path:str):
     stack = data_frames[0][1]    
     for id,frame in data_frames[1:]:
         if frame.shape[-1] != 8:
-        # if frame.shape[-1] != 7:
             errs.append("Faulty data_frame excluded and needs manunal inspection:page_num:"+str(id))
             continue
         
@@ -87,7 +83,7 @@ def get_all_tables(file_path:str):
     for i,ele in enumerate(flt):
         flt[i] = flt[i].replace('\n',' ').lower()
 
-    np.savetxt(os.path.join('csv','raw','output_'+extract_month_year(file_path).strftime("%Y_%m")+'.csv'),flt.reshape(shape_now),"%s","|")
+    np.savetxt(os.path.join(folder_path,'output_'+extract_month_year(file_path).strftime("%Y_%m")+'.csv'),flt.reshape(shape_now),"%s","|")
 
     if len(errs) > 0:
         print("========ERRORS=========")
@@ -95,10 +91,8 @@ def get_all_tables(file_path:str):
         print("=======================")
 
 
-def extract_raw(folder):
+def extract_raw(folder,out_folder):
     for file in os.scandir(folder):
-
-        name = extract_month_year(file)
         print("Processing file:",os.path.basename(file))
-        get_all_tables(file.path)
+        get_all_tables(file.path,out_folder)
 
