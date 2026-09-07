@@ -127,7 +127,7 @@ def train_cost(file:str,result_cost: str):
         results.append({
             'project_code': project_code,
             'project_key': project_key,
-            'status': 'TYTP',
+            'status': 'TBTP',
             'e_cost': np.nan,
             'target_cost': target_cost,
             'risk_pct': np.nan,
@@ -286,7 +286,7 @@ def train_time(file: str,results_time: str):
         results.append({
             'project_code': project_code,
             'project_key': project_key,
-            'status': 'TYTP',
+            'status': 'TBTP',
             'e_cost': np.nan,
             'target_cost': target_cost,
             'cost_risk_pct': np.nan,
