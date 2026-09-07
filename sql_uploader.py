@@ -10,7 +10,8 @@ class Project:
             self,
             project_code: int,
             project_name: str,
-            status: str, # COMPLETED or TYTP
+            status_cost: str, # COMPLETED or TYTP
+            status_time: str,
 
             project_start_date: str,
             project_start_date_revised:str,
@@ -19,21 +20,27 @@ class Project:
             project_budget:float,
             project_budget_revised:float,
 
+            cspend: float,
+
             time_risk: int,
-            cost_risk: int
+            cost_risk: int,
+            progress: float,
     ):
         # just set them
         self.code = project_code
         self.name = project_name
-        self.status = status
+        self.status_cost = status_cost
+        self.status_time = status_time
         self.project_start_date = project_start_date
         self.project_start_date_revised = project_start_date_revised
         self.project_end_date = project_end_date
         self.project_end_date_revised = project_end_date_revised
         self.project_budget = project_budget
         self.project_budget_revised = project_budget_revised
+        self.cspend = cspend
         self.time_risk = time_risk
         self.cost_risk = cost_risk
+        self.progress = progress
 
 
 class ORM:
@@ -88,7 +95,6 @@ class ORM:
                         )
                         VALUES (%s, %s , %s , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         """
-        i = 0
         for data in tqdm.tqdm(cost_model):
 
             code = data[1]
@@ -122,18 +128,13 @@ class ORM:
             cost_risk = data[6]
             time_risk = time_filtered[0][10]
 
-            if status_cost == 'TYTP' or status_cost == 'TBTP':
-             
+            if status_cost == 'TYTP' or status_cost == 'TBTP': 
                 cost_risk = 0
 
     
 
-            if status_time == 'TYTP' or status_cost == 'TBTP':
-            
+            if status_time == 'TYTP' or status_time == 'TBTP':
                 time_risk = 0
-
-            if status_time == 'TYTP' and status_cost == 'TYTP':
-                i += 1
 
             if pd.isna(start_date):
                 start_date = start_date_revised
