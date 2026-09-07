@@ -1,63 +1,246 @@
-# TEAM SIH PROJECT
+# PAIMANA — Project Monitoring & Risk Prediction
 
-## Main Goal
+## 📁 Project Structure
 
-To make a prober web portal to show the risk of overflowing in  `Time` and `Cost/Budget` for the government projects.
+```text
+PROJECT/
+├── ML/
+│   ├── models/
+│   ├── training/
+│   └── preprocessing/
+│
+├── BACKEND/
+│   └── app.py
+│
+├── FRONTEND/
+│   └── index.html
+│
+└── README.md
+```
 
-Core Features we need to support:
+---
 
-1. A dashboard showing number of unique projects being tracked
-2. The comparitive analysis of different sectors and there avg risk scores.(This compares which department is performing better and which bad)
+# 🌿 Git Workflow
 
-3. A table listing all the projects and there risk score and projected finish date cost projected and time projected
+This project uses separate branches for the three major development areas:
 
-4. Proper graphs using (`chart.js`) for visualising the data should be made
+| Branch     | Folder         | Responsibility                                       |
+| ---------- | -------------- | ---------------------------------------------------- |
+| `ml`       | `ML/`          | Machine Learning, preprocessing, training and models |
+| `backend`  | `BACKEND/`     | Flask/API/backend development                        |
+| `frontend` | `FRONTEND/`    | UI, HTML, CSS and JavaScript                         |
+| `main`     | Entire project | Integrated and tested version                        |
 
-5. As we have the data we can internally use gemini-api to generate overall situation of country's projects and why some are lagging and how can we impove
+### Branch Structure
 
-6. History, model will/must be trained so that we can go back in time and see risks change
+```text
+                    ┌── ml ───────── ML
+                    │
+main ───────────────┼── backend ───── Backend
+                    │
+                    └── frontend ──── Frontend
+                             
+                              ↓
+                       Review + Testing
+                              ↓
+                            main
+```
 
-##  Data ingession techique
+---
 
-The data provided in the website is very cluttered in pdf
-hence `pdf2csv.py` is used to convert the raw pdf to csv file
+# 🚀 First-Time Setup
 
-### Issue with different formats
+Clone the repository:
 
-The format before May 2025 had considerbly different format than after that. The commented lines can be uncommented from the code and commented to switch modes.
+```bash
+git clone <REPOSITORY_URL>
+cd <REPOSITORY_NAME>
+```
 
+Switch to your assigned branch.
 
-Then data is ingess by the `collector.py` it normalizes the data to a singular format.
+### ML
 
-Then that data will be used by `feature_extractor.py` to get/infer important features.
+```bash
+git checkout ml
+```
 
-## Model Training
+### Backend
 
-As there is shortage in data (Weakly time series problem) using massive models like RNN or LSTM will not give fruitfull results.Hence we took a different approach `feature_sxtractor.py` generates `master.csv` that is time unrolled completely flattened data set with X=features and Y=Projection of T+1 data
+```bash
+git checkout backend
+```
 
-## Model Execution
+### Frontend
 
-We for each project run the model iteratively until the progress reaches close to 100% or it crosses a threshold.
-Then we estimate the cost and time and calculate the risk factor
+```bash
+git checkout frontend
+```
 
-We propose 2 risk factors
-1. `Absolute Risk Factor`
+Check your current branch:
 
-        = max(cost_risk,time_risk)
-    
-2. `Mean Risk Factor`
+```bash
+git branch
+```
 
-        = mean(cost_risk,time_risk)
+The branch marked with `*` is your current branch.
 
+---
 
-## Driving Formulas
+# 💻 Development Workflow
 
-    cost_risk = (cost_projected - cost_target) / cost_target
+Work on **your assigned branch**.
 
-    time_risk = (time_projected - time_target) / time_target
+For example, the backend developer works primarily inside:
 
+```text
+BACKEND/
+```
 
-## Roles
+After making a logical set of changes:
 
-Will be updates onces github profiles of team is recived
+```bash
+git status
+git add .
+git commit -m "Describe your changes"
+git push origin backend
+```
 
+Replace `backend` with `ml` or `frontend` when appropriate.
+
+---
+
+# 🧪 Testing the Complete System
+
+`main` represents the latest integrated version of the project.
+
+To test the complete system:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+Run the project and test the integration.
+
+After testing, return to your development branch:
+
+```bash
+git checkout backend
+```
+
+Replace `backend` with your assigned branch.
+
+> You do **not** need to continuously pull `main` into your development branch. Update your branch from `main` only when necessary.
+
+---
+
+# 🔀 Merging into `main`
+
+Only the repository owner/integration manager should update the global `main` branch.
+
+When your work is ready:
+
+1. Commit your changes.
+2. Push your branch to GitHub.
+3. Inform the repository owner.
+4. Your changes will be reviewed.
+5. The changes will be tested with the complete system.
+6. If everything works, they will be merged into `main`.
+
+```text
+Your Branch
+     │
+     │ commit + push
+     ▼
+  GitHub
+     │
+     │ review + integration testing
+     ▼
+   main
+```
+
+### 🚫 Do not push directly to `main`
+
+Do **not** use:
+
+```bash
+git push origin main
+```
+
+Use your assigned branch instead:
+
+```bash
+git push origin backend
+```
+
+---
+
+# 📝 Commit Guidelines
+
+Use meaningful commit messages.
+
+### ❌ Avoid
+
+```text
+update
+changes
+final
+test
+stuff
+```
+
+### ✅ Prefer
+
+```text
+Add project risk prediction model
+Fix data preprocessing pipeline
+Implement project API
+Add dashboard layout
+Connect frontend to backend API
+```
+
+Keep each commit focused on a logical change.
+
+---
+
+# ⚡ Quick Reference
+
+```bash
+# Clone repository
+git clone <REPOSITORY_URL>
+
+# Enter repository
+cd <REPOSITORY_NAME>
+
+# Switch to your branch
+git checkout <ml/backend/frontend>
+
+# Check current branch
+git branch
+
+# Check changes
+git status
+
+# Commit work
+git add .
+git commit -m "Describe your changes"
+
+# Push your branch
+git push origin <ml/backend/frontend>
+
+# Get latest integrated project
+git checkout main
+git pull origin main
+
+# Return to your development branch
+git checkout <ml/backend/frontend>
+```
+
+---
+
+## 🏆 Golden Rule
+
+**Develop on your branch → Commit → Push your branch → Review & test → Merge into `main`.**
+
+`main` should always represent the **integrated and tested version** of the project.
