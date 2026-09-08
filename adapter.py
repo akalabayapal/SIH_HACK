@@ -3,58 +3,22 @@
 import mysql.connector
 import pandas as pd
 import tqdm
-import time
-
-class Project:
-    def __init__(
-            self,
-            project_code: int,
-            project_name: str,
-            status_cost: str, # COMPLETED or TYTP
-            status_time: str,
-
-            project_start_date: str,
-            project_start_date_revised:str,
-            project_end_date: str,
-            project_end_date_revised:str,
-            project_budget:float,
-            project_budget_revised:float,
-
-            cspend: float,
-
-            time_risk: int,
-            cost_risk: int,
-            progress: float,
-    ):
-        # just set them
-        self.code = project_code
-        self.name = project_name
-        self.status_cost = status_cost
-        self.status_time = status_time
-        self.project_start_date = project_start_date
-        self.project_start_date_revised = project_start_date_revised
-        self.project_end_date = project_end_date
-        self.project_end_date_revised = project_end_date_revised
-        self.project_budget = project_budget
-        self.project_budget_revised = project_budget_revised
-        self.cspend = cspend
-        self.time_risk = time_risk
-        self.cost_risk = cost_risk
-        self.progress = progress
-
+import config_loader
 
 class ORM:
     def __init__(self):
 
+        self.config = config_loader.SqlObject()
+
         # create the connection
         self.db_connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="hckdb"
+            host=self.config.host,
+            user=self.config.user,
+            password=self.config.password,
+            database=self.config.database
     )
         if self.db_connection.is_connected():
-            self.cursor = self.db_connection.cursor()
+            self.cursor = self.db_connection.cursor(dictionary=True)
             print("[+] Connection to DB is completed.")
         else:
             raise RuntimeError('Failed to connect to mysql check if the server is up and running.\n'\
@@ -95,6 +59,7 @@ class ORM:
                         )
                         VALUES (%s, %s , %s , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         """
+        print("[+] Processing data for 'projects' table")
         for data in tqdm.tqdm(cost_model):
 
             code = data[1]
@@ -187,17 +152,140 @@ class ORM:
         self.db_connection.commit()
         print("[+] Processing Completed")
 
-            
-            
+
+        # Now process data for 'master'
+
+        sql_master = """
+                    INSERT INTO master (
+                        code,
+                        name,
+                        department,
+                        state,
+                        date_start,
+                        date_start_revised,
+                        date_end,
+                        date_end_revised,
+                        cost_target,
+                        cost_target_revised,
+                        cost_spent,
+                        progress,
+                        report_date
+                        )
+                        VALUES ( %s , %s , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        """
+
+        print("Processing data for 'master':")
+        for data in tqdm.tqdm(master):
+
+            code = data[1]
+            name = data[3]
+            dept = data[2]
+
+            state = data[4]
+
+            start_date = data[5]
+            start_date_revised = data[6]
+
+            end_date = data[7]
+            end_date_revised = data[8]
+
+            cost_target = data[9]
+            cost_target_revised = data[10]
+
+            cspend = data[11]
+
+            progress = data[12]
+            report_date = data[13]
+
+
+            c_data = tuple(None if pd.isna(x) else x for x in(
+                code,
+                name,
+                dept,
+                state,
+                start_date,
+                start_date_revised,
+                end_date,
+                end_date_revised,
+                cost_target,
+                cost_target_revised,
+                cspend,
+                progress,
+                report_date
+            ))
+
+            self.cursor.execute(sql_master,c_data)
+
+
+        self.db_connection.commit()
+        print("[+] Processing Completed")
 
 
 
-            
-            
-          
+    def get_all(self):
+        '''
+        Gets all rows and send them all to UI
+        '''
+        sql = "SELECT * FROM `projects`"
+
+        # Execute to get all data
+        self.cursor.execute(sql)
+
+        # fetch all rows
+        rows = self.cursor.fetchall()
+
+        # return all the rows
+        return rows
+
+    def get_top_k(self):
+        sql_project = 'SELECT * FROM `projects` WHERE progress <= 90 AND `status_cost` = "COMPLETE" AND `status_time` = "COMPLETE" AND `cspend` > 0 ORDER BY overall_risk DESC;'
 
 
+        # Execute to get the data
+        self.cursor.execute(sql_project)
+
+        # Execute the command to get the rows
+        rows = self.cursor.fetchall()
+
+        # Return the rows
+        return rows
 
 
-o = ORM()
-o.add_objects('ML/csv/master.csv','ML/csv/final/model_cost.csv','ML/csv/final/model_time.csv')
+    def get_project(self,code):
+        # gets projects total history from the `master` using code
+        # gets the risk factors from `projects`
+
+        sql_master = "SELECT * FROM `master` WHERE `code` = " + str(code)
+        sql_project = "SELECT * FROM `projects` WHERE `code` = " + str(code)
+
+
+        # get history
+        self.cursor.execute(sql_master)
+
+        history = self.cursor.fetchall()
+
+        # get master
+        self.cursor.execute(sql_project)
+        data = self.cursor.fetchone()
+
+        if data == None:
+            return {"status":'NA',"history":history}
+
+        data['history'] = history
+
+        return data
+
+    
+
+    
+def upload(master_csv_path: str,cost_model_path : str,time_model_path :str):
+
+    o = ORM()
+    o.add_objects(
+        master_csv_path=master_csv_path,
+        model_cost_path=cost_model_path,
+        model_time_path=time_model_path
+    )
+
+
+    

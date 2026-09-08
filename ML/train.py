@@ -156,7 +156,7 @@ def train_cost(file:str,result_cost: str):
 
         # Save the result to csv file
 
-        df_results.to_csv(result_cost+".csv",sep='|')
+        df_results.to_csv(result_cost,sep='|')
 
         # Display summary statistics
 
@@ -331,7 +331,7 @@ def train_time(file: str,results_time: str):
         })
 
     df_forecast = pd.DataFrame(results)
-    df_forecast.to_csv(results_time+".csv",sep='|')
+    df_forecast.to_csv(results_time,sep='|')
 
 
 def train_model(file,out_cost,out_time):

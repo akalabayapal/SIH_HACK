@@ -1,61 +1,41 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Sep 07, 2026 at 03:57 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+CREATE DATABASE IF NOT EXISTS hckdb;
+USE hckdb;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+CREATE TABLE IF NOT EXISTS master (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    code int,
+    name varchar(512) NOT NULL,
+    department varchar(512) NOT NULL,
+    state varchar(64),
+    date_start varchar(64),
+    date_start_revised varchar(64),
+    date_end varchar(64),
+    date_end_revised varchar(64),
+    cost_target float NOT NULL,
+    cost_target_revised float NOT NULL,
+    cost_spent float NOT NULL,
+    progress float NOT NULL,
+    report_date varchar(64) NOT NULL
+);
 
+CREATE TABLE IF NOT EXISTS projects (
+    code int(11) NOT NULL,
+    name varchar(1024) NOT NULL,
+    status_cost varchar(8) NOT NULL,
+    status_time varchar(8) NOT NULL,
+    start_date varchar(32) DEFAULT NULL,
+    start_date_revised varchar(32) DEFAULT NULL,
+    end_date varchar(32) DEFAULT NULL,
+    end_date_revised varchar(32) DEFAULT NULL,
+    project_budget float NOT NULL,
+    project_budget_revised float NOT NULL,
+    cspend float NOT NULL,
+    time_risk float NOT NULL,
+    cost_risk float NOT NULL,
+    overall_risk float NOT NULL,
+    progress float NOT NULL,
+    PRIMARY KEY (code)
+);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `hckdb`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `projects`
---
-
-CREATE TABLE `projects` (
-  `code` int(11) NOT NULL,
-  `name` varchar(1024) NOT NULL,
-  `status_cost` varchar(8) NOT NULL,
-  `status_time` varchar(8) NOT NULL,
-  `start_date` VARCHAR(32),
-  `start_date_revised` VARCHAR(32),
-  `end_date` VARCHAR(32),
-  `end_date_revised` VARCHAR(32),
-  `project_budget` float NOT NULL,
-  `project_budget_revised` float NOT NULL,
-  `cspend` float NOT NULL,
-  `time_risk` float NOT NULL,
-  `cost_risk` float NOT NULL,
-  `overall_risk` float NOT NULL,
-  `progress` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `projects`
---
-ALTER TABLE `projects`
-  ADD PRIMARY KEY (`code`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+TRUNCATE TABLE master;
+TRUNCATE TABLE projects;

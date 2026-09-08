@@ -1,0 +1,14 @@
+{
+    "host":"localhost",
+    "user":"root",
+    "password":"",
+    "database":"hckdb",
+
+    "host_backend":"localhost",
+    "port_backend":"3000",
+
+    "host_frontend":"localhost",
+    "port_frontend":"8000",
+
+    "is_trained":true
+}
