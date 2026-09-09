@@ -10,5 +10,15 @@
     "host_frontend":"localhost",
     "port_frontend":"8000",
 
-    "is_trained":true
+    "is_trained":true,
+
+    "raw_pdf":"ML/raw",
+    "raw_csv":"ML/csv/raw",
+    "p_csv":"ML/csv/preprocessed",
+    "master_csv":"ML/csv/master.csv",
+    "cost_data":"Ml/csv/final/model_cost.csv",
+    "time_data":"ML/csv/final/model_time.csv",
+
+    "gemini_key":"YOUR_GEMINI_API_KEY"
+
 }
