@@ -4,6 +4,17 @@ import mysql.connector
 import pandas as pd
 import tqdm
 import config_loader
+import shutil
+import os
+import uuid
+import queue
+import threading
+import time
+import multiprocessing
+from pipeline import pipeline
+
+from google import genai
+
 
 class ORM:
     def __init__(self):
@@ -275,7 +286,99 @@ class ORM:
 
         return data
 
-    
+    def llm_query(self):
+        pass
+
+
+class Trainer:
+    def __init__(self):
+        self.file_to_train = queue.Queue(2048)
+        self.procs = {}
+
+        #0. Load the config file to get the dirs
+        self.mobj = config_loader.ModelObject()
+
+        # start the thread to schedule the threads...
+        th = threading.Thread(target=self.train_scheduler)
+        th.daemon = True
+        th.start()
+
+
+        
+
+    def retrain_model(self,new_file_path:str):
+        '''
+        To train the model using new data present
+        '''
+
+        
+        # 1. put it in queue
+        uid = uuid.uuid4()
+        self.file_to_train.put({
+            "uid":uid,
+            "file_path":new_file_path
+        })
+
+        return uid # return the job id
+
+    def check_procs(self):
+        for p in self.procs:
+            if not self.procs[p].is_alive():
+                del self.procs[p]
+
+
+    def train_scheduler(self):
+        while True:
+
+            try:
+                item = self.file_to_train.get(block=False,timeout=0)
+            except queue.ShutDown:
+
+                for p in self.procs:
+                    try:
+                        self.procs[p].kill()
+                    except:
+                        pass
+
+                break # Use this as a poison pill
+            except:
+                self.check_procs()
+                continue
+
+            file_path = item['file_path']
+            uid = item['uid']
+
+            #1. Copy the file
+            shutil.copyfile(file_path,os.path.join(self.mobj.raw_pdf,os.path.basename(file_path)))
+
+            #2. Start the training process
+            p = multiprocessing.Process(target=pipeline,args=(
+                self.mobj.raw_pdf,
+                self.mobj.raw_csv,
+                self.mobj.p_csv,
+                self.mobj.master_csv,
+                self.mobj.cost_data,
+                self.mobj.time_data
+                ))
+
+            self.procs[uid] = p
+
+            p.start()
+            self.check_procs()
+
+            time.sleep(0.3)
+
+
+    def get_status(self,uid):
+        p: multiprocessing.Process = self.procs[uid]
+
+        if p.is_alive():
+            return True
+        else:
+            return False
+
+
+
 
     
 def upload(master_csv_path: str,cost_model_path : str,time_model_path :str):

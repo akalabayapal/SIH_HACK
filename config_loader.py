@@ -23,4 +23,20 @@ class ServerObject:
             self.host_frontend = obj['host_frontend']
             self.port_frontend = obj['port_frontend']
 
+class ModelObject:
+    def __init__(self):
+        with open('config.json','r') as fs:
+            obj = json.load(fs)
+
+            self.raw_pdf =  obj['raw_pdf']
+            self.raw_csv  = obj['raw_csv']
+
+            self.p_csv = obj['p_csv']
+            self.master_csv = obj['master_csv']
+
+            self.cost_data = obj['cost_data']
+            self.time_data = obj['time_data']
+
+            
+
 
