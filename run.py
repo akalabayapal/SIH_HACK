@@ -15,35 +15,11 @@ def main():
 
     mobj = ModelObject()
 
-    PDF_FOLDER = 'ML/raw'
-    RAW_CSV_FOLDER = 'ML/csv/raw'
-    P_CSV_FOLDER = 'ML/csv/preprocessed'
-    OUT_FILE = 'ML/csv/master.csv'
-    B_COST = 'ML/csv/final/model_cost.csv'
-    T_COST = 'ML/csv/final/model_time.csv'
-
-    
-
-    req_keys_config = [
-        "host",
-        "user",
-        "password",
-        "database",
-        "host_backend",
-        "port_backend",
-        "host_frontend",
-        "port_frontend",
-        "is_trained"
-    ]
-
     obj = None
 
     # 1. Check if all the required schema is followed in the config.json
     with open('config.json','r') as fs:
         obj = json.load(fs)
-        if not list(obj.keys()) == req_keys_config:
-            print("Error: The required schema do not match to start the program. Contact team admin")
-            return
 
     # 2. Check if training is complete
     if obj['is_trained'] == False:

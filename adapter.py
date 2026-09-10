@@ -11,15 +11,62 @@ import queue
 import threading
 import time
 import multiprocessing
-from pipeline import pipeline
+import json
+import pickle
 
 from google import genai
+
+
+from ML.pdf2csv import extract_raw
+from ML.combine import preprocess
+from ML.train import train_model
+from ML.feature_extractor import feature_ext
+from db_setup import setup_db
+
+
+def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False):
+
+    if debug:
+        print("[+] Preprocessing the pdfs to extract csv...")
+    extract_raw(pdf_folder,raw_csv_folder)
+
+    if debug:
+        print("[+] Preprocessing csv and cleaning it up...")
+    preprocess(raw_csv_folder,p_csv_folder)
+
+    if debug:
+        print("[+] Running feature extraction...")
+    feature_ext(p_csv_folder,out_file)
+
+    if debug:
+        print("[+] Train the full model and dump the csv file")
+    train_model(out_file,out_cost=out_cost,out_time=out_time)
+
+    # Now upload it to the db
+    print("[+] Setting up database and making tables...")
+    setup_db()
+
+    print('[+] Uploading data to database...')
+    upload(out_file,out_cost,out_time)
+
 
 
 class ORM:
     def __init__(self):
 
         self.config = config_loader.SqlObject()
+
+        if self.config.gem_key == "YOUR_GEMINI_API_KEY":
+            print("WARNING:Your gemini client has not been configured using dev mode dummy simulation for .llm_query()")
+            self.client = None
+        else:
+            self.client = genai.Client(api_key=self.config.gem_key)
+        if os.path.exists('.stats'):
+            self.stats = pickle.load(
+                open('.stats','rb')
+            )
+        else:
+            self.stats = None
 
         # create the connection
         self.db_connection = mysql.connector.connect(
@@ -37,6 +84,9 @@ class ORM:
 
     def add_objects(self,master_csv_path: str, model_cost_path: str, model_time_path):
         '''
+        Adds the data from .csv to the database
+        (Not to be called explicitly from backend wpi warning @Aditya_patel)
+
         1.  This loads all elements from the master.csv
         2.  Searches for them in the model_cost and model_time and generates the final dataframe
         '''
@@ -71,9 +121,16 @@ class ORM:
                         VALUES (%s, %s , %s , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         """
         print("[+] Processing data for 'projects' table")
+
+        # stats
+        total = 0
+        tytp = 0
+        tbtp = 0
+        
         for data in tqdm.tqdm(cost_model):
 
             code = data[1]
+            department,n = data[2].split("___",1)
 
             if code in codes:
                 continue
@@ -82,7 +139,11 @@ class ORM:
 
             # filter master by that code and also time model
             time_filtered = time_model[time_model[:,1] == code]
-            master_all = master[master[:,1] == code]
+         
+            master_all = master[(master[:,2] == department) & (master[:,3] == n)]
+            
+            if len(master_all) == 0:
+                continue
             master_filtered = master_all[0]
 
             status_time = time_filtered[0][3]
@@ -139,7 +200,7 @@ class ORM:
                 
             cd = tuple(None if pd.isna(x)  else x for x in (
                 code,
-                dept+"__"+name,
+                dept+"___"+name,
                 status_cost,
                 status_time,
                 start_date,
@@ -157,10 +218,26 @@ class ORM:
 
             try:
                 self.cursor.execute(sql,cd)
+                total += 1
+                if status_cost == 'TYTP' and status_time == 'TYTP':
+                    tytp += 1
+                if status_cost == 'TBTP' and status_time == 'TBTP':
+                    tbtp += 1
             except Exception as ex:
                 print(ex)
     
         self.db_connection.commit()
+
+        data_content = {
+            "total":total,
+            "tytp":tytp,
+            "tbtp":tbtp
+        }
+
+        pickle.dump(
+            data_content,
+            open(".stats",'wb')
+        )
         print("[+] Processing Completed")
 
 
@@ -233,7 +310,7 @@ class ORM:
 
 
 
-    def get_all(self):
+    def get_all(self) -> list[dict]:
         '''
         Gets all rows and send them all to UI
         '''
@@ -248,8 +325,11 @@ class ORM:
         # return all the rows
         return rows
 
-    def get_top_k(self):
-        sql_project = 'SELECT * FROM `projects` WHERE progress <= 90 AND `status_cost` = "COMPLETE" AND `status_time` = "COMPLETE" AND `cspend` > 0 ORDER BY overall_risk DESC;'
+    def get_top_k(self) -> list[dict]:
+        '''
+        Gets the top k filtered project results
+        '''
+        sql_project = 'SELECT * FROM `projects` WHERE progress <= 90 AND (`status_cost` = "COMPLETE" OR `status_time` = "COMPLETE") AND `cspend` > 0 ORDER BY overall_risk DESC;'
 
 
         # Execute to get the data
@@ -262,32 +342,186 @@ class ORM:
         return rows
 
 
-    def get_project(self,code):
-        # gets projects total history from the `master` using code
-        # gets the risk factors from `projects`
+    def get_project(self, code) -> dict:
+        '''
+        Returns a single project data along with its historical trend
+        '''
 
-        sql_master = "SELECT * FROM `master` WHERE `code` = " + str(code)
-        sql_project = "SELECT * FROM `projects` WHERE `code` = " + str(code)
+        # Get current project from projects
+        sql_project = "SELECT * FROM `projects` WHERE `code` = %s"
 
-
-        # get history
-        self.cursor.execute(sql_master)
-
-        history = self.cursor.fetchall()
-
-        # get master
-        self.cursor.execute(sql_project)
+        self.cursor.execute(sql_project, (code,))
         data = self.cursor.fetchone()
 
-        if data == None:
-            return {"status":'NA',"history":history}
+        if data is None:
+            return {"status": "NA", "history": []}
 
-        data['history'] = history
+        # Match history using name + department
+        # projects stores department merged into name as:
+        # department__name
+
+        full_name = data["name"]
+
+        try:
+            department, name = full_name.split("___", 1)
+        except ValueError:
+            return {
+                "status": "INVALID_NAME",
+                "history": []
+            }
+
+        sql_master = """
+            SELECT *
+            FROM `master`
+            WHERE `name` = %s
+              AND `department` = %s
+        """
+
+        self.cursor.execute(sql_master, (name, department))
+        history = self.cursor.fetchall()
+
+        data["history"] = history
 
         return data
 
-    def llm_query(self):
-        pass
+    def llm_query(self,json_data) -> dict:
+        '''
+        Query llm and gets comprehenisve explaination of the project
+        '''
+
+        if self.client == None:
+
+            # Return dummy data
+            return {
+                "status":0,
+                "content":
+                {"risk_summary":"A concise explanation of the project's overall risk",
+                "evidence_behind_the_risk":"Specific observations from the current and historical data that explain the risk.",
+                "cost_risk":"Explain the financial pattern and why it may have produced the supplied cost-risk value.",
+                "time_risk":"Explain the schedule and physical-progress pattern and why it may have produced the supplied time-risk value.",
+                "possible_on_ground_explanations":"List 2–4 plausible explanations, clearly marked as hypotheses rather than confirmed facts."
+                }
+            }
+        
+
+        prompt = """
+
+You are an expert government infrastructure project monitoring analyst.
+
+Your task is to analyze the supplied project data and explain the reasoning behind the model's calculated risk.
+
+The numerical risk values are produced by a separate machine-learning system. DO NOT recalculate, replace, or override the model's risk. Instead, interpret the available evidence and explain what may be happening with the project.
+
+Analyze the following:
+
+1. **Current project position**
+
+   * Compare the project's current physical progress with its expenditure.
+   * Compare actual expenditure with the original/revised project budget.
+   * Compare the original and revised completion dates.
+   * Identify unusually large gaps between financial progress, physical progress, and planned timelines.
+
+2. Status Types (for both cost and time)
+* COMPLETED:The project has been simulated by ML model properly and ready for evaluation by LLM
+* TYTP (Too young to predict):The project do not have proper enough data to be simulated. Use historical facts from internet if possible.Do not make up facts.
+* TBTP (Too bad to predict):This projects went out of simulation frame. Please notice the progress and give proper results. It's better that you use your reasoning than using risk scores in this case.
+
+
+3. **Historical trajectory**
+
+   * Examine how expenditure and physical progress have changed over time.
+   * Identify signs of slow progress, stagnation, acceleration, or abnormal spending.
+   * Identify whether the project appears to have repeatedly missed or revised its targets.
+   * Distinguish between persistent problems and recent changes.
+
+3. **Reasoning behind the model's risk**
+
+   * Explain why the supplied cost risk, time risk, and overall risk are high or low.
+   * Connect the numerical risk factors to concrete evidence in the supplied data.
+   * If cost risk dominates overall risk, explain what financial pattern supports that.
+   * If time risk dominates, explain what schedule/progress pattern supports that.
+
+4. **Possible on-ground realities**
+   Based ONLY on the supplied evidence, identify plausible real-world situations that could explain the observed pattern, such as:
+
+   * construction delays
+   * procurement or contracting delays
+   * land/site issues
+   * approval or regulatory delays
+   * slow physical execution despite expenditure
+   * cost escalation
+   * repeated schedule revisions
+   * stalled or near-stalled work
+   * front-loaded expenditure
+   * mismatch between spending and physical progress
+
+   These are hypotheses, NOT confirmed facts. Clearly distinguish evidence from possible explanations.
+
+5. **Critical warning**
+   Point out the most important issue that a project-monitoring authority should investigate based on the available data.
+
+IMPORTANT RULES:
+
+* Use ONLY the supplied project data.
+* Do not search the internet.
+* Do not invent events, causes, contractors, political issues, geological conditions, funding problems, or other facts.
+* Never present a possible explanation as a confirmed fact.
+* If the data is insufficient to determine the cause, explicitly say so.
+* Do not blindly trust the risk score; explain the evidence supporting it.
+* Do not make recommendations that require information not present in the data.
+* Focus on useful, evidence-based reasoning rather than generic statements.
+
+Return the analysis in this structure:
+{"risk_summary":"A concise explanation of the project's overall risk",
+"evidence_behind_the_risk":"Specific observations from the current and historical data that explain the risk.",
+"cost_risk":"Explain the financial pattern and why it may have produced the supplied cost-risk value.",
+"time_risk":"Explain the schedule and physical-progress pattern and why it may have produced the supplied time-risk value.",
+"possible_on_ground_explanations":"List 2–4 plausible explanations, clearly marked as hypotheses rather than confirmed facts."
+}
+
+### Key Warning
+
+Return ONLY a valid JSON object.
+Do not use Markdown.
+Do not use ```json.
+Do not add explanations before or after the JSON.
+
+The single most important issue that should be investigated.
+
+
+DATA:""" +json.dumps(json_data, indent=2, default=str)
+
+
+        try:
+            response = self.client.models.generate_content(
+                        model='gemini-2.5-flash',  # The fastest, free-tier friendly model
+                        contents=prompt,
+                        config=genai.types.GenerateContentConfig(
+        response_mime_type="application/json",
+    )
+            )
+
+            return {"status":0,"content":json.loads(response.text)}
+        except Exception as ex:
+            return {"status":-1,"reason":"Error failed due to:"+str(ex)}
+
+    def get_stats(self) -> dict:
+        '''
+        Returns the status of the projects currently
+        '''
+
+        if self.stats == None:
+            return {
+                "status":-1,
+                "reason":"Please upload data to database to get stats @Admin"
+            }
+
+        return {"status":0,"stats":self.stats}
+
+        
+
+
+
 
 
 class Trainer:
@@ -391,4 +625,5 @@ def upload(master_csv_path: str,cost_model_path : str,time_model_path :str):
     )
 
 
-    
+
+

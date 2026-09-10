@@ -11,6 +11,8 @@ class SqlObject:
             self.password = obj['password']
             self.database = obj['database']
 
+            self.gem_key = obj['gemini_key']
+
 
 class ServerObject:
     def __init__(self):
