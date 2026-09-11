@@ -1,7 +1,7 @@
 import os
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = "BACKEND/uploads"
 ALLOWED_EXTENSIONS = {"pdf"}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 MONTHS = {
