@@ -632,11 +632,11 @@ class Trainer:
         # 1. put it in queue
         uid = uuid.uuid4()
         self.file_to_train.put({
-            "uid":uid,
+            "uid":uid.hex,
             "file_path":new_file_path
         })
 
-        return uid # return the job id
+        return uid.hex # return the job id
 
     def check_procs(self):
         for p in self.procs:
@@ -687,6 +687,7 @@ class Trainer:
 
 
     def get_status(self,uid):
+        print(self.procs)
         p: multiprocessing.Process = self.procs[uid]
 
         return p.is_alive()

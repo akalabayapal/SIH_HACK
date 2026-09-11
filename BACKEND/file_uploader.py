@@ -1,13 +1,15 @@
 import os
 from werkzeug.utils import secure_filename
+from config_loader import ModelObject
+import json
 
 UPLOAD_FOLDER = "BACKEND/uploads"
 ALLOWED_EXTENSIONS = {"pdf"}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
-MONTHS = {
+MONTHS = [
     "january", "february", "march", "april", "may", "june",
     "july", "august", "september", "october", "november", "december"
-}
+]
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -35,10 +37,10 @@ def upload(file, month, year, overwrite=False) -> str:
     or the file already exists (when overwrite=False).
     """
     if not allowed_file(file.filename):
-        raise ValueError(f"only {ALLOWED_EXTENSIONS} files are allowed")
+        return json.dumps({"status":-1,"reason":f"only {ALLOWED_EXTENSIONS} files are allowed"})
 
     if not is_valid_month(month):
-        raise ValueError(f"Invalid month!")
+        return json.dumps({"status":-1,"reason":"Invalid month given"})
 
     # Check actual size by seeking to the end of the stream
     file.seek(0, os.SEEK_END)
@@ -46,16 +48,16 @@ def upload(file, month, year, overwrite=False) -> str:
     file.seek(0)  # reset pointer so file.save() writes from the start
 
     if size > MAX_FILE_SIZE:
-        raise ValueError(f"file exceeds max size of {MAX_FILE_SIZE // (1024 * 1024)} MB")
+        return json.dumps({"status":0,"reason":f"file exceeds max size of {MAX_FILE_SIZE // (1024 * 1024)} MB"})
 
     month = secure_filename(str(month))
     year = secure_filename(str(year))
 
-    filename = f"FlashReport_{month}_{year}.pdf"
-    filepath = os.path.join(UPLOAD_FOLDER, filename)
+    filename = f"FlashReport_{MONTHS[int(month) - 1].capitalize()}_{year}"
+    filepath = os.path.join(UPLOAD_FOLDER, filename+".pdf")
 
-    if not overwrite and os.path.exists(filepath):
-        raise ValueError(f"a report for {month}/{year} already exists")
+    if os.path.exists(filepath) or os.path.exists(os.path.join(ModelObject().raw_pdf,filename+".pdf")):
+        return json.dumps({"status":-1,"reason":f"a report for {MONTHS[int(month) - 1].capitalize()}/{year} already exists"})
 
     file.save(filepath)
-    return filename
+    return {"status":0,"file_id":filename}

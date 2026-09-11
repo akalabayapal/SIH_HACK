@@ -36,4 +36,3 @@ def setup_db():
     
     print("Database schema created successfully.")
 
-setup_db()

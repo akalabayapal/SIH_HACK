@@ -94,12 +94,12 @@ def upload_file():
     except ValueError as e:
         return flask.jsonify({"error": str(e)}), 400
 
-    return flask.jsonify({"message": "File uploaded", "filename": filename}), 201
+    return filename, 200
 
 
 @app.route("/get_training_status/<uid>", methods=["GET"])
 def get_training_status(uid):
-    return flask.jsonify(tr.get_status(uid))
+    return flask.jsonify(not tr.get_status(uid))
 
 
 @app.route("/retrain_model/<new_file_path>")
@@ -107,7 +107,7 @@ def retrain_model(new_file_path: str):
     return flask.jsonify(tr.retrain_model(os.path.join('BACKEND','uploads',new_file_path+'.pdf')))
 
 
-@app.route("/ajust_vote/<code>")
+@app.route("/adjust_vote/<code>")
 def adjust_vote(code):
 
     # converting to int

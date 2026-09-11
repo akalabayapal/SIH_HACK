@@ -6,10 +6,14 @@ from ML.train import train_model
 from ML.feature_extractor import feature_ext
 from db_setup import setup_db
 from adapter import upload
+import os
 
 import sys
 
 def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False):
+
+    if not debug:
+        sys.stdout = open(os.devnull, 'w')
 
     if debug:
         print("[+] Preprocessing the pdfs to extract csv...")
@@ -52,7 +56,8 @@ if __name__ == "__main__":
         p_csv_folder=p_csv_folder,
         out_file=out_file,
         out_cost=out_cost,
-        out_time=out_time
+        out_time=out_time,
+        debug=True
     )
 
 

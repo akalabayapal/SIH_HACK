@@ -29,7 +29,8 @@ def main():
                     p_csv_folder=mobj.p_csv,
                     out_file=mobj.master_csv,
                     out_cost=mobj.cost_data,
-                    out_time=mobj.time_data
+                    out_time=mobj.time_data,
+                    debug=True
         )
 
         # Make it train as true
