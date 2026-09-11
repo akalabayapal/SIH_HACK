@@ -304,6 +304,16 @@ class ORM:
 
             self.cursor.execute(sql_master,c_data)
 
+            # Processing data for the customer_review
+
+        print("[+] Processing for `review`...")
+        query_customer = "INSERT INTO review (code) VALUES (%s);"
+        for data in tqdm.tqdm(cost_model):
+            code = data[1] # get the codes
+            self.cursor.execute(query_customer,(code,))
+        self.db_connection.commit()
+        print("[+] Processing completed for the `review`...")
+
 
         self.db_connection.commit()
         print("[+] Processing Completed")
@@ -520,7 +530,80 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
 
         
 
+    def adjust_vote(self, code: int, upvote_change: int | None = None, downvote_change: int | None = None):
+        """
+        Adjusts upvotes and/or downvotes by +1 or -1 for a specific code.
+        Pass None for the vote type you do not want to change.
+        """
 
+        cursor = self.cursor
+        conn = self.db_connection
+        # 1. Input Validation: Enforce only +1, -1, or None
+        valid_changes = {1, -1, None}
+        if upvote_change not in valid_changes or downvote_change not in valid_changes:
+            print("❌ Error: Vote changes must be +1, -1, or None.")
+            return
+
+        # 2. Build the query dynamically based on which parameter is provided
+        set_clauses = []
+        params = []
+
+        if upvote_change is not None:
+            # Prevent votes from dropping below zero using GREATEST()
+            set_clauses.append("upvotes = GREATEST(0, upvotes + %s)")
+            params.append(upvote_change)
+
+        if downvote_change is not None:
+            set_clauses.append("downvotes = GREATEST(0, downvotes + %s)")
+            params.append(downvote_change)
+
+        # Nothing to update if both are None
+        if not set_clauses:
+            print("ℹ️ No vote changes provided.")
+            return
+
+        params.append(code)
+        query = f"UPDATE review SET {', '.join(set_clauses)} WHERE code = %s;"
+
+        # 3. Execute update using the passed cursor and connection
+        try:
+            cursor.execute(query, tuple(params))
+            conn.commit()
+
+            if cursor.rowcount > 0:
+               return {"status":0}
+            else:
+                return {"status":-1,"reason":"Code is not found"}
+
+        except Exception as e:
+            return {"status":-1,"reason":"Sorry! Internal Server error"}
+
+
+    def get_votes(self,code: int) -> dict | None:
+
+        """Retrieves the upvotes and downvotes for a specific project code.
+
+        Returns a dictionary {'upvotes': X, 'downvotes': Y} or None if the code isn't
+        found.
+        """
+        query = "SELECT upvotes, downvotes FROM review WHERE code = %s;"
+
+        cursor = self.cursor
+
+        try:
+            cursor.execute(query, (code,))
+            result = cursor.fetchone()
+
+            if result:
+                upvotes, downvotes = result
+                return {"status":0,"upvotes": result[upvotes], "downvotes":result[downvotes]}
+            else:
+                return {"status":-1,"reason":"Code not found"}
+        
+
+        except Exception as e:
+            return {"status":-1,"reason":"Sorry! Internal Server Error"}
+    
 
 
 
@@ -623,7 +706,3 @@ def upload(master_csv_path: str,cost_model_path : str,time_model_path :str):
         model_cost_path=cost_model_path,
         model_time_path=time_model_path
     )
-
-
-
-
