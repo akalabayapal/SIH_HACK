@@ -15,6 +15,7 @@ def main():
 
     mobj = ModelObject()
 
+
     obj = None
 
     # 1. Check if all the required schema is followed in the config.json
@@ -39,14 +40,14 @@ def main():
     # 3. Start the backend and frontend in two processes
     # As frontend do not need much debuging putting it in another thread
 
-    proc = multiprocessing.Process(target=entry_frontend,args=())
-    proc.start()
+    # proc = multiprocessing.Process(target=entry_frontend,args=())
+    # proc.start()
 
-    # Start the backend proc
+    # # Start the backend proc
     entry()
 
-    # Kill the frontend server
-    proc.kill()
+    # # Kill the frontend server
+    # proc.kill()
 
 
 

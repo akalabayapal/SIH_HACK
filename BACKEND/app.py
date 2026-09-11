@@ -46,5 +46,28 @@ def entry():
 
     app.run(
         host = serv_details.host_backend,
-        port=serv_details.port_backend
+        port=serv_details.port_backend,
+        debug=False
     )
+
+@app.route("/get_all")
+def get_all():
+    return flask.jsonify(orm.get_all())
+
+@app.route("/get_top_k")
+def get_top_k():
+    return flask.jsonify(orm.get_top_k())
+
+@app.route("/get_project/<project_code>")
+def get_project(project_code):
+    return flask.jsonify(orm.get_project(project_code))
+
+@app.route("/llm_query/<project_code>")
+def llm_query(project_code):
+    data = orm.get_project(project_code)
+    return flask.jsonify(orm.llm_query(data))
+
+@app.route("/get_stats")
+def get_stats():
+    return flask.jsonify(orm.get_stats())
+

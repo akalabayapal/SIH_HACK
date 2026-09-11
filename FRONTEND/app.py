@@ -41,5 +41,6 @@ def entry_frontend():
 
     app.run(
         host = serv_details.host_frontend,
-        port=serv_details.port_frontend
+        port=serv_details.port_frontend,
+        debug=False
     )
