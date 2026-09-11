@@ -11,8 +11,9 @@
 
   <a href="#main-content" class="visually-hidden-focusable kt-skip-link">Skip to main content</a>
 
-  <nav class="navbar navbar-expand-lg fixed-top kt-navbar" data-bs-theme="dark" aria-label="Main navigation">
+    <nav class="navbar navbar-expand-lg fixed-top kt-navbar" data-bs-theme="dark" aria-label="Main navigation">
     <div class="container-fluid px-3 px-lg-4">
+      <!-- Logo slot: replace the span with <img src="logo.png" alt="Kab Tak logo" height="48"> -->
       <a class="navbar-brand me-4" href="index.html" aria-label="Kab Tak home">
         <span class="kt-logo-slot">Logo</span>
       </a>
@@ -22,11 +23,13 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="a.html">A</a></li>
+          <li class="nav-item"><a class="nav-link" href="a.html">A</a></li>
           <li class="nav-item"><a class="nav-link" href="b.html">B</a></li>
           <li class="nav-item"><a class="nav-link" href="c.html">C</a></li>
+          <li class="nav-item" data-admin-only hidden><a class="nav-link" href="upload.html">Upload projects</a></li>
         </ul>
-        <a class="btn btn-light btn-sm px-3 fw-semibold" href="login.html">Login</a>
+        <a class="btn btn-light btn-sm px-3 fw-semibold" href="login.html" id="nav-login">Admin login</a>
+        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout" hidden>Logout</button>
       </div>
     </div>
   </nav>
