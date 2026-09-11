@@ -37,5 +37,13 @@ CREATE TABLE IF NOT EXISTS projects (
     PRIMARY KEY (code)
 );
 
+CREATE TABLE IF NOT EXISTS review (
+  `code` int(11) NOT NULL,
+  `upvotes` int(11) NOT NULL DEFAULT 0,
+  `downvotes` int(11) NOT NULL DEFAULT 0
+);
+
+
 TRUNCATE TABLE master;
 TRUNCATE TABLE projects;
+TRUNCATE TABLE review;
