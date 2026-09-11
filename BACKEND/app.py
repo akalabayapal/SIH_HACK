@@ -1,8 +1,10 @@
 # This file is main api script for backend
 import flask
+from BACKEND import file_uploader
+from flask_cors import CORS
 from config_loader import ServerObject
 
-# This gets data from sql and sends it upstream
+# This gets data from SQL and sends it upstream
 from adapter import ORM,Trainer
 
 
@@ -28,8 +30,7 @@ orm = ORM()
 tr = Trainer()
 
 app = flask.Flask(__name__)
-
-
+CORS(app)
 
 
 '''
@@ -71,3 +72,25 @@ def llm_query(project_code):
 def get_stats():
     return flask.jsonify(orm.get_stats())
 
+@app.route("/upload_file", methods=["POST"])
+def upload_file():
+    if "file" not in flask.request.files:
+        return flask.jsonify({"error": "No file part in request"}), 400
+
+    file = flask.request.files["file"]
+
+    if file.filename == "":
+        return flask.jsonify({"error": "No file selected for uploading"}), 400
+
+    month = flask.request.form.get("month")
+    year = flask.request.form.get("year")
+
+    if not month or not year:
+        return flask.jsonify({"error": "Month and year are required"}), 400
+
+    try:
+        filename = file_uploader.upload(file, month, year)
+    except ValueError as e:
+        return flask.jsonify({"error": str(e)}), 400
+
+    return flask.jsonify({"message": "File uploaded", "filename": filename}), 201
