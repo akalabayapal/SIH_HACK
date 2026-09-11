@@ -3,6 +3,7 @@ import flask
 from BACKEND import file_uploader
 from flask_cors import CORS
 from config_loader import ServerObject
+import os
 
 # This gets data from SQL and sends it upstream
 from adapter import ORM,Trainer
@@ -94,3 +95,32 @@ def upload_file():
         return flask.jsonify({"error": str(e)}), 400
 
     return flask.jsonify({"message": "File uploaded", "filename": filename}), 201
+
+
+@app.route("/get_training_status/<uid>", methods=["GET"])
+def get_training_status(uid):
+    return flask.jsonify(tr.get_status(uid))
+
+
+@app.route("/retrain_model/<new_file_path>")
+def retrain_model(new_file_path: str):
+    return flask.jsonify(tr.retrain_model(os.path.join('BACKEND','uploads',new_file_path+'.pdf')))
+
+
+@app.route("/ajust_vote/<code>")
+def adjust_vote(code):
+
+    # converting to int
+    i_code = int(code)
+
+    if i_code == 0:
+        # Increasing the upvote
+        return flask.jsonify(orm.adjust_vote(code, 1))
+    elif i_code == 1:
+        # decreasing the upvote
+        return flask.jsonify(orm.adjust_vote(code,upvote_change=-1))
+    elif i_code == 2:
+        return flask.jsonify(orm.adjust_vote(code,downvote_change=1))
+    elif i_code == 3:
+        return flask.jsonify(orm.adjust_vote(code,downvote_change=-1))
+

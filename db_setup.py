@@ -35,3 +35,5 @@ def setup_db():
     conn.close()
     
     print("Database schema created successfully.")
+
+setup_db()

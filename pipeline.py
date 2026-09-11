@@ -33,7 +33,6 @@ def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str
 
     print('[+] Uploading data to database...')
     upload(out_file,out_cost,out_time)
-    
 
 
 

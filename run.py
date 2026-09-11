@@ -9,8 +9,6 @@ from FRONTEND.app import entry_frontend
 
 from config_loader import ModelObject
 
-
-
 def main():
 
     mobj = ModelObject()

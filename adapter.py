@@ -689,10 +689,7 @@ class Trainer:
     def get_status(self,uid):
         p: multiprocessing.Process = self.procs[uid]
 
-        if p.is_alive():
-            return True
-        else:
-            return False
+        return p.is_alive()
 
 
 
