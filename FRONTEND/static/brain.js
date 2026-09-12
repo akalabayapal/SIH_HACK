@@ -3,15 +3,15 @@
    Shared script for all pages. Each feature only runs if its elements
    exist on the current page.
 
-   BACKEND CONTRACT (proposed – confirm with backend teammate)
+   BACKEND CONTRACT
    -------------------------------------------------------------------------
-   Risk scores are numbers from 0 to 1. combined_risk = max(time_risk, cost_risk).
+   Risk scores are numbers from 0 to 1 or 0 to 100. combined_risk = max(time_risk, cost_risk).
    Protected endpoints expect the header:  Authorization: Bearer <token>
 
    1) GET  /summary
       -> { "total": 200, "predicted": 137, "tbtp": 28, "tytp": 35 }
 
-   2) GET  /projects?page=1&limit=20&sort=combined_risk_asc
+   2) GET  /projects?page=1&limit=20
       Predicted projects only. Sorted ON THE SERVER by combined_risk
       ascending; ties broken by min(time_risk, cost_risk) ascending.
       -> { "items": [ { "id", "name", "agency", "state",
@@ -28,15 +28,13 @@
    4) GET  /projects/{id}
       -> same fields as (3) plus  "reviews": { "up": 12, "down": 3 }
 
-   5) POST /projects/{id}/reviews
-      body { "vote": "up" | "down" | null, "client_id": "<uuid>" }
-      null = remove this client's vote (back to neutral). One vote per
-      client_id per project; a new vote replaces the old one.
-      -> { "up": 13, "down": 3 }
-      The browser keeps its own vote in the "kt_votes" cookie and its
-      anonymous ID in the "kt_client_id" cookie.
+   5) GET /adjust_vote/{code}?op={0|1|2|3}
+      op=0 (inc upvote), op=1 (dec upvote), op=2 (inc downvote), op=3 (dec downvote)
 
-   6) POST /projects/{id}/analyse                     (LLM analysis)
+   6) GET /get_votes/{id}
+      -> { "up": 12, "down": 3 }
+
+   7) POST /projects/{id}/analyse                     (LLM analysis)
       -> { "project_id", "generated_at": "2026-09-11T10:30:00Z",
            "summary": "...", "risk_level": "low" | "medium" | "high",
            "confidence": 0.78,
@@ -45,24 +43,16 @@
            "recommendations": ["..."] }
       Any extra keys are shown under "Other details".
 
-   7) POST /auth/login
+   8) POST /auth/login
       body { "username", "password" }
       -> { "token": "...", "role": "admin", "name": "..." }
       401 for wrong credentials. The frontend only accepts role "admin".
 
-    8) POST /projects                                   (admin only)
+   9) POST /projects                                   (admin only)
       Content-Type: multipart/form-data
       fields: document (PDF file), start_month "YYYY-MM",
               expected_end_month "YYYY-MM"
-      The backend extracts name, agency, state, costs and progress from
-      the PDF; the frontend no longer sends them.
       -> { "id": "PRJ-0201" }
-      MUST return 401/403 for missing or non-admin tokens, and reject
-      files that are not PDFs or exceed the size limit.
-
-   If field names differ, change only the adapt* functions (section 4) and
-   buildProjectPayload (section 12). To go live: set USE_MOCK_DATA to false,
-   set API_BASE_URL, and delete the mock section (section 5).
    ========================================================================= */
 
 "use strict";
@@ -70,24 +60,25 @@
 /* ===================== 1. CONFIG ===================== */
 
 const CONFIG = {
-  USE_MOCK_DATA: true,                        // TODO(backend): set to false when the API is ready
-  API_BASE_URL: "http://localhost:8000/api",  // TODO(backend): teammate's server URL
+  USE_MOCK_DATA: false,
+  API_BASE_URL: "http://localhost:3000",
   ENDPOINTS: {
-    SUMMARY: "/summary",
-    PROJECTS: "/projects",
-    PROJECT_DETAIL: (id) => `/projects/${encodeURIComponent(id)}`,
-    PROJECT_PREVIEW: (id) => `/projects/${encodeURIComponent(id)}/preview`,
-    PROJECT_REVIEWS: (id) => `/projects/${encodeURIComponent(id)}/reviews`,
-    PROJECT_ANALYSIS: (id) => `/projects/${encodeURIComponent(id)}/analyse`,
+    SUMMARY: "/get_stats",
+    PROJECTS: "/get_top_k",
+    PROJECT_DETAIL: (id) => `/get_project/${encodeURIComponent(id)}`,
+    PROJECT_PREVIEW: (id) => `/get_project/${encodeURIComponent(id)}`,
+    ADJUST_VOTE: (id, op) => `/adjust_vote/${encodeURIComponent(id)}?op=${op}`,
+    GET_VOTES: (id) => `/get_votes/${encodeURIComponent(id)}`,
+    PROJECT_ANALYSIS: (id) => `/llm_query/${encodeURIComponent(id)}`,
     UPLOAD_PROJECT: "/projects",
     LOGIN: "/auth/login",
   },
   PAGE_SIZE: 20,
   PREVIEW_DELAY_MS: 1000,
   REQUEST_TIMEOUT_MS: 15000,
-  ANALYSIS_TIMEOUT_MS: 90000,                 // LLM analysis can be slow
-  RISK_THRESHOLDS: { LOW_MAX: 0.33, MEDIUM_MAX: 0.66 }, // TODO(ML): use the model's thresholds
-  ADMIN_ROLE: "admin",                        // TODO(backend): role name returned for admins
+  ANALYSIS_TIMEOUT_MS: 90000,
+  RISK_THRESHOLDS: { LOW_MAX: 30, MEDIUM_MAX: 60 },
+  ADMIN_ROLE: "admin",
   SESSION_KEY: "kabtak_session",
   CLIENT_ID_COOKIE: "kt_client_id",
   VOTES_COOKIE: "kt_votes",
@@ -101,8 +92,29 @@ function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, (ch) => map[ch]);
 }
 
+function truncateText(text, maxLength) {
+  const str = String(text ?? "");
+  if (str.length > maxLength) {
+    return str.slice(0, maxLength) + "...";
+  }
+  return str;
+}
+
+function capitalizeWords(text) {
+  if (!text) return "";
+  return String(text)
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
 function toNumber(value) {
   return value === null || value === undefined || value === "" ? NaN : Number(value);
+}
+
+function normalizeRisk(risk) {
+  if (!Number.isFinite(risk)) return null;
+  return risk <= 1 ? risk * 100 : risk;
 }
 
 function clampPercent(value) {
@@ -120,7 +132,9 @@ function formatNumber(n) {
 }
 
 function formatPercent(fraction) {
-  return Number.isFinite(fraction) ? `${Math.round(fraction * 100)}%` : "N/A";
+  if (!Number.isFinite(fraction)) return "N/A";
+  const val = fraction <= 1 ? fraction * 100 : fraction;
+  return `${Math.round(val)}`;
 }
 
 function formatCrore(value) {
@@ -149,9 +163,10 @@ const RISK_STYLES = {
 };
 
 function riskLevel(risk) {
-  if (!Number.isFinite(risk)) return null;
-  if (risk <= CONFIG.RISK_THRESHOLDS.LOW_MAX) return "low";
-  if (risk <= CONFIG.RISK_THRESHOLDS.MEDIUM_MAX) return "medium";
+  const norm = normalizeRisk(risk);
+  if (norm === null) return null;
+  if (norm <= CONFIG.RISK_THRESHOLDS.LOW_MAX) return "low";
+  if (norm <= CONFIG.RISK_THRESHOLDS.MEDIUM_MAX) return "medium";
   return "high";
 }
 
@@ -166,14 +181,9 @@ function combinedRiskCell(risk) {
   const level = riskLevel(risk);
   if (!level) return riskBadge(risk);
   const style = RISK_STYLES[level];
-  const pct = clampPercent(risk * 100);
   return `
     <div class="d-flex align-items-center gap-2">
-      <div class="progress flex-grow-1 kt-risk-meter" aria-hidden="true">
-        <div class="progress-bar ${style.bar}" style="width:${pct}%"></div>
-      </div>
-      <span class="small fw-semibold kt-rank">${pct}%</span>
-      <span class="visually-hidden">, ${style.label} risk</span>
+      <span class="badge ${style.badge}">${formatPercent(risk)}</span>
     </div>`;
 }
 
@@ -199,7 +209,6 @@ function humanizeKey(key) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-// Renders any JSON value as readable HTML (used for unknown analysis fields)
 function renderJSONValue(value, depth = 0) {
   if (value === null || value === undefined) return `<span class="text-secondary">Not available</span>`;
   if (Array.isArray(value)) {
@@ -215,14 +224,12 @@ function renderJSONValue(value, depth = 0) {
   return escapeHTML(String(value));
 }
 
-// Only allow redirects to local pages like "upload.html"
 function safeNextPage(value) {
   return /^[a-z0-9-]+\.html$/i.test(value ?? "") ? value : "index.html";
 }
 
 /* ===================== 3. SESSION + NAVBAR ===================== */
 
-// TODO(backend): agree on token handling (an httpOnly cookie is safer than sessionStorage)
 function getSession() {
   try {
     return JSON.parse(sessionStorage.getItem(CONFIG.SESSION_KEY));
@@ -252,7 +259,6 @@ function initNav() {
     }
   });
 
-  // Cosmetic only: the backend must also block non-admins
   const admin = isAdmin();
   document.querySelectorAll("[data-admin-only]").forEach((el) => { el.hidden = !admin; });
 
@@ -269,7 +275,6 @@ function initNav() {
 }
 
 /* ===================== 4. ADAPTERS (backend JSON <-> UI objects) ===================== */
-/* TODO(backend): if field names differ from the contract above, change them here only. */
 
 function adaptSummary(raw) {
   const predicted = toNumber(raw.predicted) || 0;
@@ -283,8 +288,9 @@ function adaptProject(raw) {
   const timeRisk = toNumber(raw.time_risk);
   const costRisk = toNumber(raw.cost_risk);
   const combined = toNumber(raw.combined_risk);
+  const code = raw.code ?? raw.id ?? "";
   return {
-    id: String(raw.id),
+    id: String(code),
     name: raw.name ?? "Unnamed project",
     agency: raw.agency ?? "Not available",
     state: raw.state ?? "Not available",
@@ -295,60 +301,292 @@ function adaptProject(raw) {
 }
 
 function adaptProjectPage(raw) {
-  const items = Array.isArray(raw.items) ? raw.items.map(adaptProject) : [];
+  const rawItems = Array.isArray(raw) ? raw : (Array.isArray(raw?.items) ? raw.items : []);
+  const items = rawItems.map(adaptProject);
   return {
     items,
-    page: toNumber(raw.page),
-    total: toNumber(raw.total) || 0,
-    hasMore: Boolean(raw.has_more),
+    page: toNumber(raw?.page) || 1,
+    total: toNumber(raw?.total) || items.length,
+    hasMore: Boolean(raw?.has_more),
   };
 }
 
 function adaptPreview(raw) {
+  let name = raw.name ?? "Unnamed project";
+  let agency = raw.agency ?? "Not available";
+  let state = raw.state ?? "Not available";
+
+  if (typeof raw.name === "string" && raw.name.includes("___")) {
+    const parts = raw.name.split("___");
+    agency = capitalizeWords(parts[0]);
+    name = capitalizeWords(parts[1]);
+  }
+
+  const history = Array.isArray(raw.history) && raw.history.length > 0 ? raw.history[0] : {};
+  if (history.state) {
+    state = capitalizeWords(history.state);
+  }
+
+  let startDate = raw.start_date ?? null;
+  if (raw.start_date_revised && typeof raw.start_date_revised === "string") {
+    const s_date = raw.start_date_revised.split("/");
+    if (s_date.length === 2) {
+      const month = parseInt(s_date[0], 10);
+      const yr = parseInt(s_date[1], 10);
+      if (Number.isFinite(month) && Number.isFinite(yr)) {
+        startDate = new Date(yr, month - 1, 1).toISOString();
+      }
+    }
+  }
+
   return {
     ...adaptProject(raw),
+    name,
+    agency,
+    state,
     description: raw.description ?? "",
-    startDate: raw.start_date,
-    expectedEnd: raw.expected_end,
-    sanctionedCostCr: toNumber(raw.sanctioned_cost_cr),
-    expenditureCr: toNumber(raw.expenditure_cr),
-    progressPct: toNumber(raw.physical_progress_pct),
-    lastUpdated: raw.last_updated,
+    startDate: startDate || raw.start_date,
+    expectedEnd: raw.end_date_revised ?? raw.expected_end ?? null,
+    sanctionedCostCr: toNumber(raw.project_budget_revised ?? raw.sanctioned_cost_cr),
+    expenditureCr: toNumber(raw.cspend ?? raw.expenditure_cr),
+    progressPct: toNumber(history.progress ?? raw.physical_progress_pct),
+    lastUpdated: history.report_date ?? raw.last_updated ?? null,
   };
 }
 
 function adaptReviewCounts(raw) {
-  return { up: toNumber(raw?.up) || 0, down: toNumber(raw?.down) || 0 };
+  return {
+    up: toNumber(raw?.up ?? raw?.upvotes ?? raw?.up_votes) || 0,
+    down: toNumber(raw?.down ?? raw?.downvotes ?? raw?.down_votes) || 0,
+  };
 }
 
 function adaptProjectDetail(raw) {
-  return { ...adaptPreview(raw), reviews: adaptReviewCounts(raw.reviews) };
+  return { ...adaptPreview(raw), reviews: adaptReviewCounts(raw?.reviews) };
 }
 
-const ANALYSIS_KNOWN_KEYS = ["project_id", "generated_at", "summary", "risk_level",
-  "confidence", "key_findings", "risk_factors", "recommendations"];
+/* ===================== LLM ANALYSIS RENDERING ===================== */
+
+// Include 'content' and 'status' in ignored keys so they are stripped from extra details
+const ANALYSIS_KNOWN_KEYS = [
+  "project_id", "generated_at", "summary", "risk_level",
+  "confidence", "key_findings", "risk_factors", "recommendations",
+  "content", "status"
+];
+
+
 
 function adaptAnalysis(raw) {
+  if (!raw) return { summary: "", keyFindings: [], riskFactors: [], recommendations: [], extra: {} };
+
+  // Handle server/LLM error responses
+  if (raw.status === -1 || raw.reason) {
+    return {
+      summary: raw.reason || "Analysis failed on the server.",
+      keyFindings: [],
+      riskFactors: [],
+      recommendations: [],
+      extra: {}
+    };
+  }
+
+  // Unwrap 'content' object sent by the backend
+  const data = raw.content && typeof raw.content === "object" ? raw.content : raw;
+
+  const summary = data.summary || data.risk_summary || raw.summary || "";
+
+  let keyFindings = [];
+  if (Array.isArray(data.key_findings)) {
+    keyFindings = data.key_findings;
+  } else if (Array.isArray(raw.key_findings)) {
+    keyFindings = raw.key_findings;
+  } else if (data.evidence_behind_the_risk) {
+    keyFindings = [data.evidence_behind_the_risk];
+  }
+
+  let recommendations = [];
+  if (Array.isArray(data.recommendations)) {
+    recommendations = data.recommendations;
+  } else if (Array.isArray(raw.recommendations)) {
+    recommendations = raw.recommendations;
+  } else if (Array.isArray(data.possible_on_ground_explanations)) {
+    recommendations = data.possible_on_ground_explanations;
+  } else if (data.possible_on_ground_explanations) {
+    recommendations = [data.possible_on_ground_explanations];
+  }
+
   const extra = Object.fromEntries(
-    Object.entries(raw ?? {}).filter(([key]) => !ANALYSIS_KNOWN_KEYS.includes(key)));
+    Object.entries(data ?? {}).filter(([key]) => {
+      const k = key.toLowerCase();
+      return !ANALYSIS_KNOWN_KEYS.includes(k);
+    })
+  );
+
   return {
-    projectId: raw?.project_id,
-    generatedAt: raw?.generated_at,
-    summary: raw?.summary ?? "",
-    riskLevel: raw?.risk_level,
-    confidence: toNumber(raw?.confidence),
-    keyFindings: Array.isArray(raw?.key_findings) ? raw.key_findings : [],
-    riskFactors: Array.isArray(raw?.risk_factors) ? raw.risk_factors : [],
-    recommendations: Array.isArray(raw?.recommendations) ? raw.recommendations : [],
+    projectId: raw.project_id || data.project_id,
+    generatedAt: raw.generated_at || data.generated_at,
+    summary,
+    riskLevel: raw.risk_level || data.risk_level,
+    confidence: toNumber(raw.confidence ?? data.confidence),
+    keyFindings,
+    riskFactors: Array.isArray(data.risk_factors) ? data.risk_factors : (Array.isArray(raw.risk_factors) ? raw.risk_factors : []),
+    recommendations,
     extra,
   };
+}
+
+function analysisHTML(a) {
+  const hasContent = a.summary || a.keyFindings.length || a.riskFactors.length ||
+    a.recommendations.length || Object.keys(a.extra).length;
+  
+  if (!hasContent) {
+    return `<div class="text-center text-muted py-4"><p class="mb-0">The analysis returned no data.</p></div>`;
+  }
+
+  const levelKey = String(a.riskLevel ?? "").toLowerCase();
+  const level = RISK_STYLES[levelKey];
+  
+  const riskBadgeHtml = level 
+    ? `<span class="badge ${level.badge} px-3 py-2 fs-6 shadow-sm">Risk Level: ${level.label}</span>`
+    : "";
+  
+  const confidenceHtml = Number.isFinite(a.confidence)
+    ? `<span class="badge bg-info text-dark px-3 py-2 fs-6 shadow-sm">Confidence: ${formatPercent(a.confidence)}%</span>`
+    : "";
+
+  const timeHtml = a.generatedAt
+    ? `<span class="badge bg-white text-dark border px-3 py-2 fs-6 shadow-sm">Generated: ${formatDateTime(a.generatedAt)}</span>`
+    : "";
+
+  return `
+    <div class="analysis-container">
+      <!-- Meta Badges -->
+      <div class="d-flex flex-wrap align-items-center gap-2 mb-4 p-3 bg-white rounded-3 shadow-sm border">
+        ${riskBadgeHtml}
+        ${confidenceHtml}
+        ${timeHtml}
+      </div>
+
+      <!-- Executive Summary -->
+      ${a.summary ? `
+        <div class="card border-0 bg-primary bg-opacity-10 border-start border-primary border-4 shadow-sm mb-4">
+          <div class="card-body">
+            <h3 class="h6 text-primary fw-bold mb-2">Executive Summary</h3>
+            <p class="card-text text-dark mb-0 lh-base">${escapeHTML(a.summary)}</p>
+          </div>
+        </div>
+      ` : ""}
+
+      <!-- Key Findings -->
+      ${listSection("Key Findings", a.keyFindings, "border-info text-info")}
+
+      <!-- Risk Factors -->
+      ${riskFactorsSection(a.riskFactors)}
+
+      <!-- Recommendations -->
+      ${listSection("Recommendations", a.recommendations, "border-success text-success")}
+
+      <!-- Formatted Other Details (Cost Risk, Time Risk, Evidence, etc.) -->
+      ${Object.keys(a.extra).length ? renderExtraDetails(a.extra) : ""}
+    </div>`;
+}
+
+function listSection(title, items, accentClass = "border-primary text-primary") {
+  if (!items.length) return "";
+  return `
+    <div class="card border-0 shadow-sm mb-4 border-start border-4 ${accentClass.split(' ')[0]}">
+      <div class="card-body">
+        <h3 class="h6 fw-bold mb-3 ${accentClass.split(' ')[1] || 'text-dark'}">${escapeHTML(title)}</h3>
+        <ul class="list-group list-group-flush">
+          ${items.map((item) => `
+            <li class="list-group-item bg-transparent border-0 px-0 py-1 text-dark small d-flex gap-2">
+              <span class="fw-bold">•</span>
+              <div>${renderJSONValue(item)}</div>
+            </li>`).join("")}
+        </ul>
+      </div>
+    </div>`;
+}
+
+function riskFactorsSection(factors) {
+  if (!factors.length) return "";
+  const rows = factors.map((f) => {
+    if (typeof f !== "object" || f === null) return `<tr><td colspan="3">${escapeHTML(f)}</td></tr>`;
+    const style = RISK_STYLES[String(f.impact ?? "").toLowerCase()];
+    const impact = style
+      ? `<span class="badge ${style.badge} shadow-sm">${style.label}</span>`
+      : escapeHTML(f.impact ?? "");
+    return `
+      <tr>
+        <td class="fw-semibold text-dark">${escapeHTML(f.factor ?? "")}</td>
+        <td>${impact}</td>
+        <td class="text-secondary small">${escapeHTML(f.detail ?? "")}</td>
+      </tr>`;
+  }).join("");
+
+  return `
+    <div class="card border-0 shadow-sm mb-4 overflow-hidden">
+      <div class="p-3 bg-white border-bottom">
+        <h3 class="h6 fw-bold text-danger mb-0">Risk Factors</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light text-secondary small">
+            <tr>
+              <th scope="col" style="width: 25%;">Factor</th>
+              <th scope="col" style="width: 20%;">Impact</th>
+              <th scope="col" style="width: 55%;">Detail</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+function renderExtraDetails(extra) {
+  const entries = Object.entries(extra);
+  if (!entries.length) return "";
+
+  const cardsHtml = entries.map(([key, value]) => {
+    const lowerKey = key.toLowerCase();
+    let borderAccent = "border-primary";
+    let titleColor = "text-primary";
+
+    if (lowerKey.includes("cost") || lowerKey.includes("budget") || lowerKey.includes("financial")) {
+      borderAccent = "border-danger";
+      titleColor = "text-danger";
+    } else if (lowerKey.includes("time") || lowerKey.includes("schedule") || lowerKey.includes("delay")) {
+      borderAccent = "border-warning";
+      titleColor = "text-warning-emphasis";
+    } else if (lowerKey.includes("evidence") || lowerKey.includes("proof")) {
+      borderAccent = "border-info";
+      titleColor = "text-info";
+    }
+
+    return `
+      <div class="card mb-3 border-0 shadow-sm border-start border-4 ${borderAccent}">
+        <div class="card-body">
+          <h4 class="h6 fw-bold mb-2 ${titleColor}">${escapeHTML(humanizeKey(key))}</h4>
+          <div class="text-dark small lh-base">
+            ${typeof value === "object" ? renderJSONValue(value) : escapeHTML(String(value))}
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+
+  return `
+    <div class="mt-4">
+      <h3 class="h6 fw-bold text-dark mb-3">Detailed Assessment Breakdown</h3>
+      ${cardsHtml}
+    </div>`;
 }
 
 function adaptLogin(raw) {
   return { token: raw.token, role: raw.role, name: raw.name ?? "" };
 }
 
-/* ===================== 5. MOCK DATA (delete once the backend is live) ===================== */
+/* ===================== 5. MOCK DATA ===================== */
 
 function mulberry32(seed) {
   let a = seed;
@@ -361,7 +599,7 @@ function mulberry32(seed) {
 }
 
 const mock = (() => {
-  const rand = mulberry32(26103); // fixed seed so mock data stays the same on every reload
+  const rand = mulberry32(26103);
   const pick = (arr) => arr[Math.floor(rand() * arr.length)];
   const round = (n, digits = 2) => Number(n.toFixed(digits));
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -401,7 +639,7 @@ const mock = (() => {
     a.combined_risk - b.combined_risk ||
     Math.min(a.time_risk, a.cost_risk) - Math.min(b.time_risk, b.cost_risk));
 
-  const votes = new Map(); // "projectId:clientId" -> "up" | "down"
+  const votes = new Map();
 
   const findProject = (id) => {
     const project = projects.find((p) => p.id === id);
@@ -435,7 +673,6 @@ const mock = (() => {
     async getProject(id) {
       await delay(400);
       const project = findProject(id);
-      // Mock only: mock counts reset on reload, so re-apply this browser's cookie vote
       const key = `${id}:${getClientId()}`;
       const saved = getStoredVotes().get(id);
       if (saved && !votes.has(key)) {
@@ -443,6 +680,12 @@ const mock = (() => {
         votes.set(key, saved);
       }
       return { ...project, reviews: { ...project.reviews } };
+    },
+
+    async getVotes(id) {
+      await delay(300);
+      const project = findProject(id);
+      return { ...project.reviews };
     },
 
     async submitReview(id, vote, clientId) {
@@ -481,13 +724,12 @@ const mock = (() => {
           { factor: "Cost", impact: riskLevel(toNumber(p.cost_risk)) ?? "unknown", detail: `Cost risk is ${formatPercent(toNumber(p.cost_risk))}.` },
         ],
         recommendations: ["Mock recommendation 1.", "Mock recommendation 2."],
-        model: "mock-llm", // unknown key: appears under "Other details"
+        model: "mock-llm",
       };
     },
 
     async login(username, password) {
       await delay(400);
-      // Mock admin credentials: admin / admin123
       if (username === "admin" && password === "admin123") {
         return { token: "mock-admin-token", role: "admin", name: "Administrator" };
       }
@@ -499,7 +741,6 @@ const mock = (() => {
       if (!isAdmin()) throw httpError(403, "Admin only");
       const id = `PRJ-${String(projects.length + 1).padStart(4, "0")}`;
       const file = payload.get("document");
-      // Mock only: the real backend reads these details out of the PDF
       projects.push({
         id,
         name: file?.name?.replace(/\.pdf$/i, "") || "Uploaded project",
@@ -530,7 +771,6 @@ function getAuthHeader() {
 async function apiRequest(path, { method = "GET", body, timeoutMs = CONFIG.REQUEST_TIMEOUT_MS } = {}) {
   const isFormData = body instanceof FormData;
   const headers = { ...getAuthHeader() };
-  // The browser sets Content-Type (with the multipart boundary) for FormData
   if (body !== undefined && !isFormData) headers["Content-Type"] = "application/json";
 
   const controller = new AbortController();
@@ -544,7 +784,7 @@ async function apiRequest(path, { method = "GET", body, timeoutMs = CONFIG.REQUE
       signal: controller.signal,
     });
     if (!response.ok) {
-      if (response.status === 401) clearSession(); // token missing or expired
+      if (response.status === 401) clearSession();
       throw httpError(response.status, `${method} ${path} failed with status ${response.status}`);
     }
     return await response.json();
@@ -565,7 +805,7 @@ const api = {
   },
 
   async getProjects(page, limit) {
-    const query = new URLSearchParams({ page, limit, sort: "combined_risk_asc" });
+    const query = new URLSearchParams({ page, limit });
     const raw = CONFIG.USE_MOCK_DATA
       ? await mock.getProjects(page, limit)
       : await apiRequest(`${CONFIG.ENDPOINTS.PROJECTS}?${query}`);
@@ -586,21 +826,42 @@ const api = {
     return adaptProjectDetail(raw);
   },
 
-  async submitReview(id, vote, clientId) {
+  async getVotes(id) {
     const raw = CONFIG.USE_MOCK_DATA
-      ? await mock.submitReview(id, vote, clientId)
-      : await apiRequest(CONFIG.ENDPOINTS.PROJECT_REVIEWS(id), {
-          method: "POST",
-          body: { vote, client_id: clientId },
-        });
+      ? await mock.getVotes(id)
+      : await apiRequest(CONFIG.ENDPOINTS.GET_VOTES(id));
     return adaptReviewCounts(raw);
   },
 
+  async submitReview(id, oldVote, newVote, currentCounts) {
+    if (CONFIG.USE_MOCK_DATA) {
+      return await mock.submitReview(id, newVote, getClientId());
+    }
+
+    const ops = [];
+    if (oldVote === "up") ops.push(1);   // Remove existing upvote
+    if (oldVote === "down") ops.push(3); // Remove existing downvote
+    if (newVote === "up") ops.push(0);   // Add new upvote
+    if (newVote === "down") ops.push(2); // Add new downvote
+
+    for (const op of ops) {
+      await apiRequest(CONFIG.ENDPOINTS.ADJUST_VOTE(id, op), { method: "GET" });
+    }
+
+    const newCounts = { ...currentCounts };
+    if (oldVote === "up") newCounts.up = Math.max(0, newCounts.up - 1);
+    if (oldVote === "down") newCounts.down = Math.max(0, newCounts.down - 1);
+    if (newVote === "up") newCounts.up += 1;
+    if (newVote === "down") newCounts.down += 1;
+
+    return newCounts;
+  },
+
   async analyseProject(id) {
+    console.log(id);
     const raw = CONFIG.USE_MOCK_DATA
       ? await mock.analyseProject(id)
       : await apiRequest(CONFIG.ENDPOINTS.PROJECT_ANALYSIS(id), {
-          method: "POST",
           timeoutMs: CONFIG.ANALYSIS_TIMEOUT_MS,
         });
     return adaptAnalysis(raw);
@@ -625,7 +886,6 @@ const api = {
 
 const COVERAGE_KEYS = [
   { key: "predicted", label: "Predicted", cssVar: "--kt-predicted" },
-  { key: "tbtp", label: "TBTP (too bad to predict)", cssVar: "--kt-tbtp" },
   { key: "tytp", label: "TYTP (too young to predict)", cssVar: "--kt-tytp" },
 ];
 
@@ -732,7 +992,7 @@ async function loadNextProjectsPage() {
     updateProjectsCounter();
 
     if (projectsState.hasMore) {
-      projectsObserver.observe(sentinel); // re-fires if the sentinel is still on screen
+      projectsObserver.observe(sentinel);
     } else {
       finishProjects();
     }
@@ -753,16 +1013,28 @@ function appendProjects(projects, offset) {
 }
 
 function createProjectItem(project, rank) {
+  let dept = project.agency;
+  let name = project.name;
+
+  if (typeof project.name === "string" && project.name.includes("___")) {
+    const parts = project.name.split("___");
+    dept = truncateText(parts[0], 50);
+    name = truncateText(parts[1], 50);
+  } else {
+    dept = truncateText(dept, 50);
+    name = truncateText(name, 50);
+  }
+
   const li = document.createElement("li");
   li.className = "list-group-item kt-project-item";
   li.dataset.projectId = project.id;
   li.innerHTML = `
     <div class="row g-2 align-items-center">
-      <div class="col-2 col-md-1 kt-rank fw-semibold text-secondary">#${rank}</div>
+      <div class="col-2 col-md-1 kt-rank fw-semibold text-secondary">${rank}</div>
       <div class="col-10 col-md-5">
         <a href="project.html?id=${encodeURIComponent(project.id)}"
-           class="fw-semibold text-body text-decoration-none stretched-link">${escapeHTML(project.name)}</a>
-        <div class="small text-secondary">${escapeHTML(project.agency)} | ${escapeHTML(project.state)}</div>
+           class="fw-semibold text-body text-decoration-none stretched-link">${escapeHTML(capitalizeWords(name))}</a>
+        <div class="small text-secondary">${escapeHTML(capitalizeWords(dept))} | ${escapeHTML(capitalizeWords(project.state))}</div>
       </div>
       <div class="col-4 col-md-2">
         <span class="small text-secondary d-block d-md-none">Time risk</span>${riskBadge(project.timeRisk)}
@@ -859,7 +1131,7 @@ async function showPreview(anchor, projectId) {
       data = await api.getProjectPreview(projectId);
       previewState.cache.set(projectId, data);
     }
-    if (previewState.activeId !== projectId) return; // pointer moved to another project
+    if (previewState.activeId !== projectId) return;
     box.innerHTML = previewHTML(data);
     positionPreview(box, anchor);
   } catch (error) {
@@ -939,7 +1211,7 @@ async function initProjectPage() {
   try {
     const project = await api.getProject(projectId);
     renderProjectPage(project);
-    initReviews(project);
+    await initReviews(project);
     document.getElementById("analyse-button").addEventListener("click", () => runAnalysis(project.id));
   } catch (error) {
     console.error("Failed to load project:", error);
@@ -1014,7 +1286,6 @@ function deleteCookie(name) {
   document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax`;
 }
 
-// Anonymous ID for this browser; the backend uses it to allow one vote per project
 function getClientId() {
   let id = getCookie(CONFIG.CLIENT_ID_COOKIE);
   if (!id) {
@@ -1022,14 +1293,13 @@ function getClientId() {
       ? crypto.randomUUID()
       : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
   }
-  setCookie(CONFIG.CLIENT_ID_COOKIE, id); // refreshes the expiry on every visit
+  setCookie(CONFIG.CLIENT_ID_COOKIE, id);
   return id;
 }
 
-// Votes cookie format: "<projectId>:u|<projectId>:d" (oldest first)
 const VOTE_TO_CODE = { up: "u", down: "d" };
 const CODE_TO_VOTE = { u: "up", d: "down" };
-const MAX_VOTES_COOKIE_LENGTH = 3800; // browsers cap a cookie at about 4 KB
+const MAX_VOTES_COOKIE_LENGTH = 3800;
 
 function getStoredVotes() {
   const votes = new Map();
@@ -1051,11 +1321,10 @@ function getStoredVotes() {
 
 function storeVote(projectId, vote) {
   const votes = getStoredVotes();
-  votes.delete(projectId);               // re-adding moves it to the end (newest)
+  votes.delete(projectId);
   if (vote) votes.set(projectId, vote);
 
   const entries = [...votes].map(([id, v]) => `${encodeURIComponent(id)}:${VOTE_TO_CODE[v]}`);
-  // If the cookie gets too big, forget the oldest votes first
   while (entries.length && encodeURIComponent(entries.join("|")).length > MAX_VOTES_COOKIE_LENGTH) {
     entries.shift();
   }
@@ -1064,22 +1333,26 @@ function storeVote(projectId, vote) {
   else deleteCookie(CONFIG.VOTES_COOKIE);
 }
 
-// Same button again = back to neutral; the other button = switch to it
 function nextVote(current, clicked) {
   return current === clicked ? null : clicked;
 }
 
-// Voted = solid button, not voted = outline button
 const VOTE_CLASSES = {
   up:   { on: "btn-success", off: "btn-outline-success" },
   down: { on: "btn-danger",  off: "btn-outline-danger" },
 };
 
-function initReviews(project) {
+async function initReviews(project) {
   const buttons = document.querySelectorAll("[data-vote]");
-  let counts = project.reviews;
-  // TODO(backend): if GET /projects/{id} returns "my_vote" for this client_id, prefer it over the cookie
+  let counts = project.reviews || { up: 0, down: 0 };
   let myVote = getStoredVotes().get(project.id) ?? null;
+
+  try {
+    const freshVotes = await api.getVotes(project.id);
+    if (freshVotes) counts = freshVotes;
+  } catch (error) {
+    console.warn("Could not fetch fresh votes, defaulting to project details:", error);
+  }
 
   const render = () => {
     setText("review-up-count", formatNumber(counts.up));
@@ -1089,7 +1362,7 @@ function initReviews(project) {
       const selected = button.dataset.vote === myVote;
       button.classList.toggle(classes.on, selected);
       button.classList.toggle(classes.off, !selected);
-      button.classList.remove("active"); // no longer used for this state
+      button.classList.remove("active");
       button.setAttribute("aria-pressed", String(selected));
     });
   };
@@ -1101,7 +1374,7 @@ function initReviews(project) {
 
       buttons.forEach((b) => { b.disabled = true; });
       try {
-        counts = await api.submitReview(project.id, newVote, getClientId());
+        counts = await api.submitReview(project.id, myVote, newVote, counts);
         myVote = newVote;
         storeVote(project.id, newVote);
         render();
@@ -1139,7 +1412,6 @@ async function runAnalysis(projectId) {
   }
 }
 
-// All LLM output is escaped before display
 function analysisHTML(a) {
   const hasContent = a.summary || a.keyFindings.length || a.riskFactors.length ||
     a.recommendations.length || Object.keys(a.extra).length;
@@ -1234,19 +1506,17 @@ function initLogin() {
 
 /* ===================== 12. UPLOAD PROJECTS, ADMIN ONLY (upload.html) ===================== */
 
-// TODO(backend): match these field names to what the upload endpoint expects
 function buildProjectPayload(form) {
-  return new FormData(form); // document, start_month, expected_end_month
+  return new FormData(form);
 }
 
-const MAX_PDF_BYTES = 20 * 1024 * 1024; // TODO(backend): match the server's limit
+const MAX_PDF_BYTES = 20 * 1024 * 1024;
 const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
 
 function initUpload() {
   const form = document.getElementById("upload-form");
   if (!form) return;
 
-  // Cosmetic guard only: the backend must reject non-admin uploads
   if (!isAdmin()) {
     window.location.replace("login.html?next=upload.html");
     return;
@@ -1268,7 +1538,6 @@ function initUpload() {
     document_.setCustomValidity(error);
   };
 
-  // type="month" falls back to a text box in some browsers, so check the format here too
   const checkMonths = () => {
     const badStart = start.value && !MONTH_PATTERN.test(start.value);
     start.setCustomValidity(badStart ? "Use the format YYYY-MM." : "");

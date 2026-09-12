@@ -82,6 +82,27 @@ class ORM:
             raise RuntimeError('Failed to connect to mysql check if the server is up and running.\n'\
                                'Follow the guidelines or call me to properly set the databse up')
 
+
+        sql_project = """
+        
+                    SELECT code,cost_risk,time_risk,name,time_risk,overall_risk
+                    FROM `projects` 
+                    WHERE progress <= 90 
+                      AND (`status_cost` = 'COMPLETE' OR `status_time` = 'COMPLETE') 
+                      AND `cspend` > 0 
+                    ORDER BY overall_risk DESC;
+        
+                """
+        
+        
+        # Execute to get the data
+        self.cursor.execute(sql_project)
+
+        data = self.cursor.fetchall()
+
+        self.total_indexed = len(data)
+        
+
     def add_objects(self,master_csv_path: str, model_cost_path: str, model_time_path):
         '''
         Adds the data from .csv to the database
@@ -335,22 +356,46 @@ class ORM:
         # return all the rows
         return rows
 
-    def get_top_k(self) -> list[dict]:
+    def get_top_k(self,page,limit) -> list[dict]:
         '''
         Gets the top k filtered project results
         '''
-        sql_project = 'SELECT * FROM `projects` WHERE progress <= 90 AND (`status_cost` = "COMPLETE" OR `status_time` = "COMPLETE") AND `cspend` > 0 ORDER BY overall_risk DESC;'
 
+        page = max(1, page)
+        limit = max(1, limit)
+        offset = (page - 1) * limit
 
-        # Execute to get the data
-        self.cursor.execute(sql_project)
+        sql_project = """
+   SELECT 
+    p.code, 
+    p.cost_risk, 
+    p.time_risk, 
+    p.name, 
+    p.overall_risk,
+    m.state
+FROM `projects` p
+LEFT JOIN `master` m ON p.code = m.code
+WHERE p.progress <= 90 
+  AND (p.status_cost = 'COMPLETE' OR p.status_time = 'COMPLETE') 
+  AND p.cspend > 0 
+GROUP BY p.code
+ORDER BY p.overall_risk DESC 
+LIMIT %s OFFSET %s;
+"""
 
-        # Execute the command to get the rows
+        # Execute single query
+        self.cursor.execute(sql_project, (limit, offset))
+        
+        # Fetch all rows directly with state included
         rows = self.cursor.fetchall()
-
-        # Return the rows
-        return rows
-
+        
+        # Return the result
+        return {
+            "items": rows,
+            "page": page,
+            "total": self.stats['total'],
+            "has_more": (limit * page) < self.total_indexed
+        }
 
     def get_project(self, code) -> dict:
         '''
@@ -525,8 +570,10 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
                 "status":-1,
                 "reason":"Please upload data to database to get stats @Admin"
             }
-
-        return {"status":0,"stats":self.stats}
+        to_ret = {"predicted":self.stats['total'] - self.stats['tytp']
+                  , "tbtp":0
+                  , "tytp":self.stats['tytp']}
+        return to_ret
 
         
 
@@ -542,7 +589,7 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
         valid_changes = {1, -1, None}
         if upvote_change not in valid_changes or downvote_change not in valid_changes:
             print("❌ Error: Vote changes must be +1, -1, or None.")
-            return
+            return {"status": -1, "reason": "Vote changes must be +1, -1, or None"}
 
         # 2. Build the query dynamically based on which parameter is provided
         set_clauses = []
@@ -560,7 +607,7 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
         # Nothing to update if both are None
         if not set_clauses:
             print("ℹ️ No vote changes provided.")
-            return
+            return {"status": -1, "reason": "No vote changes provided"}
 
         params.append(code)
         query = f"UPDATE review SET {', '.join(set_clauses)} WHERE code = %s;"
@@ -571,23 +618,16 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
             conn.commit()
 
             if cursor.rowcount > 0:
-               return {"status":0}
+               return {"status": 0}
             else:
-                return {"status":-1,"reason":"Code is not found"}
+                return {"status": -1, "reason": "Code not found"}
 
         except Exception as e:
-            return {"status":-1,"reason":"Sorry! Internal Server error"}
+            return {"status": -1, "reason": f"Sorry! Internal Server error: {str(e)}"}
 
-
-    def get_votes(self,code: int) -> dict | None:
-
-        """Retrieves the upvotes and downvotes for a specific project code.
-
-        Returns a dictionary {'upvotes': X, 'downvotes': Y} or None if the code isn't
-        found.
-        """
+    def get_votes(self, code: int) -> dict:
+        """Retrieves the upvotes and downvotes for a specific project code."""
         query = "SELECT upvotes, downvotes FROM review WHERE code = %s;"
-
         cursor = self.cursor
 
         try:
@@ -595,14 +635,16 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
             result = cursor.fetchone()
 
             if result:
-                upvotes, downvotes = result
-                return {"status":0,"upvotes": result[upvotes], "downvotes":result[downvotes]}
+                return {
+                    "status": 0,
+                    "upvotes": result.get("upvotes", 0) or 0,
+                    "downvotes": result.get("downvotes", 0) or 0,
+                }
             else:
-                return {"status":-1,"reason":"Code not found"}
-        
+                return {"status": -1, "reason": "Code not found"}
 
         except Exception as e:
-            return {"status":-1,"reason":"Sorry! Internal Server Error"}
+            return {"status": -1, "reason": f"Sorry! Internal Server Error: {str(e)}"}
     
 
 
