@@ -1,0 +1,59 @@
+/* Core Variables & Navbar offset */
+:root {
+  --kt-navy: #0b2e59;
+  --kt-blue: #1d5fa8;
+  --kt-sky: #3a8dd0;
+  --kt-saffron: #ff9933;
+  --kt-india-green: #138808;
+  --kt-navbar-height: 72px;
+}
+
+body { padding-top: var(--kt-navbar-height); }
+
+/* Accessibility & Brand Elements */
+.kt-skip-link:focus {
+  position: fixed;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2000;
+  padding: .5rem 1rem;
+  background: #fff;
+  color: var(--kt-navy);
+  border-radius: .375rem;
+}
+
+.kt-navbar {
+  background-color: var(--kt-navy);
+  min-height: var(--kt-navbar-height);
+}
+
+.kt-navbar::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(to right, var(--kt-saffron) 0 33.33%, #fff 33.33% 66.66%, var(--kt-india-green) 66.66% 100%);
+}
+
+.kt-logo-slot {
+  display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px;
+  border: 2px dashed rgba(255, 255, 255, .6);
+  border-radius: .375rem; font-size: .7rem; color: rgba(255, 255, 255, .85);
+}
+
+.kt-footer { background-color: var(--kt-navy); }
+
+/* Project Page Specifics */
+.kt-risk-meter { height: 6px; }
+
+/* Vote buttons: hover must not look like the voted state */
+[data-vote].btn-outline-success:hover {
+  background-color: #e8f5ee;
+  border-color: var(--bs-success);
+  color: var(--bs-success);
+}
+[data-vote].btn-outline-danger:hover {
+  background-color: #fdeaea;
+  border-color: var(--bs-danger);
+  color: var(--bs-danger);
+}

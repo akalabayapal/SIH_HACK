@@ -1,0 +1,165 @@
+/* =========================================================================
+   Kab Tak – index.css
+   Styles specific to the landing page (index.html)
+   ========================================================================= */
+
+:root {
+  --kt-navy: #0b2e59;
+  --kt-blue: #1d5fa8;
+  --kt-sky: #3a8dd0;
+  --kt-saffron: #ff9933;
+  --kt-india-green: #138808;
+
+  /* Coverage chart colors */
+  --kt-predicted: #1f8a4c;
+  --kt-tbtp: #d9822b;
+  --kt-tytp: #6c7a89;
+
+  --kt-navbar-height: 72px;
+}
+
+/* Offset content for fixed navbar */
+body { 
+  padding-top: var(--kt-navbar-height); 
+}
+
+section[id] { 
+  scroll-margin-top: calc(var(--kt-navbar-height) + 1rem); 
+}
+
+.kt-skip-link:focus {
+  position: fixed;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2000;
+  padding: .5rem 1rem;
+  background: #fff;
+  color: var(--kt-navy);
+  border-radius: .375rem;
+}
+
+/* Navbar */
+.kt-navbar {
+  background-color: var(--kt-navy);
+  min-height: var(--kt-navbar-height);
+}
+
+.kt-navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right,
+    var(--kt-saffron) 0 33.33%,
+    #fff 33.33% 66.66%,
+    var(--kt-india-green) 66.66% 100%);
+}
+
+.kt-logo-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px dashed rgba(255, 255, 255, .6);
+  border-radius: .375rem;
+  font-size: .7rem;
+  color: rgba(255, 255, 255, .85);
+}
+
+/* Hero Section */
+.kt-hero {
+  padding: 4.5rem 1rem 4rem;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, var(--kt-navy) 0%, var(--kt-blue) 55%, var(--kt-sky) 100%);
+}
+
+.kt-hero-dept { 
+  font-size: .875rem; 
+  opacity: .85; 
+}
+
+.kt-hero-title {
+  margin-bottom: .25rem;
+  font-size: clamp(2.75rem, 8vw, 4.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.kt-hero-title-hi { 
+  font-size: clamp(1.25rem, 3vw, 1.75rem); 
+  opacity: .9; 
+}
+
+.kt-hero-tagline { 
+  max-width: 40rem; 
+  margin: 1rem auto 0; 
+  font-size: 1.125rem; 
+  opacity: .92; 
+}
+
+/* Coverage Stats & Chart */
+.kt-dot {
+  display: inline-block;
+  width: .75rem;
+  height: .75rem;
+  margin-right: .5rem;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.kt-fill-predicted { background-color: var(--kt-predicted); }
+.kt-fill-tbtp { background-color: var(--kt-tbtp); }
+.kt-fill-tytp { background-color: var(--kt-tytp); }
+
+.kt-chart-box { 
+  max-width: 320px; 
+  margin: 0 auto; 
+}
+
+/* Ranked Project List */
+.kt-list-head { 
+  font-size: .8rem; 
+  color: var(--bs-secondary-color); 
+}
+
+.kt-project-item { 
+  transition: background-color .15s ease; 
+}
+
+.kt-project-item:hover,
+.kt-project-item:focus-within { 
+  background-color: #eef4fb; 
+}
+
+.kt-project-item:hover .stretched-link { 
+  text-decoration: underline; 
+}
+
+.kt-risk-meter { 
+  height: 6px; 
+}
+
+.kt-rank { 
+  font-variant-numeric: tabular-nums; 
+}
+
+/* Hover Preview Tooltip */
+.kt-preview {
+  position: fixed;
+  z-index: 1080;
+  width: min(360px, calc(100vw - 16px));
+  pointer-events: none;
+}
+
+/* Footer */
+.kt-footer { 
+  background-color: var(--kt-navy); 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kt-project-item { transition: none; }
+}
