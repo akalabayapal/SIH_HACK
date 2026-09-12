@@ -76,7 +76,7 @@ class ORM:
             database=self.config.database
     )
         if self.db_connection.is_connected():
-            self.cursor = self.db_connection.cursor(dictionary=True)
+            self.cursor = self.db_connection.cursor(dictionary=True,buffered=True)
             print("[+] Connection to DB is completed.")
         else:
             raise RuntimeError('Failed to connect to mysql check if the server is up and running.\n'\
@@ -93,14 +93,23 @@ class ORM:
                     ORDER BY overall_risk DESC;
         
                 """
-        
-        
-        # Execute to get the data
         self.cursor.execute(sql_project)
-
         data = self.cursor.fetchall()
-
         self.total_indexed = len(data)
+
+        sql_project_all = """
+                            SELECT code
+                            FROM `projects` ;
+                        """
+
+        self.cursor.execute(sql_project_all)
+        data_2 = self.cursor.fetchall()
+        self.total_indexed_all = len(data_2)
+
+
+
+
+        
         
 
     def add_objects(self,master_csv_path: str, model_cost_path: str, model_time_path):
@@ -341,20 +350,45 @@ class ORM:
 
 
 
-    def get_all(self) -> list[dict]:
+    def get_all(self,page,limit) -> list[dict]:
         '''
         Gets all rows and send them all to UI
         '''
-        sql = "SELECT * FROM `projects`"
+
+        page = max(1, page)
+        limit = max(1, limit)
+        offset = (page - 1) * limit
+
+
+        sql = """
+
+    SELECT 
+        p.code, 
+        p.cost_risk, 
+        p.time_risk, 
+        p.name, 
+        p.overall_risk,
+        m.state
+    FROM `projects` p
+    LEFT JOIN `master` m ON p.code = m.code
+    GROUP BY p.code
+    LIMIT %s OFFSET %s;
+
+"""
 
         # Execute to get all data
-        self.cursor.execute(sql)
+        self.cursor.execute(sql, (limit, offset))
 
         # fetch all rows
         rows = self.cursor.fetchall()
 
         # return all the rows
-        return rows
+        return {
+            "items": rows,
+            "page": page,
+            "total": self.total_indexed_all,
+            "has_more": (limit * page) < self.total_indexed_all
+        }
 
     def get_top_k(self,page,limit) -> list[dict]:
         '''
@@ -393,7 +427,7 @@ LIMIT %s OFFSET %s;
         return {
             "items": rows,
             "page": page,
-            "total": self.stats['total'],
+            "total": self.total_indexed,
             "has_more": (limit * page) < self.total_indexed
         }
 
@@ -729,7 +763,6 @@ class Trainer:
 
 
     def get_status(self,uid):
-        print(self.procs)
         p: multiprocessing.Process = self.procs[uid]
 
         return p.is_alive()

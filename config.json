@@ -19,6 +19,9 @@
     "cost_data":"Ml/csv/final/model_cost.csv",
     "time_data":"ML/csv/final/model_time.csv",
 
-    "gemini_key":"YOUR_GEMINI_API_KEY"
+    "gemini_key":"YOUR_GEMINI_API_KEY",
+
+    "admin_user":"Admin",
+    "admin_pwd":"Admin1234"
 
 }

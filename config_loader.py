@@ -39,6 +39,16 @@ class ModelObject:
             self.cost_data = obj['cost_data']
             self.time_data = obj['time_data']
 
+class AuthObject:
+    def __init__(self):
+        with open('config.json','r') as fs:
+                    obj = json.load(fs)
+
+                    self.admin_uname = obj['admin_user']
+                    self.admin_pwd = obj['admin_pwd']
+
+                    
+
             
 
 

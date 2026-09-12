@@ -45,8 +45,8 @@
 
    8) POST /auth/login
       body { "username", "password" }
-      -> { "token": "...", "role": "admin", "name": "..." }
-      401 for wrong credentials. The frontend only accepts role "admin".
+      -> returns { "status": 0 } if login is OK, else false / { "status": -1 }
+      The frontend requires role "admin" for administrative features.
 
    9) POST /projects                                   (admin only)
       Content-Type: multipart/form-data
@@ -367,19 +367,15 @@ function adaptProjectDetail(raw) {
 
 /* ===================== LLM ANALYSIS RENDERING ===================== */
 
-// Include 'content' and 'status' in ignored keys so they are stripped from extra details
 const ANALYSIS_KNOWN_KEYS = [
   "project_id", "generated_at", "summary", "risk_level",
   "confidence", "key_findings", "risk_factors", "recommendations",
   "content", "status"
 ];
 
-
-
 function adaptAnalysis(raw) {
   if (!raw) return { summary: "", keyFindings: [], riskFactors: [], recommendations: [], extra: {} };
 
-  // Handle server/LLM error responses
   if (raw.status === -1 || raw.reason) {
     return {
       summary: raw.reason || "Analysis failed on the server.",
@@ -390,9 +386,7 @@ function adaptAnalysis(raw) {
     };
   }
 
-  // Unwrap 'content' object sent by the backend
   const data = raw.content && typeof raw.content === "object" ? raw.content : raw;
-
   const summary = data.summary || data.risk_summary || raw.summary || "";
 
   let keyFindings = [];
@@ -460,14 +454,12 @@ function analysisHTML(a) {
 
   return `
     <div class="analysis-container">
-      <!-- Meta Badges -->
       <div class="d-flex flex-wrap align-items-center gap-2 mb-4 p-3 bg-white rounded-3 shadow-sm border">
         ${riskBadgeHtml}
         ${confidenceHtml}
         ${timeHtml}
       </div>
 
-      <!-- Executive Summary -->
       ${a.summary ? `
         <div class="card border-0 bg-primary bg-opacity-10 border-start border-primary border-4 shadow-sm mb-4">
           <div class="card-body">
@@ -477,16 +469,9 @@ function analysisHTML(a) {
         </div>
       ` : ""}
 
-      <!-- Key Findings -->
       ${listSection("Key Findings", a.keyFindings, "border-info text-info")}
-
-      <!-- Risk Factors -->
       ${riskFactorsSection(a.riskFactors)}
-
-      <!-- Recommendations -->
       ${listSection("Recommendations", a.recommendations, "border-success text-success")}
-
-      <!-- Formatted Other Details (Cost Risk, Time Risk, Evidence, etc.) -->
       ${Object.keys(a.extra).length ? renderExtraDetails(a.extra) : ""}
     </div>`;
 }
@@ -582,8 +567,21 @@ function renderExtraDetails(extra) {
     </div>`;
 }
 
-function adaptLogin(raw) {
-  return { token: raw.token, role: raw.role, name: raw.name ?? "" };
+/**
+ * Handles backend login response.
+ * If raw is { status: 0 }, login succeeded -> returns session object.
+ * If raw is false / { status: -1 }, login failed -> returns null.
+ */
+function adaptLogin(raw, username = "admin") {
+  console.log("Raw Login Data:", raw);
+  if (raw && typeof raw === "object" && raw.status === 0) {
+    return {
+      token: raw.token || "admin-session-token",
+      role: raw.role || CONFIG.ADMIN_ROLE,
+      name: raw.name || capitalizeWords(username) || "Administrator",
+    };
+  }
+  return null;
 }
 
 /* ===================== 5. MOCK DATA ===================== */
@@ -731,9 +729,9 @@ const mock = (() => {
     async login(username, password) {
       await delay(400);
       if (username === "admin" && password === "admin123") {
-        return { token: "mock-admin-token", role: "admin", name: "Administrator" };
+        return { status: 0, token: "mock-admin-token", role: "admin", name: "Administrator" };
       }
-      throw httpError(401, "Invalid credentials");
+      return false;
     },
 
     async uploadProject(payload) {
@@ -871,7 +869,12 @@ const api = {
     const raw = CONFIG.USE_MOCK_DATA
       ? await mock.login(username, password)
       : await apiRequest(CONFIG.ENDPOINTS.LOGIN, { method: "POST", body: { username, password } });
-    return adaptLogin(raw);
+
+    const session = adaptLogin(raw, username);
+    if (!session) {
+      throw httpError(401, "Invalid credentials");
+    }
+    return session;
   },
 
   async uploadProject(payload) {
@@ -1030,7 +1033,7 @@ function createProjectItem(project, rank) {
   li.dataset.projectId = project.id;
   li.innerHTML = `
     <div class="row g-2 align-items-center">
-      <div class="col-2 col-md-1 kt-rank fw-semibold text-secondary">${rank}</div>
+      <div class="col-2 col-md-1 kt-rank fw-semibold text-secondary">${project.id}</div>
       <div class="col-10 col-md-5">
         <a href="project.html?id=${encodeURIComponent(project.id)}"
            class="fw-semibold text-body text-decoration-none stretched-link">${escapeHTML(capitalizeWords(name))}</a>
@@ -1412,54 +1415,6 @@ async function runAnalysis(projectId) {
   }
 }
 
-function analysisHTML(a) {
-  const hasContent = a.summary || a.keyFindings.length || a.riskFactors.length ||
-    a.recommendations.length || Object.keys(a.extra).length;
-  if (!hasContent) return `<p class="text-secondary mb-0">The analysis returned no data.</p>`;
-
-  const level = RISK_STYLES[String(a.riskLevel ?? "").toLowerCase()];
-  const meta = [
-    level ? `<span>Risk level <span class="badge ${level.badge}">${level.label}</span></span>` : "",
-    Number.isFinite(a.confidence) ? `<span>Confidence ${formatPercent(a.confidence)}</span>` : "",
-    a.generatedAt ? `<span>Generated ${formatDateTime(a.generatedAt)}</span>` : "",
-  ].filter(Boolean).join("");
-
-  return `
-    ${meta ? `<div class="d-flex flex-wrap gap-3 small text-secondary mb-3">${meta}</div>` : ""}
-    ${a.summary ? `<h3 class="h6">Summary</h3><p>${escapeHTML(a.summary)}</p>` : ""}
-    ${listSection("Key findings", a.keyFindings)}
-    ${riskFactorsSection(a.riskFactors)}
-    ${listSection("Recommendations", a.recommendations)}
-    ${Object.keys(a.extra).length ? `<h3 class="h6 mt-4">Other details</h3>${renderJSONValue(a.extra)}` : ""}`;
-}
-
-function listSection(title, items) {
-  if (!items.length) return "";
-  return `
-    <h3 class="h6 mt-4">${escapeHTML(title)}</h3>
-    <ul class="mb-0">${items.map((item) => `<li>${renderJSONValue(item)}</li>`).join("")}</ul>`;
-}
-
-function riskFactorsSection(factors) {
-  if (!factors.length) return "";
-  const rows = factors.map((f) => {
-    if (typeof f !== "object" || f === null) return `<tr><td colspan="3">${escapeHTML(f)}</td></tr>`;
-    const style = RISK_STYLES[String(f.impact ?? "").toLowerCase()];
-    const impact = style
-      ? `<span class="badge ${style.badge}">${style.label}</span>`
-      : escapeHTML(f.impact ?? "");
-    return `<tr><td>${escapeHTML(f.factor ?? "")}</td><td>${impact}</td><td>${escapeHTML(f.detail ?? "")}</td></tr>`;
-  }).join("");
-  return `
-    <h3 class="h6 mt-4">Risk factors</h3>
-    <div class="table-responsive">
-      <table class="table table-sm align-middle mb-0">
-        <thead><tr><th scope="col">Factor</th><th scope="col">Impact</th><th scope="col">Detail</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
-}
-
 /* ===================== 11. ADMIN LOGIN (login.html) ===================== */
 
 function initLogin() {
@@ -1484,12 +1439,14 @@ function initLogin() {
 
     try {
       const session = await api.login(form.elements.username.value.trim(), form.elements.password.value);
-      if (session.role !== CONFIG.ADMIN_ROLE) {
+  
+      if (!session) {
         clearSession();
         showMessage("danger", "This login is only for administrators. Citizens can view all project information without logging in.");
         return;
       }
       saveSession(session);
+      initNav(); // Refresh navbar visibility with active admin session
       showMessage("success", "Logged in. Redirecting…");
       const next = safeNextPage(new URLSearchParams(window.location.search).get("next"));
       setTimeout(() => { window.location.href = next; }, 800);
@@ -1552,47 +1509,13 @@ function initUpload() {
 
   document_.addEventListener("change", checkFile);
   start.addEventListener("change", checkMonths);
-  end.addEventListener("change", checkMonths);
+  
   form.addEventListener("reset", () => {
     form.classList.remove("was-validated");
     [document_, start, end].forEach((field) => field.setCustomValidity(""));
   });
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    checkFile();
-    checkMonths();
-    if (!form.checkValidity()) {
-      form.classList.add("was-validated");
-      return;
-    }
 
-    const message = document.getElementById("upload-message");
-    const button = form.querySelector('button[type="submit"]');
-    button.disabled = true;
-
-    try {
-      const { id } = await api.uploadProject(buildProjectPayload(form));
-      message.className = "alert alert-success mt-4";
-      message.innerHTML = `Project uploaded with ID ${escapeHTML(id)}.
-        <a href="project.html?id=${encodeURIComponent(id)}" class="alert-link">View project</a>`;
-      form.reset();
-      form.classList.remove("was-validated");
-    } catch (error) {
-      console.error("Upload failed:", error);
-      message.className = "alert alert-danger mt-4";
-      if (error.status === 401 || error.status === 403) {
-        message.innerHTML = `Your admin session has expired.
-          <a href="login.html?next=upload.html" class="alert-link">Log in again</a>`;
-      } else if (error.status === 413) {
-        message.textContent = "The file is too large for the server.";
-      } else {
-        message.textContent = "Couldn't upload the project. Check the file and try again.";
-      }
-    } finally {
-      button.disabled = false;
-    }
-  });
 }
 
 /* ===================== 13. START ===================== */
