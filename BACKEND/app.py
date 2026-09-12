@@ -153,9 +153,9 @@ def login_auth():
 
 @app.route("/search_projects", methods=["GET"])
 def search_project():
-
     query : str = flask.request.args.get('query')
     return flask.jsonify(orm.searched_projects(query))
+
 
 @app.route("/get_unique",methods=["GET"])
 def get_unique_field():
