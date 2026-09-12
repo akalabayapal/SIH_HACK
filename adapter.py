@@ -22,7 +22,7 @@ from ML.combine import preprocess
 from ML.train import train_model
 from ML.feature_extractor import feature_ext
 from db_setup import setup_db
-
+from BACKEND import fuzzy_search as fuzzy
 
 def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False):
 
@@ -350,7 +350,7 @@ class ORM:
 
 
 
-    def get_all(self,page,limit) -> list[dict]:
+    def get_all(self,page,limit) -> dict:
         '''
         Gets all rows and send them all to UI
         '''
@@ -401,7 +401,7 @@ class ORM:
 
         sql_project = """
    SELECT 
-    p.code, 
+    p.code,
     p.cost_risk, 
     p.time_risk, 
     p.name, 
@@ -430,6 +430,52 @@ LIMIT %s OFFSET %s;
             "total": self.total_indexed,
             "has_more": (limit * page) < self.total_indexed
         }
+
+    def searched_projects(self, query:str):
+        sql_data: dict = self.get_all(1,self.total_indexed_all)
+        projects: list = sql_data["items"]
+        names_to_code: dict = {}
+        for project in projects:
+            names_to_code[project["name"]] = project["code"]
+    
+        searched_names: list = fuzzy.search(query, names_to_code.keys())
+        return {
+            "items":self.get_projects_by_name(searched_names),
+            "page":1,
+            "total":20,
+            "has_more":False
+        }
+
+    def get_projects_by_name(self, names: list[tuple]) -> list[dict]:
+        if not names:
+            return []
+
+        clean_names = [item[0] for item in names if item]
+        if not clean_names:
+            return []
+
+        # Dynamic placeholders (%s for mysql.connector)
+        placeholders = ", ".join(["%s"] * len(clean_names))
+
+        sql_filtered = f"""
+            SELECT 
+                p.code, 
+                p.cost_risk, 
+                p.time_risk, 
+                p.name, 
+                p.overall_risk,
+                m.state
+            FROM `projects` p
+            LEFT JOIN `master` m ON p.code = m.code
+            WHERE p.name IN ({placeholders})
+            GROUP BY p.code;
+        """
+
+        # Pass clean_names directly to mysql-connector execute:
+        self.cursor.execute(sql_filtered, clean_names)
+        return self.cursor.fetchall()
+
+
 
     def get_project(self, code) -> dict:
         '''
@@ -680,7 +726,55 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
         except Exception as e:
             return {"status": -1, "reason": f"Sorry! Internal Server Error: {str(e)}"}
     
+    def get_unique(self, field: str):
+        """
+        Return the unique entries of a field from the master table.
+        """
+        # 1. Sanitize/validate column name to prevent SQL injection
+        # Replace backticks or restrict field names if necessary
+        safe_field = field.replace("`", "")
 
+        # 2. Format column name directly into the SQL string
+        sql_unique = f"SELECT DISTINCT `{safe_field}` FROM `master`;"
+
+        c2 = self.db_connection.cursor()
+
+        c2.execute(sql_unique)
+
+        # 3. Store result once to print and return
+        results = c2.fetchall()
+        return results
+
+    def filter_content(self,field: str,value: str):
+        '''
+        Filter content by field
+        '''
+
+        sql_data = f"""
+
+        SELECT 
+            p.code,
+            p.cost_risk, 
+            p.time_risk, 
+            p.name, 
+            p.overall_risk,
+            m.state
+        FROM `projects` p
+        LEFT JOIN `master` m ON p.code = m.code
+        WHERE m.{field} = '{value}'
+        GROUP BY p.code
+        """
+
+        self.cursor.execute(sql_data)
+
+        rows = self.cursor.fetchall()
+
+        return {
+            "items":rows,
+            "has_more":False,
+            "total":len(rows)
+        }
+        
 
 
 class Trainer:
@@ -779,3 +873,4 @@ def upload(master_csv_path: str,cost_model_path : str,time_model_path :str):
         model_cost_path=cost_model_path,
         model_time_path=time_model_path
     )
+

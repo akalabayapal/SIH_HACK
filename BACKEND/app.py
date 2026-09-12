@@ -150,3 +150,24 @@ def login_auth():
         return flask.jsonify({"status": 0, "role": "admin"})
     return flask.jsonify({"status": -1}), 401
 
+
+@app.route("/search_projects", methods=["GET"])
+def search_project():
+
+    query : str = flask.request.args.get('query')
+    return flask.jsonify(orm.searched_projects(query))
+
+@app.route("/get_unique",methods=["GET"])
+def get_unique_field():
+
+    field = flask.request.args.get("field")
+    return flask.jsonify(orm.get_unique(field=field))
+
+
+@app.route("/filter",methods=["GET"])
+def filter():
+    field = flask.request.args.get("field")
+    val = flask.request.args.get("value")
+    return flask.jsonify(orm.filter_content(field=field,value=val))
+
+
