@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS your_database_name;
 CREATE DATABASE IF NOT EXISTS hckdb;
 USE hckdb;
 
