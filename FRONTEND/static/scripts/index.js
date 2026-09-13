@@ -128,14 +128,14 @@ async function loadNextProjectsPage() {
   }
 }
 
-function appendProjects(projects, offset) {
+function appendProjects(projects) {
   const list = document.getElementById("projects-list");
   const fragment = document.createDocumentFragment();
-  projects.forEach((project, i) => fragment.appendChild(createProjectItem(project, offset + i + 1)));
+  projects.forEach((project, i) => fragment.appendChild(createProjectItem(project)));
   list.appendChild(fragment);
 }
 
-function createProjectItem(project, rank) {
+function createProjectItem(project) {
   let dept = project.agency;
   let name = project.name;
 

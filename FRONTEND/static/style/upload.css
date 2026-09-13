@@ -1,0 +1,64 @@
+/* =========================================================================
+   Upload Page Styles (upload.css)
+   ========================================================================= */
+
+.kt-upload-hero {
+  padding: 2.5rem 1rem 4rem;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, #0b2e59 0%, #1d5fa8 55%, #3a8dd0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.kt-upload-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.kt-upload-icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  font-size: 1.75rem;
+  backdrop-filter: blur(4px);
+}
+
+.kt-upload-section {
+  background: #f4f7fb;
+  margin-top: -2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.kt-upload-card {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.kt-upload-card::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(to right, #ff9933, #ffffff, #138808);
+}
+
+.kt-upload-submit {
+  border-radius: 0.5rem;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.kt-upload-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(11, 46, 89, 0.2);
+}
+
+.kt-upload-card .form-control:focus {
+  border-color: #3a8dd0;
+  box-shadow: 0 0 0 0.2rem rgba(58, 141, 208, 0.15);
+}

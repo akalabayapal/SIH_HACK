@@ -163,3 +163,34 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   .kt-project-item { transition: none; }
 }
+
+
+/* =========================================================================
+   Filter Bar Styles
+   ========================================================================= */
+
+.kt-filter-card {
+  background-color: var(--bs-body-bg);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.kt-filter-card .input-group-text {
+  border-color: var(--bs-border-color);
+  background-color: transparent;
+}
+
+.kt-filter-card .form-control:focus,
+.kt-filter-card .form-select:focus {
+  border-color: var(--kt-blue);
+  box-shadow: 0 0 0 0.2rem rgba(29, 95, 168, 0.15);
+}
+
+.kt-filter-card .input-group .form-control:focus {
+  z-index: 3;
+}
+
+#op_cont
+{
+  visibility: hidden;
+}
