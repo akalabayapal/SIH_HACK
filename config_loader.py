@@ -47,6 +47,9 @@ class AuthObject:
                     self.admin_uname = obj['admin_user']
                     self.admin_pwd = obj['admin_pwd']
 
+                    self.sender_email = obj['sender_email']
+                    self.sender_password = obj['sender_password']
+
                     
 
             
