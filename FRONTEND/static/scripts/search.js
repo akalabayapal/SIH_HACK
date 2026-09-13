@@ -67,21 +67,21 @@ filter_type.addEventListener('change', () => {
     option_container.style.visibility = "visible";
 
     // Fetch the content from the api to show
-    fetch(uri)
-        .then(response => {
+    const uniquePromise = CONFIG.USE_MOCK_DATA
+        ? mock.getUniqueValues(filter_type.value)
+        : fetch(uri).then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            response.json().then((r) => {
-                for (let index = 0; index < r.length; index++) {
-                    // Now add them to the UI
-                    change_options([["All"], ...r]);
-                }
-            }) // Returns a promise containing the parsed JSON
-        })
-        .then(data => {
-            console.log(data);
-        })
+            return response.json();
+        });
+
+    uniquePromise.then((r) => {
+        for (let index = 0; index < r.length; index++) {
+            // Now add them to the UI
+            change_options([["All"], ...r]);
+        }
+    });
 
 });
 
@@ -103,34 +103,28 @@ btn_search.addEventListener('click', () => {
             projectsState.loading = true;
 
             // We need to use fuzzy
-            fetch(uri)
-                .then(response => {
+            const fuzzyPromise = CONFIG.USE_MOCK_DATA
+                ? mock.searchProjects(search_inp.value)
+                : fetch(uri).then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-                    response.json().then((r) => {
+                    return response.json();
+                });
 
+            fuzzyPromise.then((r) => {
+                // Clean up the table
+                appendProjects(adaptProjectPage(r).items);
+                projectsState.hasMore = false;
 
+                // make loader invisible
+                projectsState.loaded = r['total'];
+                projectsState.total = r['total'];
 
-                        // Clean up the table
-                        appendProjects(adaptProjectPage(r).items);
-                        projectsState.hasMore = false;
-
-                        // make loader invisible
-                        projectsState.loaded = r['total'];
-                        projectsState.total = r['total'];
-
-                        updateProjectsCounter();
-                        toggleProjectsSpinner(false);
-                        projectsState.loading = false;
-
-
-
-                    }) // Returns a promise containing the parsed JSON
-                })
-                .then(data => {
-                    console.log(data);
-                })
+                updateProjectsCounter();
+                toggleProjectsSpinner(false);
+                projectsState.loading = false;
+            });
 
         }
 
@@ -149,35 +143,28 @@ btn_search.addEventListener('click', () => {
 
     // Now fetch the data
 
-    fetch(uri)
-        .then(response => {
+    const filterPromise = CONFIG.USE_MOCK_DATA
+        ? mock.filterProjects(field, value)
+        : fetch(uri).then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            response.json().then((r) => {
+            return response.json();
+        });
 
-                // Clean up the table
-                project_list.replaceChildren();
-                appendProjects(adaptProjectPage(r).items);
-                projectsState.hasMore = false;
+    filterPromise.then((r) => {
+        // Clean up the table
+        project_list.replaceChildren();
+        appendProjects(adaptProjectPage(r).items);
+        projectsState.hasMore = false;
 
-                // make loader invisible
-                projectsState.loaded = r['total'];
-                projectsState.total = r['total'];
+        // make loader invisible
+        projectsState.loaded = r['total'];
+        projectsState.total = r['total'];
 
-                updateProjectsCounter();
-                toggleProjectsSpinner(false);
-
-
-
-
-            }) // Returns a promise containing the parsed JSON
-        })
-        .then(data => {
-            console.log(data);
-        })
-
-
+        updateProjectsCounter();
+        toggleProjectsSpinner(false);
+    });
 
 })
 

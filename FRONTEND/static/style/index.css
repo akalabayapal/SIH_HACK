@@ -1,105 +1,25 @@
 /* =========================================================================
    Kab Tak – index.css
-   Styles specific to the landing page (index.html)
+   Page-specific styles for the landing page (index.html).
+   Shared tokens, navbar, footer, hero base and panels live in theme.css.
    ========================================================================= */
 
+/* Coverage chart colors (kept distinct from the risk badge palette) */
 :root {
-  --kt-navy: #0b2e59;
-  --kt-blue: #1d5fa8;
-  --kt-sky: #3a8dd0;
-  --kt-saffron: #ff9933;
-  --kt-india-green: #138808;
-
-  /* Coverage chart colors */
-  --kt-predicted: #1f8a4c;
+  --kt-predicted: #1c7a41;
   --kt-tbtp: #d9822b;
-  --kt-tytp: #6c7a89;
-
-  --kt-navbar-height: 72px;
+  --kt-tytp: #7c8aa0;
 }
 
-/* Offset content for fixed navbar */
-body { 
-  padding-top: var(--kt-navbar-height); 
+.kt-eyebrow {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--kt-blue-700);
 }
 
-section[id] { 
-  scroll-margin-top: calc(var(--kt-navbar-height) + 1rem); 
-}
-
-.kt-skip-link:focus {
-  position: fixed;
-  top: .5rem;
-  left: .5rem;
-  z-index: 2000;
-  padding: .5rem 1rem;
-  background: #fff;
-  color: var(--kt-navy);
-  border-radius: .375rem;
-}
-
-/* Navbar */
-.kt-navbar {
-  background-color: var(--kt-navy);
-  min-height: var(--kt-navbar-height);
-}
-
-.kt-navbar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(to right,
-    var(--kt-saffron) 0 33.33%,
-    #fff 33.33% 66.66%,
-    var(--kt-india-green) 66.66% 100%);
-}
-
-.kt-logo-slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border: 2px dashed rgba(255, 255, 255, .6);
-  border-radius: .375rem;
-  font-size: .7rem;
-  color: rgba(255, 255, 255, .85);
-}
-
-/* Hero Section */
-.kt-hero {
-  padding: 4.5rem 1rem 4rem;
-  color: #fff;
-  text-align: center;
-  background: linear-gradient(135deg, var(--kt-navy) 0%, var(--kt-blue) 55%, var(--kt-sky) 100%);
-}
-
-.kt-hero-dept { 
-  font-size: .875rem; 
-  opacity: .85; 
-}
-
-.kt-hero-title {
-  margin-bottom: .25rem;
-  font-size: clamp(2.75rem, 8vw, 4.75rem);
-  font-weight: 700;
-  line-height: 1.05;
-}
-
-.kt-hero-title-hi { 
-  font-size: clamp(1.25rem, 3vw, 1.75rem); 
-  opacity: .9; 
-}
-
-.kt-hero-tagline { 
-  max-width: 40rem; 
-  margin: 1rem auto 0; 
-  font-size: 1.125rem; 
-  opacity: .92; 
-}
+.kt-section-alt { background-color: var(--kt-surface-alt); }
 
 /* Coverage Stats & Chart */
 .kt-dot {
@@ -115,37 +35,57 @@ section[id] {
 .kt-fill-tbtp { background-color: var(--kt-tbtp); }
 .kt-fill-tytp { background-color: var(--kt-tytp); }
 
-.kt-chart-box { 
-  max-width: 320px; 
-  margin: 0 auto; 
+.kt-coverage-bar { height: 10px; border-radius: 999px; background-color: var(--kt-surface-alt); }
+.kt-coverage-bar .progress-bar { border-radius: 999px; }
+
+.kt-chart-box {
+  max-width: 300px;
+  margin: 0 auto;
 }
+
+/* Filter Bar */
+.kt-filter-card .input-group-text {
+  border-color: var(--bs-border-color);
+  background-color: transparent;
+}
+
+.kt-filter-card .input-group .form-control:focus { z-index: 3; }
+
+#op_cont { visibility: hidden; }
 
 /* Ranked Project List */
-.kt-list-head { 
-  font-size: .8rem; 
-  color: var(--bs-secondary-color); 
+.kt-list-head {
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--kt-text-muted);
 }
 
-.kt-project-item { 
-  transition: background-color .15s ease; 
+.kt-project-list {
+  border: 1px solid var(--kt-border);
+  border-radius: var(--kt-radius-md);
+  overflow: hidden;
+  box-shadow: var(--kt-shadow-sm);
+}
+
+.kt-project-item {
+  background-color: var(--kt-panel);
+  border-color: var(--kt-border) !important;
 }
 
 .kt-project-item:hover,
-.kt-project-item:focus-within { 
-  background-color: #eef4fb; 
+.kt-project-item:focus-within {
+  background-color: var(--kt-surface-alt);
 }
 
-.kt-project-item:hover .stretched-link { 
-  text-decoration: underline; 
-}
+.kt-project-item:hover .stretched-link { text-decoration: underline; }
 
-.kt-risk-meter { 
-  height: 6px; 
-}
+.kt-rank { font-variant-numeric: tabular-nums; color: var(--kt-text-muted); }
 
-.kt-rank { 
-  font-variant-numeric: tabular-nums; 
-}
+/* Loading indicator text mirrors the spinner's visibility */
+.kt-load-sentinel { display: flex; align-items: center; justify-content: center; }
+.kt-load-sentinel .spinner-border[hidden] + .kt-load-text { display: none; }
 
 /* Hover Preview Tooltip */
 .kt-preview {
@@ -153,44 +93,18 @@ section[id] {
   z-index: 1080;
   width: min(360px, calc(100vw - 16px));
   pointer-events: none;
+  border: 1px solid var(--kt-border);
+  border-radius: var(--kt-radius-md);
+  overflow: hidden;
+  animation: kt-preview-in .12s ease-out;
 }
 
-/* Footer */
-.kt-footer { 
-  background-color: var(--kt-navy); 
+@keyframes kt-preview-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .kt-project-item { transition: none; }
-}
-
-
-/* =========================================================================
-   Filter Bar Styles
-   ========================================================================= */
-
-.kt-filter-card {
-  background-color: var(--bs-body-bg);
-  border-radius: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.kt-filter-card .input-group-text {
-  border-color: var(--bs-border-color);
-  background-color: transparent;
-}
-
-.kt-filter-card .form-control:focus,
-.kt-filter-card .form-select:focus {
-  border-color: var(--kt-blue);
-  box-shadow: 0 0 0 0.2rem rgba(29, 95, 168, 0.15);
-}
-
-.kt-filter-card .input-group .form-control:focus {
-  z-index: 3;
-}
-
-#op_cont
-{
-  visibility: hidden;
+  .kt-preview { animation: none; }
 }

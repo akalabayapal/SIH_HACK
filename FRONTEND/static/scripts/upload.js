@@ -12,6 +12,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const USE_MOCK_DATA = false; // Set to true to fake the upload+retrain flow without a backend
   const API_BASE = "http://localhost:3000";
   const MAX_PDF_BYTES = 20 * 1024 * 1024; // 20 MB max file size
   const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
@@ -57,6 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function getAuthHeader() {
     const token = getSession()?.token;
     return token ? { Authorization: `Bearer ${token}` } : {};
+  }
+
+  function initLogout() {
+    document.getElementById("nav-logout")?.addEventListener("click", () => {
+      sessionStorage.removeItem("kabtak_session");
+      window.location.href = "index.html";
+    });
   }
 
   function initUpload() {
@@ -150,16 +158,22 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         try {
-          const res = await fetch(`${API_BASE}/get_training_status/${encodeURIComponent(jobId)}`, {
-            headers: getAuthHeader(),
-          });
+          let isCompleted;
+          if (USE_MOCK_DATA) {
+            await new Promise((resolve) => setTimeout(resolve, 300));
+            isCompleted = checkCount >= 2; // pretend training finishes after a couple of polls
+          } else {
+            const res = await fetch(`${API_BASE}/get_training_status/${encodeURIComponent(jobId)}`, {
+              headers: getAuthHeader(),
+            });
 
-          if (!res.ok) {
-            throw new Error(`Failed to check job status (HTTP ${res.status})`);
+            if (!res.ok) {
+              throw new Error(`Failed to check job status (HTTP ${res.status})`);
+            }
+
+            // Backend returns boolean: true = completed, false = running
+            isCompleted = await res.json();
           }
-
-          // Backend returns boolean: true = completed, false = running
-          const isCompleted = await res.json();
 
           if (isCompleted === true) {
             clearInterval(pollingTimer);
@@ -213,22 +227,27 @@ document.addEventListener("DOMContentLoaded", () => {
       let returnedFilePath = "";
 
       try {
-        const uploadRes = await fetch(`${API_BASE}/upload_file`, {
-          method: "POST",
-          headers: getAuthHeader(),
-          body: uploadDataPayload,
-        });
+        if (USE_MOCK_DATA) {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          returnedFilePath = `mock-upload-${Date.now()}.pdf`;
+        } else {
+          const uploadRes = await fetch(`${API_BASE}/upload_file`, {
+            method: "POST",
+            headers: getAuthHeader(),
+            body: uploadDataPayload,
+          });
 
-        const uploadData = await uploadRes.json();
+          const uploadData = await uploadRes.json();
 
-        if (!uploadRes.ok || uploadData.status === -1 || uploadData.error) {
-          const reasonMsg = uploadData.reason || uploadData.error || `Upload failed (HTTP ${uploadRes.status})`;
-          throw new Error(reasonMsg);
-        }
+          if (!uploadRes.ok || uploadData.status === -1 || uploadData.error) {
+            const reasonMsg = uploadData.reason || uploadData.error || `Upload failed (HTTP ${uploadRes.status})`;
+            throw new Error(reasonMsg);
+          }
 
-        returnedFilePath = uploadData.file_id;
-        if (!returnedFilePath) {
-          throw new Error("File uploaded, but no valid file path was returned by server.");
+          returnedFilePath = uploadData.file_id;
+          if (!returnedFilePath) {
+            throw new Error("File uploaded, but no valid file path was returned by server.");
+          }
         }
 
       } catch (err) {
@@ -243,25 +262,30 @@ document.addEventListener("DOMContentLoaded", () => {
       let jobId = "";
 
       try {
-        const retrainRes = await fetch(`${API_BASE}/retrain_model`, {
-          method: "POST",
-          headers: {
-            ...getAuthHeader(),
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ file_path: returnedFilePath }),
-        });
+        if (USE_MOCK_DATA) {
+          await new Promise((resolve) => setTimeout(resolve, 400));
+          jobId = `mock-job-${Date.now()}`;
+        } else {
+          const retrainRes = await fetch(`${API_BASE}/retrain_model`, {
+            method: "POST",
+            headers: {
+              ...getAuthHeader(),
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ file_path: returnedFilePath }),
+          });
 
-        if (!retrainRes.ok) {
-          const retrainErr = await retrainRes.json().catch(() => ({}));
-          throw new Error(retrainErr.error || `Retrain request failed (HTTP ${retrainRes.status})`);
-        }
+          if (!retrainRes.ok) {
+            const retrainErr = await retrainRes.json().catch(() => ({}));
+            throw new Error(retrainErr.error || `Retrain request failed (HTTP ${retrainRes.status})`);
+          }
 
-        const retrainData = await retrainRes.json();
-        jobId = retrainData.job_id || retrainData.uid;
+          const retrainData = await retrainRes.json();
+          jobId = retrainData.job_id || retrainData.uid;
 
-        if (!jobId) {
-          throw new Error("Retrain request succeeded, but no Job ID / UID was returned.");
+          if (!jobId) {
+            throw new Error("Retrain request succeeded, but no Job ID / UID was returned.");
+          }
         }
 
       } catch (err) {
@@ -276,5 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  initLogout();
   initUpload();
 });

@@ -64,17 +64,21 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           if (submitBtn) submitBtn.disabled = true;
 
-          // Make HTTP POST call to backend API
-          const response = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: email }),
-          });
+          // Make HTTP POST call to backend API (or fake it out in mock mode)
+          if (typeof CONFIG !== "undefined" && CONFIG.USE_MOCK_DATA) {
+            await new Promise((resolve) => setTimeout(resolve, 300));
+          } else {
+            const response = await fetch(API_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email: email }),
+            });
 
-          if (!response.ok) {
-            throw new Error(`Server returned status: ${response.status}`);
+            if (!response.ok) {
+              throw new Error(`Server returned status: ${response.status}`);
+            }
           }
 
           // Store subscription cookie upon successful API response ("Yes")

@@ -1,0 +1,444 @@
+/* =========================================================================
+   Kab Tak – theme.css
+   Shared "Executive Infrastructure Monitor" design system.
+   Loaded on every page, after bootstrap.min.css and before the page's own
+   stylesheet. Re-themes Bootstrap's own color system via its CSS variables
+   so existing markup (badges, buttons, alerts, cards) picks up the new
+   palette without any JS/markup rewrites, then adds the shared navbar,
+   footer, hero, panel and KPI components used across pages.
+   ========================================================================= */
+
+/* ===================== 1. DESIGN TOKENS ===================== */
+:root {
+  /* Government navy / blue system */
+  --kt-navy-950: #061527;
+  --kt-navy-900: #0b2545;
+  --kt-navy-800: #123a6b;
+  --kt-blue-700: #1d5fa8;
+  --kt-blue-600: #2569b8;
+  --kt-blue-500: #2f7fd1;
+  --kt-sky-400: #4fa3e3;
+
+  /* Tricolour accents – used sparingly */
+  --kt-saffron: #ff9933;
+  --kt-india-green: #138808;
+
+  /* Neutrals */
+  --kt-surface: #f4f7fb;
+  --kt-surface-alt: #eaf0f8;
+  --kt-panel: #ffffff;
+  --kt-border: #dbe3ee;
+  --kt-border-strong: #c3d0e0;
+  --kt-text: #16233a;
+  --kt-text-secondary: #55677f;
+  --kt-text-muted: #7c8aa0;
+
+  /* Risk system */
+  --kt-risk-low: #1c7a41;
+  --kt-risk-low-rgb: 28, 122, 65;
+  --kt-risk-medium: #b9790a;
+  --kt-risk-medium-rgb: 227, 158, 20;
+  --kt-risk-high: #b3261e;
+  --kt-risk-high-rgb: 179, 38, 30;
+
+  /* Elevation & shape */
+  --kt-shadow-sm: 0 1px 2px rgba(15, 35, 64, .06), 0 1px 1px rgba(15, 35, 64, .05);
+  --kt-shadow-md: 0 6px 20px rgba(15, 35, 64, .08);
+  --kt-shadow-lg: 0 16px 40px rgba(11, 37, 69, .16);
+  --kt-radius-sm: .375rem;
+  --kt-radius-md: .625rem;
+  --kt-radius-lg: .875rem;
+
+  --kt-navbar-height: 68px;
+  --kt-font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+/* ===================== 2. RE-THEME BOOTSTRAP ===================== */
+:root,
+[data-bs-theme="light"] {
+  --bs-body-font-family: var(--kt-font);
+  --bs-body-color: var(--kt-text);
+  --bs-body-bg: var(--kt-surface);
+  --bs-border-color: var(--kt-border);
+  --bs-tertiary-bg: var(--kt-surface-alt);
+  --bs-tertiary-bg-rgb: 234, 240, 248;
+
+  --bs-primary: var(--kt-blue-700);
+  --bs-primary-rgb: 29, 95, 168;
+  --bs-primary-text-emphasis: var(--kt-navy-900);
+  --bs-primary-bg-subtle: #e2ecf8;
+  --bs-primary-border-subtle: #b7cde8;
+
+  --bs-secondary-rgb: 85, 103, 127;
+  --bs-secondary-color: var(--kt-text-secondary);
+
+  --bs-success: var(--kt-risk-low);
+  --bs-success-rgb: var(--kt-risk-low-rgb);
+  --bs-success-text-emphasis: #0f4d29;
+  --bs-success-bg-subtle: #e3f3e8;
+  --bs-success-border-subtle: #a9d6b7;
+
+  --bs-warning: var(--kt-risk-medium);
+  --bs-warning-rgb: var(--kt-risk-medium-rgb);
+  --bs-warning-text-emphasis: #7a4f04;
+  --bs-warning-bg-subtle: #fdf1d8;
+  --bs-warning-border-subtle: #f0cf8c;
+
+  --bs-danger: var(--kt-risk-high);
+  --bs-danger-rgb: var(--kt-risk-high-rgb);
+  --bs-danger-text-emphasis: #7a1a15;
+  --bs-danger-bg-subtle: #faeaea;
+  --bs-danger-border-subtle: #eab3af;
+
+  --bs-info: var(--kt-sky-400);
+  --bs-info-rgb: 79, 163, 227;
+  --bs-info-text-emphasis: #164a7c;
+  --bs-info-bg-subtle: #e5f0fb;
+  --bs-info-border-subtle: #a9cdee;
+
+  --bs-link-color: var(--kt-blue-700);
+  --bs-link-color-rgb: 29, 95, 168;
+  --bs-link-hover-color: var(--kt-navy-900);
+  --bs-link-hover-color-rgb: 11, 37, 69;
+}
+
+body { font-family: var(--kt-font); }
+
+/* Component classes that bake in literal colors instead of referencing the
+   root variables above — overridden explicitly so buttons match the palette. */
+.btn-primary {
+  --bs-btn-bg: var(--kt-blue-700);
+  --bs-btn-border-color: var(--kt-blue-700);
+  --bs-btn-hover-bg: var(--kt-navy-800);
+  --bs-btn-hover-border-color: var(--kt-navy-800);
+  --bs-btn-focus-shadow-rgb: 29, 95, 168;
+  --bs-btn-active-bg: var(--kt-navy-900);
+  --bs-btn-active-border-color: var(--kt-navy-900);
+  --bs-btn-disabled-bg: var(--kt-blue-700);
+  --bs-btn-disabled-border-color: var(--kt-blue-700);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--kt-blue-700);
+  --bs-btn-border-color: var(--kt-blue-700);
+  --bs-btn-hover-bg: var(--kt-blue-700);
+  --bs-btn-hover-border-color: var(--kt-blue-700);
+  --bs-btn-active-bg: var(--kt-navy-800);
+  --bs-btn-active-border-color: var(--kt-navy-800);
+  --bs-btn-disabled-color: var(--kt-blue-700);
+  --bs-btn-disabled-border-color: var(--kt-blue-700);
+}
+.btn-success {
+  --bs-btn-bg: var(--kt-risk-low);
+  --bs-btn-border-color: var(--kt-risk-low);
+  --bs-btn-hover-bg: #165f33;
+  --bs-btn-hover-border-color: #165f33;
+  --bs-btn-active-bg: #124d29;
+  --bs-btn-active-border-color: #124d29;
+  --bs-btn-disabled-bg: var(--kt-risk-low);
+  --bs-btn-disabled-border-color: var(--kt-risk-low);
+}
+.btn-outline-success {
+  --bs-btn-color: var(--kt-risk-low);
+  --bs-btn-border-color: var(--kt-risk-low);
+  --bs-btn-hover-bg: var(--kt-risk-low);
+  --bs-btn-hover-border-color: var(--kt-risk-low);
+  --bs-btn-active-bg: #165f33;
+  --bs-btn-active-border-color: #165f33;
+  --bs-btn-disabled-color: var(--kt-risk-low);
+  --bs-btn-disabled-border-color: var(--kt-risk-low);
+}
+.btn-danger {
+  --bs-btn-bg: var(--kt-risk-high);
+  --bs-btn-border-color: var(--kt-risk-high);
+  --bs-btn-hover-bg: #921f18;
+  --bs-btn-hover-border-color: #921f18;
+  --bs-btn-active-bg: #7a1a15;
+  --bs-btn-active-border-color: #7a1a15;
+  --bs-btn-disabled-bg: var(--kt-risk-high);
+  --bs-btn-disabled-border-color: var(--kt-risk-high);
+}
+.btn-outline-danger {
+  --bs-btn-color: var(--kt-risk-high);
+  --bs-btn-border-color: var(--kt-risk-high);
+  --bs-btn-hover-bg: var(--kt-risk-high);
+  --bs-btn-hover-border-color: var(--kt-risk-high);
+  --bs-btn-active-bg: #921f18;
+  --bs-btn-active-border-color: #921f18;
+  --bs-btn-disabled-color: var(--kt-risk-high);
+  --bs-btn-disabled-border-color: var(--kt-risk-high);
+}
+.btn-outline-secondary {
+  --bs-btn-color: var(--kt-text-secondary);
+  --bs-btn-border-color: var(--kt-border-strong);
+  --bs-btn-hover-bg: var(--kt-navy-900);
+  --bs-btn-hover-border-color: var(--kt-navy-900);
+}
+.btn-outline-dark {
+  --bs-btn-color: var(--kt-navy-900);
+  --bs-btn-border-color: var(--kt-navy-900);
+  --bs-btn-hover-bg: var(--kt-navy-900);
+  --bs-btn-hover-border-color: var(--kt-navy-900);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--kt-blue-600);
+  box-shadow: 0 0 0 .2rem rgba(29, 95, 168, .15);
+}
+
+.spinner-border.text-primary { color: var(--kt-blue-700) !important; }
+
+/* ===================== 3. LAYOUT BASICS ===================== */
+body { padding-top: var(--kt-navbar-height); }
+
+section[id] { scroll-margin-top: calc(var(--kt-navbar-height) + 1rem); }
+
+.kt-skip-link:focus {
+  position: fixed;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2000;
+  padding: .5rem 1rem;
+  background: #fff;
+  color: var(--kt-navy-900);
+  border-radius: var(--kt-radius-sm);
+}
+
+/* ===================== 4. NAVBAR / BRAND ===================== */
+.kt-navbar {
+  background-color: var(--kt-navy-900);
+  min-height: var(--kt-navbar-height);
+  box-shadow: 0 2px 12px rgba(6, 21, 39, .25);
+}
+
+.kt-navbar::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right,
+    var(--kt-saffron) 0 33.33%,
+    #f5f5f5 33.33% 66.66%,
+    var(--kt-india-green) 66.66% 100%);
+  opacity: .9;
+}
+
+.kt-brand {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  text-decoration: none;
+}
+
+.kt-brand-emblem {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  background-image: url("../assets/emblem-mark.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .35));
+}
+
+.kt-brand-text { line-height: 1.15; }
+
+.kt-brand-eyebrow {
+  display: block;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .62);
+}
+
+.kt-brand-name {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.kt-navbar .nav-link {
+  color: rgba(255, 255, 255, .8);
+  font-weight: 500;
+}
+.kt-navbar .nav-link:hover,
+.kt-navbar .nav-link.active { color: #fff; }
+
+/* ===================== 5. FOOTER ===================== */
+.kt-footer {
+  position: relative;
+  background-color: var(--kt-navy-900);
+  color: rgba(255, 255, 255, .85);
+}
+
+.kt-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right,
+    var(--kt-saffron) 0 33.33%,
+    #f5f5f5 33.33% 66.66%,
+    var(--kt-india-green) 66.66% 100%);
+  opacity: .8;
+}
+
+.kt-footer strong,
+.kt-footer .kt-footer-title { color: #fff; }
+
+/* ===================== 6. HERO ===================== */
+.kt-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 1rem 3.5rem;
+  color: #fff;
+  text-align: center;
+  background:
+    radial-gradient(1100px 480px at 15% -10%, rgba(47, 127, 209, .35), transparent 60%),
+    linear-gradient(160deg, var(--kt-navy-950) 0%, var(--kt-navy-900) 45%, var(--kt-navy-800) 100%),
+    url("../assets/grid-pattern.svg");
+  background-repeat: no-repeat, no-repeat, repeat;
+}
+
+.kt-hero-infra-bg {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 45%;
+  background-image: url("../assets/hero-infra.svg");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.kt-hero > .container { position: relative; z-index: 1; }
+
+.kt-hero-dept {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .72);
+}
+
+.kt-hero-title {
+  margin-bottom: .15rem;
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -.01em;
+  line-height: 1.05;
+}
+
+.kt-hero-title-hi {
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  color: rgba(255, 255, 255, .78);
+}
+
+.kt-hero-tagline {
+  max-width: 38rem;
+  margin: 1.1rem auto 0;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, .85);
+}
+
+.kt-hero-rule {
+  width: 64px;
+  height: 3px;
+  margin: 1.5rem auto 0;
+  background: linear-gradient(to right, var(--kt-saffron), #f5f5f5, var(--kt-india-green));
+  border-radius: 2px;
+}
+
+/* Executive KPI row under the hero */
+.kt-kpi-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 2.75rem;
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: var(--kt-radius-md);
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+}
+
+.kt-kpi-card {
+  padding: 1.1rem 1rem;
+  background: rgba(11, 37, 69, .55);
+  text-align: center;
+}
+
+.kt-kpi-value {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.kt-kpi-label {
+  margin-top: .15rem;
+  font-size: .78rem;
+  color: rgba(255, 255, 255, .72);
+}
+
+@media (max-width: 767.98px) {
+  .kt-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===================== 7. SECTION HEADERS & PANELS ===================== */
+.kt-section-title { font-weight: 700; color: var(--kt-navy-900); }
+
+.kt-section-sub { color: var(--kt-text-secondary); }
+
+.kt-panel {
+  background: var(--kt-panel);
+  border: 1px solid var(--kt-border);
+  border-radius: var(--kt-radius-md);
+  box-shadow: var(--kt-shadow-sm);
+}
+
+.kt-panel-accent {
+  background: linear-gradient(135deg, var(--bs-primary-bg-subtle) 0%, var(--kt-panel) 70%);
+  border: 1px solid var(--bs-primary-border-subtle);
+  border-left: 4px solid var(--kt-blue-700);
+  border-radius: var(--kt-radius-md);
+  box-shadow: var(--kt-shadow-sm);
+}
+
+.kt-modal-content { border-radius: var(--kt-radius-lg); overflow: hidden; }
+
+.kt-panel-header {
+  padding: .9rem 1.25rem;
+  border-bottom: 1px solid var(--kt-border);
+  background: var(--kt-surface-alt);
+  border-top-left-radius: var(--kt-radius-md);
+  border-top-right-radius: var(--kt-radius-md);
+}
+
+/* ===================== 8. RISK BADGES ===================== */
+/* Combined risk carries more visual weight than the individual time/cost badges. */
+.kt-combined-risk .badge {
+  font-size: 1.05em;
+  font-weight: 700;
+  padding: .5em .9em;
+  box-shadow: var(--kt-shadow-sm);
+}
+
+.kt-preview-header {
+  border-left: 4px solid transparent;
+}
+.kt-preview-header-low { border-left-color: var(--kt-risk-low); }
+.kt-preview-header-medium { border-left-color: var(--kt-risk-medium); }
+.kt-preview-header-high { border-left-color: var(--kt-risk-high); }
+
+/* ===================== 9. MOTION ===================== */
+@media (prefers-reduced-motion: no-preference) {
+  .kt-panel, .btn, .kt-project-item, .kt-kpi-card { transition: box-shadow .18s ease, transform .18s ease, background-color .15s ease; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kt-panel, .btn, .kt-project-item, .kt-kpi-card { transition: none; }
+}

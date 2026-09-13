@@ -410,6 +410,17 @@ const mock = (() => {
     a.combined_risk - b.combined_risk || Math.min(a.time_risk, a.cost_risk) - Math.min(b.time_risk, b.cost_risk)
   );
 
+  const reviewCounts = {};
+  const getReviewCounts = (id) => {
+    if (!reviewCounts[id]) {
+      reviewCounts[id] = { up: Math.floor(rand() * 50), down: Math.floor(rand() * 20) };
+    }
+    return reviewCounts[id];
+  };
+
+  const FIELD_ALIASES = { department: "agency" };
+  const fieldValue = (project, field) => project[FIELD_ALIASES[field] || field];
+
   return {
     async getSummary() {
       await delay(300);
@@ -431,6 +442,74 @@ const mock = (() => {
       const project = projects.find((p) => p.id === id);
       if (!project) throw httpError(404, `Project ${id} not found`);
       return project;
+    },
+    async getProject(id) {
+      await delay(400);
+      const project = projects.find((p) => p.id === id);
+      if (!project) throw httpError(404, `Project ${id} not found`);
+      return {
+        ...project,
+        history: [{
+          state: project.state,
+          progress: project.physical_progress_pct,
+          report_date: project.last_updated,
+        }],
+        reviews: getReviewCounts(id),
+      };
+    },
+    async getVotes(id) {
+      await delay(300);
+      return { ...getReviewCounts(id) };
+    },
+    async submitReview(id, newVote) {
+      await delay(300);
+      const counts = getReviewCounts(id);
+      if (newVote === "up") counts.up += 1;
+      if (newVote === "down") counts.down += 1;
+      return { ...counts };
+    },
+    async analyseProject(id) {
+      await delay(800);
+      const project = projects.find((p) => p.id === id) || {};
+      return {
+        status: 0,
+        content: {
+          risk_summary: `Mock analysis for ${project.name || id}: overall risk is around ${Math.round((project.combined_risk || 0) * 100)}%.`,
+          evidence_behind_the_risk: "This is placeholder analysis generated locally for frontend testing (mock data mode) — the LLM/backend is not connected.",
+          cost_risk: project.cost_risk,
+          time_risk: project.time_risk,
+          possible_on_ground_explanations: "No backend connection — this text is a stand-in for the real Gemini-generated explanation.",
+        },
+      };
+    },
+    async login(username, password) {
+      await delay(300);
+      if (username === "admin" && password === "admin123") {
+        return { status: 0, token: "mock-admin-token", role: "admin", name: "Administrator" };
+      }
+      return false;
+    },
+    async uploadProject() {
+      await delay(300);
+      return { id: `PRJ-MOCK-${Date.now()}` };
+    },
+    async getUniqueValues(field) {
+      await delay(300);
+      const values = [...new Set(projects.map((p) => fieldValue(p, field)))];
+      return values.map((v) => [v]);
+    },
+    async filterProjects(field, value) {
+      await delay(400);
+      const filtered = projects.filter((p) => String(fieldValue(p, field)) === String(value));
+      return { items: filtered, total: filtered.length };
+    },
+    async searchProjects(query) {
+      await delay(400);
+      const q = String(query).toLowerCase();
+      const filtered = projects.filter((p) =>
+        p.name.toLowerCase().includes(q) || p.id.toLowerCase().includes(q) || p.agency.toLowerCase().includes(q)
+      );
+      return { items: filtered, total: filtered.length };
     },
   };
 })();

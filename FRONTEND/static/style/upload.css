@@ -1,64 +1,213 @@
 /* =========================================================================
-   Upload Page Styles (upload.css)
+   Kab Tak – upload.css
+   Page-specific styles for the admin upload page (upload.html).
+   Shared tokens, navbar, footer and hero base live in theme.css.
    ========================================================================= */
 
+body { padding-top: var(--kt-navbar-height); }
+
 .kt-upload-hero {
-  padding: 2.5rem 1rem 4rem;
-  color: #fff;
-  text-align: center;
-  background: linear-gradient(135deg, #0b2e59 0%, #1d5fa8 55%, #3a8dd0 100%);
   position: relative;
   overflow: hidden;
+  padding: 2.75rem 1rem 6rem;
+  color: #fff;
+  text-align: center;
+  background:
+    radial-gradient(900px 420px at 15% -10%, rgba(47, 127, 209, .3), transparent 60%),
+    linear-gradient(160deg, var(--kt-navy-950) 0%, var(--kt-navy-900) 55%, var(--kt-navy-800) 100%),
+    url("../assets/grid-pattern.svg");
+  background-repeat: no-repeat, no-repeat, repeat;
 }
 
-.kt-upload-hero-content {
-  position: relative;
-  z-index: 1;
-}
+.kt-upload-hero-content { position: relative; z-index: 1; }
+
+.kt-upload-hero-sub { max-width: 34rem; }
 
 .kt-upload-icon-circle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  font-size: 1.75rem;
-  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .18);
+  font-size: 1.65rem;
 }
 
 .kt-upload-section {
-  background: #f4f7fb;
-  margin-top: -2rem;
+  background: var(--kt-surface);
+  margin-top: -4rem;
   position: relative;
   z-index: 2;
 }
 
 .kt-upload-card {
-  border-radius: 1rem;
+  --bs-border-radius-lg: var(--kt-radius-md);
+  border-radius: var(--kt-radius-lg);
+  border: 1px solid var(--kt-border);
+  box-shadow: var(--kt-shadow-md);
   overflow: hidden;
 }
 
 .kt-upload-card::before {
   content: "";
   display: block;
-  height: 4px;
-  background: linear-gradient(to right, #ff9933, #ffffff, #138808);
+  height: 3px;
+  background: linear-gradient(to right, var(--kt-saffron), #f5f5f5, var(--kt-india-green));
+}
+
+.kt-upload-card .form-label {
+  color: var(--kt-navy-900);
+  font-size: .875rem;
+  margin-bottom: .5rem;
+}
+
+/* ===================== Pill-style field with an embedded icon (month) ===================== */
+.kt-field { position: relative; }
+
+.kt-field-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.05rem;
+  color: var(--kt-text-muted);
+  transition: color .15s ease;
+  pointer-events: none;
+}
+
+.kt-field-input {
+  padding-left: 2.75rem !important;
+  border-radius: var(--kt-radius-md) !important;
+  border: 1px solid var(--kt-border);
+  background-color: var(--kt-surface-alt);
+  transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+
+.kt-field-input:focus {
+  background-color: #fff;
+  border-color: var(--kt-blue-600);
+  box-shadow: 0 0 0 .2rem rgba(29, 95, 168, .15);
+}
+
+.kt-field:focus-within .kt-field-icon { color: var(--kt-blue-700); }
+
+.kt-field-input.is-invalid,
+.was-validated .kt-field-input:invalid {
+  background-color: var(--bs-danger-bg-subtle);
+}
+
+.kt-field-input:valid {
+  border-color: var(--kt-risk-low);
+}
+
+/* Tint the native calendar icon to match the theme (Chromium/Edge; a no-op
+   elsewhere, so it degrades gracefully). */
+#reporting_month::-webkit-calendar-picker-indicator {
+  filter: invert(28%) sepia(54%) saturate(1226%) hue-rotate(180deg) brightness(93%) contrast(92%);
+  cursor: pointer;
+}
+
+/* ===================== Dropzone-style card around the PDF upload ===================== */
+.kt-field-file {
+  border: 1.5px dashed var(--kt-border-strong);
+  border-radius: var(--kt-radius-md);
+  padding: 1.5rem 1rem 1.25rem;
+  background-color: var(--kt-surface-alt);
+  text-align: center;
+  transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+
+.kt-field-file:hover { border-color: var(--kt-blue-500); }
+
+.kt-field-file:focus-within {
+  border-color: var(--kt-blue-600);
+  background-color: #fff;
+  box-shadow: 0 0 0 .2rem rgba(29, 95, 168, .15);
+}
+
+.kt-field-file:has(.kt-dropzone:valid) {
+  border-style: solid;
+  border-color: var(--kt-risk-low);
+  background-color: var(--bs-success-bg-subtle);
+}
+
+.kt-field-file-icon {
+  display: block;
+  font-size: 1.9rem;
+  color: var(--kt-blue-600);
+  margin-bottom: .35rem;
+}
+
+.kt-field-file:has(.kt-dropzone:valid) .kt-field-file-icon {
+  color: var(--kt-risk-low);
+}
+
+.kt-field-file-title {
+  display: block;
+  font-weight: 600;
+  color: var(--kt-navy-900);
+}
+
+.kt-field-file-hint {
+  display: block;
+  font-size: .8rem;
+  color: var(--kt-text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* The native file input itself, sitting inside the dropzone card above. */
+.kt-dropzone {
+  border: 1px solid var(--kt-border) !important;
+  border-radius: var(--kt-radius-sm);
+  padding: .6rem .75rem;
+  background-color: #fff;
+  transition: border-color .15s ease;
+}
+
+.kt-dropzone:focus {
+  border-color: var(--kt-blue-600) !important;
+  box-shadow: none;
+  outline: none;
+}
+
+.kt-dropzone.is-invalid,
+.was-validated .kt-dropzone:invalid {
+  border-color: var(--bs-danger) !important;
+}
+
+.kt-dropzone:valid { border-color: var(--kt-risk-low) !important; }
+
+/* Style the file input's native browse button as a proper branded pill,
+   in place of the default grey OS button. */
+.kt-dropzone::file-selector-button,
+.kt-dropzone::-webkit-file-upload-button {
+  margin-right: .85rem;
+  padding: .5rem 1.1rem;
+  font-weight: 600;
+  font-size: .95rem;
+  color: #fff;
+  background-color: var(--kt-blue-700);
+  border: none;
+  border-radius: var(--kt-radius-sm);
+  transition: background-color .15s ease;
+}
+
+.kt-dropzone:hover::file-selector-button,
+.kt-dropzone:hover::-webkit-file-upload-button {
+  background-color: var(--kt-navy-800);
 }
 
 .kt-upload-submit {
-  border-radius: 0.5rem;
-  transition: transform 0.1s ease, box-shadow 0.15s ease;
+  border-radius: var(--kt-radius-sm);
+  background: linear-gradient(135deg, var(--kt-blue-700), var(--kt-navy-800));
+  border: none;
+  letter-spacing: .01em;
 }
 
 .kt-upload-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--kt-navy-800), var(--kt-navy-900));
   transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(11, 46, 89, 0.2);
-}
-
-.kt-upload-card .form-control:focus {
-  border-color: #3a8dd0;
-  box-shadow: 0 0 0 0.2rem rgba(58, 141, 208, 0.15);
+  box-shadow: 0 .5rem 1rem rgba(11, 37, 69, .25);
 }

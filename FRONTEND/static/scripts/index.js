@@ -29,6 +29,14 @@ async function initSummary() {
 
 function renderSummary(summary) {
   setText("total-projects", formatNumber(summary.total));
+
+  // Hero KPI strip — reuses the same summary figures shown in the coverage section below.
+  const coveragePct = summary.total ? (summary.predicted / summary.total) * 100 : 0;
+  setText("kpi-total", formatNumber(summary.total));
+  setText("kpi-coverage", `${coveragePct.toFixed(1)}%`);
+  setText("kpi-predicted", formatNumber(summary.predicted));
+  setText("kpi-tytp", formatNumber(summary.tytp));
+
   COVERAGE_KEYS.forEach(({ key }) => {
     const count = summary[key];
     const pct = summary.total ? (count / summary.total) * 100 : 0;
@@ -165,7 +173,7 @@ function createProjectItem(project) {
       <div class="col-4 col-md-2">
         <span class="small text-secondary d-block d-md-none">Cost risk</span>${riskBadge(project.costRisk)}
       </div>
-      <div class="col-4 col-md-2">
+      <div class="col-4 col-md-2 kt-combined-risk">
         <span class="small text-secondary d-block d-md-none">Combined</span>${combinedRiskCell(project.combinedRisk)}
       </div>
     </div>`;
@@ -265,10 +273,11 @@ async function showPreview(anchor, projectId) {
 
 function previewHTML(p) {
   const progress = Number.isFinite(p.progressPct) ? clampPercent(p.progressPct) : null;
+  const level = riskLevel(p.combinedRisk);
   return `
-    <div class="card-header bg-body">
+    <div class="card-header bg-body kt-preview-header${level ? ` kt-preview-header-${level}` : ""}">
       <div class="fw-semibold">${escapeHTML(p.name)}</div>
-      <div class="small text-secondary">${escapeHTML(p.id)}</div>
+      <div class="small text-secondary">${escapeHTML(p.agency)} &middot; ${escapeHTML(p.state)}</div>
     </div>
     <div class="card-body small">
       <p class="mb-3">${escapeHTML(p.description)}</p>
@@ -289,10 +298,10 @@ function previewHTML(p) {
           <div class="progress-bar" style="width:${progress ?? 0}%"></div>
         </div>
       </div>
-      <div class="d-flex justify-content-between">
-        <span>Time risk ${riskBadge(p.timeRisk)}</span>
-        <span>Cost risk ${riskBadge(p.costRisk)}</span>
-        <span>Combined ${riskBadge(p.combinedRisk)}</span>
+      <div class="d-flex justify-content-between align-items-center">
+        <span>Time ${riskBadge(p.timeRisk)}</span>
+        <span>Cost ${riskBadge(p.costRisk)}</span>
+        <span class="kt-combined-risk">Combined ${combinedRiskCell(p.combinedRisk)}</span>
       </div>
     </div>
     <div class="card-footer bg-body small text-secondary">Last updated ${formatDate(p.lastUpdated)}</div>`;

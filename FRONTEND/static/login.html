@@ -6,7 +6,7 @@
   <title>Admin login | Kab Tak</title>
   <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
+  <link rel="stylesheet" href="style/theme.css">
   <!-- Updated to use the modularized CSS file -->
   <link rel="stylesheet" href="style/login.css">
 </head>
@@ -16,8 +16,12 @@
 
   <nav class="navbar navbar-expand-lg fixed-top kt-navbar" data-bs-theme="dark" aria-label="Main navigation">
     <div class="container-fluid px-3 px-lg-4">
-      <a class="navbar-brand me-4" href="index.html" aria-label="Kab Tak home">
-        <span class="kt-logo-slot">Logo</span>
+      <a class="navbar-brand kt-brand me-4" href="index.html" aria-label="Kab Tak home">
+        <span class="kt-brand-emblem" aria-hidden="true"></span>
+        <span class="kt-brand-text">
+          <span class="kt-brand-eyebrow">Government of India · MoSPI</span>
+          <span class="kt-brand-name">Kab Tak</span>
+        </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
               aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +39,11 @@
 
   <main id="main-content" tabindex="-1">
     <section class="kt-auth-hero">
+      <div class="kt-hero-infra-bg" aria-hidden="true"></div>
       <div class="container">
         <div class="row align-items-center justify-content-center min-vh-50">
           <div class="col-12 text-center text-white kt-auth-hero-content">
+            <p class="kt-hero-dept mb-2">Government of India &middot; Ministry of Statistics and Programme Implementation</p>
             <div class="kt-auth-shield mb-3">
               <i class="bi bi-shield-lock-fill"></i>
             </div>
@@ -54,8 +60,8 @@
           <div class="col-md-7 col-lg-5 col-xl-4">
             <div class="card kt-auth-card shadow-lg border-0">
               <div class="card-body p-4 p-md-5">
-                <div class="kt-auth-info-banner d-flex align-items-start gap-2 mb-4">
-                  <i class="bi bi-info-circle-fill text-primary mt-1"></i>
+                <div class="kt-info-chip d-flex align-items-start gap-3 mb-4">
+                  <span class="kt-info-chip-icon"><i class="bi bi-info-circle-fill"></i></span>
                   <p class="small text-secondary mb-0">
                     For authorised administrators only. Citizens can view all project information without logging in.
                   </p>
@@ -63,22 +69,18 @@
                 <form id="login-form" novalidate>
                   <div class="mb-3">
                     <label for="username" class="form-label fw-medium">Admin ID</label>
-                    <div class="input-group input-group-lg">
-                      <span class="input-group-text bg-light border-end-0 kt-input-icon">
-                        <i class="bi bi-person-fill text-secondary"></i>
-                      </span>
-                      <input type="text" class="form-control border-start-0 ps-0" id="username" name="username" placeholder="Enter your admin ID" autocomplete="username" required>
+                    <div class="kt-field">
+                      <i class="bi bi-person-fill kt-field-icon" aria-hidden="true"></i>
+                      <input type="text" class="form-control form-control-lg kt-field-input" id="username" name="username" placeholder="Enter your admin ID" autocomplete="username" required>
                       <div class="invalid-feedback">Enter your admin ID.</div>
                     </div>
                   </div>
-                  <div class="mb-3">
+                  <div class="mb-4">
                     <label for="password" class="form-label fw-medium">Password</label>
-                    <div class="input-group input-group-lg">
-                      <span class="input-group-text bg-light border-end-0 kt-input-icon">
-                        <i class="bi bi-lock-fill text-secondary"></i>
-                      </span>
-                      <input type="password" class="form-control border-start-0 ps-0" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
-                      <button class="btn btn-outline-secondary border-start-0 kt-toggle-password" type="button" id="toggle-password" aria-label="Show or hide password">
+                    <div class="kt-field">
+                      <i class="bi bi-lock-fill kt-field-icon" aria-hidden="true"></i>
+                      <input type="password" class="form-control form-control-lg kt-field-input kt-field-input-pad-r" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                      <button class="kt-field-toggle" type="button" id="toggle-password" aria-label="Show or hide password">
                         <i class="bi bi-eye"></i>
                       </button>
                       <div class="invalid-feedback">Enter your password.</div>
@@ -87,11 +89,12 @@
                   <div id="login-message" class="alert d-none" role="alert"></div>
                   <button type="submit" class="btn btn-primary w-100 btn-lg fw-semibold kt-auth-submit">
                     <span class="kt-auth-submit-text">Log in</span>
+                    <i class="bi bi-arrow-right ms-1 kt-auth-submit-arrow"></i>
                     <span class="kt-auth-submit-spinner spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
                   </button>
                 </form>
                 <div class="text-center mt-4 pt-3 border-top">
-                  <a href="index.html" class="text-decoration-none small text-secondary">
+                  <a href="index.html" class="text-decoration-none small text-secondary kt-back-link">
                     <i class="bi bi-arrow-left me-1"></i>Back to home
                   </a>
                 </div>
@@ -103,10 +106,10 @@
     </section>
   </main>
 
-  <footer class="kt-footer text-white py-4 mt-auto">
+  <footer class="kt-footer py-4 mt-auto">
     <div class="container text-center small">
-      <p class="mb-1">Kab Tak | Ministry of Statistics and Programme Implementation, Government of India</p>
-      <p class="mb-0 opacity-75">Built for Smart India Hackathon, problem statement 26103</p>
+      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span> &middot; Ministry of Statistics and Programme Implementation, Government of India</p>
+      <p class="mb-0 opacity-75">Built for Smart India Hackathon &middot; Problem statement 26103</p>
     </div>
   </footer>
 

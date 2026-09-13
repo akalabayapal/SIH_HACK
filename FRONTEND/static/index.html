@@ -7,6 +7,7 @@
   <title>Kab Tak | Project Monitoring System</title>
   
   <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="style/theme.css">
   <link rel="stylesheet" href="style/index.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -16,8 +17,12 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg fixed-top kt-navbar" data-bs-theme="dark" aria-label="Main navigation">
     <div class="container-fluid px-3 px-lg-4">
-      <a class="navbar-brand me-4" href="index.html" aria-label="Kab Tak home">
-        <span class="kt-logo-slot">Logo</span>
+      <a class="navbar-brand kt-brand me-4" href="index.html" aria-label="Kab Tak home">
+        <span class="kt-brand-emblem" aria-hidden="true"></span>
+        <span class="kt-brand-text">
+          <span class="kt-brand-eyebrow">Government of India · MoSPI</span>
+          <span class="kt-brand-name">Kab Tak</span>
+        </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
               aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,55 +42,79 @@
 
     <!-- Hero Section -->
     <section class="kt-hero" aria-labelledby="site-title">
+      <div class="kt-hero-infra-bg" aria-hidden="true"></div>
       <div class="container">
-        <p class="kt-hero-dept mb-2">Ministry of Statistics and Programme Implementation | Government of India</p>
+        <p class="kt-hero-dept mb-2">Ministry of Statistics and Programme Implementation &middot; Government of India</p>
         <h1 class="kt-hero-title" id="site-title">Kab Tak</h1>
         <p class="kt-hero-title-hi mb-0" lang="hi">कब तक</p>
+        <div class="kt-hero-rule" aria-hidden="true"></div>
         <p class="kt-hero-tagline">Project monitoring and early warning for delays and cost overruns.</p>
+
+        <div class="kt-kpi-grid" aria-label="Key monitoring indicators">
+          <div class="kt-kpi-card">
+            <div class="kt-kpi-value" id="kpi-total">&ndash;</div>
+            <div class="kt-kpi-label">Projects monitored</div>
+          </div>
+          <div class="kt-kpi-card">
+            <div class="kt-kpi-value" id="kpi-coverage">&ndash;</div>
+            <div class="kt-kpi-label">Prediction coverage</div>
+          </div>
+          <div class="kt-kpi-card">
+            <div class="kt-kpi-value" id="kpi-predicted">&ndash;</div>
+            <div class="kt-kpi-label">Risk-assessed projects</div>
+          </div>
+          <div class="kt-kpi-card">
+            <div class="kt-kpi-value" id="kpi-tytp">&ndash;</div>
+            <div class="kt-kpi-label">Too young to predict</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Prediction Summary -->
     <section class="py-5" id="summary" aria-labelledby="summary-title">
       <div class="container">
-        <h2 class="h4 mb-1" id="summary-title">Prediction coverage</h2>
-        <p class="text-secondary mb-4">How many of the <span id="total-projects">–</span> monitored projects the risk model could assess.</p>
+        <p class="kt-eyebrow mb-2">Executive analytics</p>
+        <h2 class="h4 kt-section-title mb-1" id="summary-title">Prediction coverage</h2>
+        <p class="kt-section-sub mb-4">How many of the <span id="total-projects">–</span> monitored projects the risk model could assess.</p>
 
         <div id="summary-error" class="alert alert-warning" role="alert" hidden>
           Couldn't load the prediction summary. Refresh the page to try again.
         </div>
 
-        <div class="row g-5 align-items-center">
-          <div class="col-lg-7">
+        <div class="kt-panel p-4 p-md-5">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-7">
 
-            <div class="mb-4">
-              <div class="d-flex justify-content-between align-items-baseline mb-1">
-                <span class="fw-semibold"><span class="kt-dot kt-fill-predicted"></span>Predicted</span>
-                <span><span class="fs-4 fw-semibold" id="stat-predicted-pct">–</span>
-                  <span class="small text-secondary">(<span id="stat-predicted-count">–</span> projects)</span></span>
+              <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                  <span class="fw-semibold"><span class="kt-dot kt-fill-predicted"></span>Predicted</span>
+                  <span><span class="fs-4 fw-semibold" id="stat-predicted-pct">–</span>
+                    <span class="small text-secondary">(<span id="stat-predicted-count">–</span> projects)</span></span>
+                </div>
+                <div class="progress kt-coverage-bar" role="progressbar" aria-label="Predicted projects" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="progress-bar kt-fill-predicted" id="bar-predicted"></div>
+                </div>
+                <p class="small text-secondary mt-1 mb-0">Enough good-quality data to calculate time and cost risk.</p>
               </div>
-              <div class="progress" role="progressbar" aria-label="Predicted projects" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                <div class="progress-bar kt-fill-predicted" id="bar-predicted"></div>
+
+              <div>
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                  <span class="fw-semibold"><span class="kt-dot kt-fill-tytp"></span>TYTP (too young to predict)</span>
+                  <span><span class="fs-4 fw-semibold" id="stat-tytp-pct">–</span>
+                    <span class="small text-secondary">(<span id="stat-tytp-count">–</span> projects)</span></span>
+                </div>
+                <div class="progress kt-coverage-bar" role="progressbar" aria-label="Too young to predict projects" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="progress-bar kt-fill-tytp" id="bar-tytp"></div>
+                </div>
+                <p class="small text-secondary mt-1 mb-0">Only a few days of data so far.</p>
               </div>
-              <p class="small text-secondary mt-1 mb-0">Enough good-quality data to calculate time and cost risk.</p>
+
             </div>
-
-            <div>
-              <div class="d-flex justify-content-between align-items-baseline mb-1">
-                <span class="fw-semibold"><span class="kt-dot kt-fill-tytp"></span>TYTP (too young to predict)</span>
-                <span><span class="fs-4 fw-semibold" id="stat-tytp-pct">–</span>
-                  <span class="small text-secondary">(<span id="stat-tytp-count">–</span> projects)</span></span>
+            <div class="col-lg-5">
+              <div class="kt-chart-box">
+                <canvas id="coverage-chart" role="img" aria-label="Pie chart of predicted and TYTP projects"></canvas>
               </div>
-              <div class="progress" role="progressbar" aria-label="Too young to predict projects" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                <div class="progress-bar kt-fill-tytp" id="bar-tytp"></div>
-              </div>
-              <p class="small text-secondary mt-1 mb-0">Only a few days of data so far.</p>
-            </div>
-
-          </div>
-          <div class="col-lg-5">
-            <div class="kt-chart-box">
-              <canvas id="coverage-chart" role="img" aria-label="Pie chart of predicted and TYTP projects"></canvas>
             </div>
           </div>
         </div>
@@ -93,21 +122,21 @@
     </section>
 
     <!-- Ranked Projects -->
-    <section class="py-5 bg-body-tertiary border-top" id="projects" aria-labelledby="projects-title">
+    <section class="py-5 kt-section-alt border-top" id="projects" aria-labelledby="projects-title">
       <div class="container">
         <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
           <div>
-            <h2 class="h4 mb-1" id="projects-title">Projects ranked by risk</h2>
-            <p class="text-secondary small mb-0">
-              Lowest to highest combined risk. Combined risk is the higher of time risk and cost risk.
-              Hover over a project for 1 second to see a preview.
+            <p class="kt-eyebrow mb-2">Infrastructure risk monitoring</p>
+            <h2 class="h4 kt-section-title mb-1" id="projects-title">Projects ranked by risk</h2>
+            <p class="kt-section-sub small mb-0">
+              Prioritised by combined time and cost risk. Hover a project for a second to see a full preview.
             </p>
           </div>
           <p class="small text-secondary mb-0" id="projects-counter" aria-live="polite">Loading projects…</p>
         </div>
 
         <!-- Filter Controls Bar -->
-        <div class="card kt-filter-card mb-4 border-0 shadow-sm">
+        <div class="card kt-panel kt-filter-card mb-4">
           <div class="card-body p-3 p-md-4">
             <form id="projects-filter-form" role="search" aria-label="Filter projects">
               <div class="row g-3 align-items-end">
@@ -153,9 +182,9 @@
           </div>
         </div>
 
-        <div class="kt-list-head px-3 pb-2 d-none d-md-block" aria-hidden="true">
+        <div class="kt-list-head px-3 py-2 d-none d-md-block" aria-hidden="true">
           <div class="row g-2">
-            <div class="col-md-1">Project Code</div>
+            <div class="col-md-1">Code</div>
             <div class="col-md-5">Project</div>
             <div class="col-md-2">Time risk</div>
             <div class="col-md-2">Cost risk</div>
@@ -163,10 +192,11 @@
           </div>
         </div>
 
-        <ol class="list-group" id="projects-list"></ol>
+        <ol class="list-group kt-project-list" id="projects-list"></ol>
 
-        <div id="projects-sentinel" class="text-center py-4">
-          <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading projects…</span></div>
+        <div id="projects-sentinel" class="kt-load-sentinel text-center py-4">
+          <div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading projects…</span></div>
+          <span class="small text-secondary ms-2 kt-load-text">Loading additional projects&hellip;</span>
         </div>
         <div id="projects-status" class="text-center small text-secondary"></div>
       </div>
@@ -178,10 +208,10 @@
   <div id="project-preview" class="card shadow kt-preview" role="tooltip" hidden></div>
 
   <!-- Footer -->
-  <footer class="kt-footer text-white py-4 mt-auto">
+  <footer class="kt-footer py-4 mt-auto">
     <div class="container text-center small">
-      <p class="mb-1">Kab Tak | Ministry of Statistics and Programme Implementation, Government of India</p>
-      <p class="mb-0 opacity-75">Built for Smart India Hackathon, problem statement 26103</p>
+      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span> &middot; Ministry of Statistics and Programme Implementation, Government of India</p>
+      <p class="mb-0 opacity-75">Built for Smart India Hackathon &middot; Problem statement 26103</p>
     </div>
   </footer>
 
@@ -196,7 +226,7 @@
   <!-- Newsletter Subscription Modal Overlay -->
   <div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-content border-0 shadow-lg kt-modal-content">
         
         
 

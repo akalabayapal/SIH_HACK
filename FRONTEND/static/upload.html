@@ -5,48 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload Report - Kab Tak</title>
   
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap 5 (vendored locally, consistent with the rest of the site) -->
+  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style/theme.css">
   <!-- Custom Upload Stylesheet -->
   <link rel="stylesheet" href="style/upload.css">
 </head>
-<body class="bg-light">
+<body class="d-flex flex-column min-vh-100">
 
   <!-- Header -->
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="index.html">
-        <i class="bi bi-clock-history text-warning"></i>
-        <span>Kab Tak</span>
+  <nav class="navbar navbar-expand-lg fixed-top kt-navbar" data-bs-theme="dark" aria-label="Main navigation">
+    <div class="container-fluid px-3 px-lg-4">
+      <a class="navbar-brand kt-brand me-4" href="index.html" aria-label="Kab Tak home">
+        <span class="kt-brand-emblem" aria-hidden="true"></span>
+        <span class="kt-brand-text">
+          <span class="kt-brand-eyebrow">Government of India &middot; MoSPI</span>
+          <span class="kt-brand-name">Kab Tak</span>
+        </span>
       </a>
-      <span class="navbar-text ms-auto text-light small d-none d-sm-inline">
-        <i class="bi bi-shield-lock-fill text-warning me-1"></i> Admin Portal
-      </span>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <span class="badge text-bg-light d-none d-sm-inline-flex align-items-center gap-1 px-3 py-2">
+          <i class="bi bi-shield-lock-fill text-primary"></i> Admin portal
+        </span>
+        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout">Logout</button>
+      </div>
     </div>
-  </header>
+  </nav>
 
   <!-- Hero Header -->
   <section class="kt-upload-hero">
+    <div class="kt-hero-infra-bg" aria-hidden="true"></div>
     <div class="container kt-upload-hero-content">
+      <p class="kt-hero-dept mb-2">Government of India &middot; Ministry of Statistics and Programme Implementation</p>
       <div class="kt-upload-icon-circle mb-3">
         <i class="bi bi-cloud-arrow-up-fill"></i>
       </div>
       <h1 class="h3 fw-bold mb-2">Upload Monthly Report</h1>
-      <p class="text-light opacity-75 mb-0 max-w-600 mx-auto">
-        Select the reporting period and attach the official PDF document.
+      <p class="opacity-75 mb-0 kt-upload-hero-sub mx-auto">
+        Official infrastructure data ingestion &mdash; select the reporting period and attach the monthly PDF report.
       </p>
     </div>
   </section>
 
   <!-- Form Section -->
-  <main class="kt-upload-section pb-5" id="upload-content" hidden>
+  <main class="kt-upload-section pb-5 flex-grow-1" id="upload-content" hidden>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-          
-          <div class="card kt-upload-card border-0 shadow-lg">
+
+          <div class="card kt-upload-card">
             <div class="card-body p-4 p-md-5">
 
               <!-- Alert Banner -->
@@ -58,20 +67,27 @@
                 <!-- Input 1: Reporting Month & Year -->
                 <div class="mb-4">
                   <label for="reporting_month" class="form-label fw-semibold">
-                    <i class="bi bi-calendar-month me-1 text-primary"></i> Reporting Month & Year <span class="text-danger">*</span>
+                    Reporting Month &amp; Year <span class="text-danger">*</span>
                   </label>
-                  <input type="month" class="form-control form-control-lg" id="reporting_month" name="reporting_month" required>
-                  <div class="invalid-feedback">Please select a valid month and year.</div>
+                  <div class="kt-field">
+                    <i class="bi bi-calendar-month kt-field-icon" aria-hidden="true"></i>
+                    <input type="month" class="form-control form-control-lg kt-field-input" id="reporting_month" name="reporting_month" required>
+                    <div class="invalid-feedback">Please select a valid month and year.</div>
+                  </div>
                 </div>
 
                 <!-- Input 2: PDF Document File -->
                 <div class="mb-4">
                   <label for="document" class="form-label fw-semibold">
-                    <i class="bi bi-file-earmark-pdf me-1 text-danger"></i> PDF Document <span class="text-danger">*</span>
+                    PDF Document <span class="text-danger">*</span>
                   </label>
-                  <input type="file" class="form-control form-control-lg" id="document" name="document" accept=".pdf,application/pdf" required>
-                  <div class="form-text">Only standard .pdf files under 20 MB are accepted.</div>
-                  <div class="invalid-feedback">Please upload a valid PDF file.</div>
+                  <div class="kt-field-file">
+                    <i class="bi bi-cloud-arrow-up kt-field-file-icon" aria-hidden="true"></i>
+                    <span class="kt-field-file-title">Click to upload the monthly report</span>
+                    <span class="kt-field-file-hint">Standard .pdf files, up to 20 MB</span>
+                    <input type="file" class="form-control form-control-lg kt-dropzone" id="document" name="document" accept=".pdf,application/pdf" required>
+                    <div class="invalid-feedback">Please upload a valid PDF file.</div>
+                  </div>
                 </div>
 
                 <!-- Submit Button -->
@@ -92,14 +108,14 @@
   </main>
 
   <!-- Footer -->
-  <footer class="py-4 bg-white border-top text-center text-muted small">
-    <div class="container">
-      <span>&copy; 2026 Kab Tak Infrastructure Accountability Portal.</span>
+  <footer class="kt-footer py-4 mt-auto">
+    <div class="container text-center small">
+      <p class="mb-0 opacity-90">&copy; 2026 <span class="kt-footer-title fw-semibold">Kab Tak</span> Infrastructure Accountability Portal.</p>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="bootstrap/bootstrap.bundle.min.js"></script>
   <script src="scripts/upload.js"></script>
 </body>
 </html>

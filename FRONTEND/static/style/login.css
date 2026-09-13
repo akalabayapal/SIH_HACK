@@ -1,64 +1,160 @@
-/* Core Variables & Structural Offsets */
-:root {
-  --kt-navy: #0b2e59;
-  --kt-blue: #1d5fa8;
-  --kt-saffron: #ff9933;
-  --kt-india-green: #138808;
-  --kt-navbar-height: 72px;
-}
+/* =========================================================================
+   Kab Tak – login.css
+   Page-specific styles for the admin login page (login.html).
+   Shared tokens, navbar, footer and hero base live in theme.css.
+   ========================================================================= */
 
-body { padding-top: var(--kt-navbar-height); }
-
-/* Accessibility & Navbar Elements */
-.kt-skip-link:focus {
-  position: fixed; top: .5rem; left: .5rem; z-index: 2000;
-  padding: .5rem 1rem; background: #fff;
-  color: var(--kt-navy); border-radius: .375rem;
-}
-
-.kt-navbar {
-  background-color: var(--kt-navy);
-  min-height: var(--kt-navbar-height);
-}
-
-.kt-navbar::before {
-  content: ""; position: absolute;
-  top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(to right, var(--kt-saffron) 0 33.33%, #fff 33.33% 66.66%, var(--kt-india-green) 66.66% 100%);
-}
-
-.kt-logo-slot {
-  display: flex; align-items: center; justify-content: center;
-  width: 48px; height: 48px;
-  border: 2px dashed rgba(255, 255, 255, .6);
-  border-radius: .375rem; font-size: .7rem; color: rgba(255, 255, 255, .85);
-}
-
-/* Authentication Specific Styles */
 .kt-auth-hero {
-  background: linear-gradient(135deg, var(--kt-navy) 0%, var(--kt-blue) 100%);
-  padding: 3rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+  padding: 2.75rem 0 6rem;
+  background:
+    radial-gradient(900px 420px at 85% -10%, rgba(47, 127, 209, .3), transparent 60%),
+    linear-gradient(160deg, var(--kt-navy-950) 0%, var(--kt-navy-900) 55%, var(--kt-navy-800) 100%),
+    url("../assets/grid-pattern.svg");
+  background-repeat: no-repeat, no-repeat, repeat;
 }
+
+.kt-auth-hero-content { position: relative; z-index: 1; }
 
 .kt-auth-shield {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 64px; height: 64px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 50%; font-size: 2rem; color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 50%;
+  font-size: 1.75rem;
+  color: #fff;
 }
 
-.kt-auth-section { margin-top: -4rem; }
+.kt-auth-section { margin-top: -4rem; position: relative; z-index: 2; }
 
-.kt-auth-card { border-radius: 1rem; }
-
-.kt-auth-info-banner {
-  background-color: rgba(29, 95, 168, 0.05);
-  border-left: 3px solid var(--kt-blue);
-  padding: 0.75rem 1rem; border-radius: 0 0.5rem 0.5rem 0;
+.kt-auth-card {
+  --bs-border-radius-lg: var(--kt-radius-md);
+  border-radius: var(--kt-radius-lg);
+  border: 1px solid var(--kt-border);
+  overflow: hidden;
 }
 
-/* Input Overrides for seamless borders */
-.input-group-text.bg-light { background-color: #f8f9fa !important; }
-.form-control:focus, .btn:focus { box-shadow: 0 0 0 0.25rem rgba(29, 95, 168, 0.25); border-color: var(--kt-blue); }
+.kt-auth-card::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(to right, var(--kt-saffron), #f5f5f5, var(--kt-india-green));
+}
 
-.kt-footer { background-color: var(--kt-navy); }
+.kt-auth-card .form-label {
+  color: var(--kt-navy-900);
+  font-size: .875rem;
+  margin-bottom: .5rem;
+}
+
+/* Info chip: soft rounded card with a circular icon badge, replacing the
+   older flat left-border banner treatment. */
+.kt-info-chip {
+  background: var(--bs-primary-bg-subtle);
+  border-radius: var(--kt-radius-md);
+  padding: .9rem 1.1rem;
+}
+
+.kt-info-chip-icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--kt-blue-700);
+  box-shadow: var(--kt-shadow-sm);
+  font-size: .9rem;
+}
+
+/* ===================== Pill-style fields with embedded icons ===================== */
+.kt-field { position: relative; }
+
+.kt-field-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.05rem;
+  color: var(--kt-text-muted);
+  transition: color .15s ease;
+  pointer-events: none;
+}
+
+.kt-field-input {
+  padding-left: 2.75rem !important;
+  border-radius: var(--kt-radius-md) !important;
+  border: 1px solid var(--kt-border);
+  background-color: var(--kt-surface-alt);
+  transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+
+.kt-field-input-pad-r { padding-right: 2.75rem !important; }
+
+.kt-field-input:focus {
+  background-color: #fff;
+  border-color: var(--kt-blue-600);
+  box-shadow: 0 0 0 .2rem rgba(29, 95, 168, .15);
+}
+
+.kt-field:focus-within .kt-field-icon { color: var(--kt-blue-700); }
+
+.kt-field-toggle {
+  position: absolute;
+  right: .35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  color: var(--kt-text-muted);
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.kt-field-toggle:hover {
+  background: var(--bs-primary-bg-subtle);
+  color: var(--kt-blue-700);
+}
+
+.kt-field-input.is-invalid,
+.was-validated .kt-field-input:invalid {
+  background-color: var(--bs-danger-bg-subtle);
+}
+
+/* The password field already has the eye-toggle icon on the right, so drop
+   Bootstrap's native invalid icon there to avoid the two overlapping. */
+.kt-field-input-pad-r.is-invalid,
+.was-validated .kt-field-input-pad-r:invalid {
+  background-image: none;
+}
+
+.kt-auth-submit {
+  border-radius: var(--kt-radius-sm);
+  background: linear-gradient(135deg, var(--kt-blue-700), var(--kt-navy-800));
+  border: none;
+  letter-spacing: .01em;
+}
+
+.kt-auth-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--kt-navy-800), var(--kt-navy-900));
+  transform: translateY(-1px);
+  box-shadow: 0 .5rem 1rem rgba(11, 37, 69, .25);
+}
+
+.kt-auth-submit-arrow { transition: transform .15s ease; }
+.kt-auth-submit:hover:not(:disabled) .kt-auth-submit-arrow { transform: translateX(3px); }
+
+.kt-back-link { transition: color .15s ease; }
+.kt-back-link:hover { color: var(--kt-blue-700) !important; }

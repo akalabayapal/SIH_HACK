@@ -78,7 +78,7 @@ function renderProjectPage(p) {
     <div class="d-flex justify-content-between mb-2"><span>Time risk</span>${riskBadge(p.timeRisk)}</div>
     <div class="d-flex justify-content-between mb-3"><span>Cost risk</span>${riskBadge(p.costRisk)}</div>
     <div class="small text-secondary mb-1">Combined risk (higher of the two)</div>
-    ${combinedRiskCell(p.combinedRisk)}`;
+    <div class="kt-combined-risk">${combinedRiskCell(p.combinedRisk)}</div>`;
 
   document.getElementById("project-content").hidden = false;
 }
