@@ -318,6 +318,7 @@ function adaptReviewCounts(raw) {
 }
 
 function adaptPreview(raw) {
+
   let name = raw.name ?? "Unnamed project";
   let agency = raw.agency ?? "Not available";
   let state = raw.state ?? "Not available";
@@ -348,6 +349,7 @@ function adaptPreview(raw) {
     name,
     agency,
     state,
+    history:raw.history,
     description: raw.description ?? "",
     startDate: startDate || raw.start_date,
     expectedEnd: raw.end_date_revised ?? raw.expected_end ?? null,

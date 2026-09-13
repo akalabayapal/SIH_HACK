@@ -4,6 +4,8 @@
 ========================================================================= */
 
 // 1. Initialization
+
+
 async function initProjectPage() {
   if (!document.getElementById("project-content")) return;
 
@@ -15,6 +17,13 @@ async function initProjectPage() {
 
   try {
     const project = await api.getProject(projectId);
+    const history = project.history;
+
+    // Render the graphs
+    renderProjectTrends(history);
+
+    console.log(JSON.stringify(history));
+    
     renderProjectPage(project);
     await initReviews(project);
     document.getElementById("analyse-button").addEventListener("click", () => runAnalysis(project.id));

@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Details | Kab Tak</title>
   <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
-  
-  <!-- Updated to use the modularized CSS file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style/project.css">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
@@ -36,7 +34,6 @@
   </nav>
 
   <!-- Main Content Container -->
-  <!-- Removed inline margin-top style to prevent double-spacing conflicts -->
   <main id="main-content" class="flex-grow-1" tabindex="-1">
     <div class="container py-4">
 
@@ -66,7 +63,7 @@
 
         <div class="row g-4">
           
-          <!-- Left Column: Details & Progress -->
+          <!-- Left Column: Details, Trends & Physical Progress -->
           <div class="col-lg-8">
             
             <!-- Metadata Specifications -->
@@ -97,30 +94,32 @@
               </div>
             </div>
 
-            <!-- Citizen Reviews -->
+            <!-- Historical Trends Section -->
             <div class="card border-0 shadow-sm mb-4">
               <div class="card-header bg-white border-bottom py-3">
-                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-hand-thumbs-up me-2 text-primary"></i>Community Feedback</h2>
+                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-graph-up-arrow me-2 text-primary"></i>Historical Trends</h2>
               </div>
               <div class="card-body p-4">
-                <p class="text-secondary small mb-3">Vote on whether official progress aligns with ground observations.</p>
-                <div class="d-flex align-items-center gap-3">
-                  <button type="button" class="btn btn-outline-success px-4 py-2 d-flex align-items-center gap-2 fw-semibold" data-vote="up">
-                    <i class="bi bi-hand-thumbs-up-fill"></i> Accurate
-                    <span id="review-up-count" class="badge text-bg-success ms-1">0</span>
-                  </button>
-                  <button type="button" class="btn btn-outline-danger px-4 py-2 d-flex align-items-center gap-2 fw-semibold" data-vote="down">
-                    <i class="bi bi-hand-thumbs-down-fill"></i> Delayed / Inaccurate
-                    <span id="review-down-count" class="badge text-bg-danger ms-1">0</span>
-                  </button>
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <h3 class="h6 fw-semibold text-secondary mb-3 text-center">Progress over Time (%)</h3>
+                    <div style="position: relative; height: 240px;">
+                      <canvas id="chart-progress-trend"></canvas>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h3 class="h6 fw-semibold text-secondary mb-3 text-center">Cost Spent over Time (₹ Cr)</h3>
+                    <div style="position: relative; height: 240px;">
+                      <canvas id="chart-cost-trend"></canvas>
+                    </div>
+                  </div>
                 </div>
-                <div id="review-message" class="form-text mt-3 text-muted"></div>
               </div>
             </div>
 
           </div>
 
-          <!-- Right Column: Risk Indicators & AI Evaluation -->
+          <!-- Right Column: Risk Indicators, AI Evaluation & Community Feedback -->
           <div class="col-lg-4">
             
             <!-- Risk Metrics -->
@@ -132,6 +131,27 @@
                 <div id="project-risks">
                   <!-- Populated dynamically via project.js -->
                 </div>
+              </div>
+            </div>
+
+            <!-- Citizen Reviews / Community Feedback (MOVED HERE) -->
+            <div class="card border-0 shadow-sm mb-4">
+              <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-hand-thumbs-up me-2 text-primary"></i>Community Feedback</h2>
+              </div>
+              <div class="card-body p-4">
+                <p class="text-secondary small mb-3">Vote on whether official progress aligns with ground observations.</p>
+                <div class="d-flex flex-column flex-sm-row flex-lg-column gap-2">
+                  <button type="button" class="btn btn-outline-success w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold" data-vote="up">
+                    <i class="bi bi-hand-thumbs-up-fill"></i> Accurate
+                    <span id="review-up-count" class="badge text-bg-success ms-1">0</span>
+                  </button>
+                  <button type="button" class="btn btn-outline-danger w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold" data-vote="down">
+                    <i class="bi bi-hand-thumbs-down-fill"></i> Delayed / Inaccurate
+                    <span id="review-down-count" class="badge text-bg-danger ms-1">0</span>
+                  </button>
+                </div>
+                <div id="review-message" class="form-text mt-3 text-muted"></div>
               </div>
             </div>
 
@@ -182,12 +202,12 @@
   </footer>
 
   <script src="bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="bootstrap/chart.umd.js"></script>
   
-  <!-- Updated to use the modularized JS files. Note: Include utils.js here if you split shared helpers! -->
-   <script src="scripts/core.js"></script>
+  <script src="scripts/core.js"></script>
+  <script src="scripts/project/graph.js"></script>
   <script src="scripts/project/project.js"></script>
-  <!-- Add extra helpers  -->
-   <script src="scripts/project/votes.js"></script>
-   <script src="scripts/project/llm.js"></script>
+  <script src="scripts/project/votes.js"></script>
+  <script src="scripts/project/llm.js"></script>
 </body>
 </html>
