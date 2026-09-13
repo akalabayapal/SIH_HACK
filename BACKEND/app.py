@@ -82,11 +82,7 @@ def upload_file():
         return flask.jsonify({"error": str(e)}), 400
 
     # Return valid JSON so frontend .json() calls succeed
-    return flask.jsonify({
-        "file_name": filename,
-        "filepath": filename,
-        "file": filename
-    }), 200
+    return flask.jsonify(filename), 200
 
 @app.route("/get_training_status/<uid>", methods=["GET"])
 def get_training_status(uid):

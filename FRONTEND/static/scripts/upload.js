@@ -1,9 +1,12 @@
 /**
  * Kab Tak – upload.js
- * Workflow aligned with Flask Backend (app.py):
- * 1. POST file, month, year to http://localhost:3000/upload_file
- * 2. POST returned filepath to http://localhost:3000/retrain_model
- * 3. Poll http://localhost:3000/get_training_status/<uid> every 30s (returns boolean true/false)
+ * Workflow with Cookie Persistence & Form Locking:
+ * 1. Checks for active job in cookies on page load to restore state after refresh.
+ * 2. Uploads PDF to http://localhost:3000/upload_file
+ * 3. Triggers model retraining via http://localhost:3000/retrain_model
+ * 4. Disables form controls & stores job ID in cookie while training runs.
+ * 5. Polls http://localhost:3000/get_training_status/<job_id> every 30s.
+ * 6. Re-enables form and clears cookie upon job completion.
  */
 
 "use strict";
@@ -13,9 +16,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const MAX_PDF_BYTES = 20 * 1024 * 1024; // 20 MB max file size
   const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
   const POLL_INTERVAL_MS = 30000; // 30 seconds
+  const COOKIE_NAME = "kabtak_training_job_id";
 
   let pollingTimer = null;
 
+  // --- Cookie Helper Functions ---
+  function setCookie(name, value, hours = 24) {
+    const date = new Date();
+    date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${date.toUTCString()};path=/;SameSite=Strict`;
+  }
+
+  function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i].trim();
+      if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    }
+    return null;
+  }
+
+  function eraseCookie(name) {
+    document.cookie = `${name}=; Max-Age=-99999999; path=/;`;
+  }
+
+  // --- Auth Helpers ---
   function getSession() {
     try {
       return JSON.parse(sessionStorage.getItem("kabtak_session"));
@@ -39,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Admin authorization guard
     if (!isAdmin()) {
-      window.location.replace("login.html?next=uploads.html");
+      window.location.replace("login.html?next=upload.html");
       return;
     }
 
@@ -50,6 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const monthInput = form.elements.namedItem("reporting_month");
     const submitBtn = form.querySelector('button[type="submit"]');
     const alertBox = document.getElementById("upload-alert");
+
+    // Toggle all form controls disabled/enabled
+    const setFormDisabled = (disabled) => {
+      if (monthInput) monthInput.disabled = disabled;
+      if (docInput) docInput.disabled = disabled;
+      if (submitBtn) submitBtn.disabled = disabled;
+    };
 
     const showAlert = (type, message, showSpinner = false) => {
       if (!alertBox) return;
@@ -97,9 +130,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (docInput) docInput.addEventListener("change", checkFile);
     if (monthInput) monthInput.addEventListener("change", checkMonth);
 
-    // STEP 3: Poll training status endpoint every 30 seconds
+    // STEP 3: Poll status endpoint every 30 seconds
     const startStatusPolling = (jobId) => {
       let checkCount = 0;
+
+      // Lock form and save state to cookie
+      setFormDisabled(true);
+      setCookie(COOKIE_NAME, jobId);
 
       const checkStatus = async () => {
         checkCount++;
@@ -107,8 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         showAlert(
           "info",
-          `<strong>Retraining Model...</strong> (Job ID: <code>${jobId}</code>)<br>` +
-          `<small class="text-muted">Status check #${checkCount} at ${now}. Polling every 30s...</small>`,
+          `<strong>Retraining Model in Progress...</strong> (Job ID: <code>${jobId}</code>)<br>` +
+          `<small class="text-muted">Form is locked until completion. Status check #${checkCount} at ${now}. Polling every 30s...</small>`,
           true
         );
 
@@ -126,8 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (isCompleted === true) {
             clearInterval(pollingTimer);
-            showAlert("success", `<strong>Success!</strong> Model retraining complete for Job ID: <code>${jobId}</code>.`);
-            if (submitBtn) submitBtn.disabled = false;
+            eraseCookie(COOKIE_NAME);
+            
+            showAlert("success", `<strong>Success!</strong> Model retraining completed for Job ID: <code>${jobId}</code>.`);
+            setFormDisabled(false);
             form.reset();
             form.classList.remove("was-validated");
           }
@@ -136,10 +175,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       };
 
-      // Check immediately, then every 30s
       checkStatus();
       pollingTimer = setInterval(checkStatus, POLL_INTERVAL_MS);
     };
+
+    // --- State Restoration on Page Load ---
+    const savedJobId = getCookie(COOKIE_NAME);
+    if (savedJobId) {
+      startStatusPolling(savedJobId);
+    }
 
     // Form Submit Execution
     form.addEventListener("submit", async (e) => {
@@ -153,13 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      if (submitBtn) submitBtn.disabled = true;
+      setFormDisabled(true);
 
       // STEP 1: Upload File to /upload_file
       showAlert("primary", "Uploading PDF file...", true);
       
       const fileObj = docInput.files[0];
-      const [yearStr, monthStr] = monthInput.value.split("-"); // Extract YYYY and MM
+      const [yearStr, monthStr] = monthInput.value.split("-");
 
       const uploadDataPayload = new FormData();
       uploadDataPayload.append("file", fileObj);
@@ -177,14 +221,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const uploadData = await uploadRes.json();
 
-        // Check for error responses or status: -1
         if (!uploadRes.ok || uploadData.status === -1 || uploadData.error) {
-          const reasonMsg = uploadData.reason || uploadData.error || `Upload failed with status code ${uploadRes.status}`;
+          const reasonMsg = uploadData.reason || uploadData.error || `Upload failed (HTTP ${uploadRes.status})`;
           throw new Error(reasonMsg);
         }
 
-        // Get file path returned by server
-        returnedFilePath = uploadData.filepath || uploadData.file_name || uploadData.file;
+        returnedFilePath = uploadData.file_id;
         if (!returnedFilePath) {
           throw new Error("File uploaded, but no valid file path was returned by server.");
         }
@@ -192,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (err) {
         console.error("Step 1 Error:", err);
         showAlert("danger", `<strong>Upload Failed:</strong> ${err.message}`);
-        if (submitBtn) submitBtn.disabled = false;
+        setFormDisabled(false);
         return;
       }
 
@@ -225,11 +267,11 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (err) {
         console.error("Step 2 Error:", err);
         showAlert("danger", `<strong>Retraining Error:</strong> ${err.message}`);
-        if (submitBtn) submitBtn.disabled = false;
+        setFormDisabled(false);
         return;
       }
 
-      // STEP 3: Poll status until completion
+      // STEP 3: Lock form, save to cookie, and poll until completion
       startStatusPolling(jobId);
     });
   }

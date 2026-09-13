@@ -22,6 +22,9 @@
     "gemini_key":"YOUR_GEMINI_API_KEY",
 
     "admin_user":"Admin",
-    "admin_pwd":"Admin1234"
+    "admin_pwd":"Admin1234",
+
+    "sender_email":"YOUR_SMTP_EMAIL",
+    "sender_password":"YOUR_SMTP_PASSWORD"
 
 }
