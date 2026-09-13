@@ -11,7 +11,7 @@ if __name__ == '__main__':
         multiprocessing.set_start_method('spawn')
     except RuntimeError:
         pass
-from BACKEND.app import entry
+
 from FRONTEND.app import entry_frontend
 
 from config_loader import ModelObject
@@ -45,7 +45,8 @@ def main():
 
     # 3. Start the backend and frontend in two processes
     # As frontend do not need much debuging putting it in another thread
-
+    from BACKEND.app import entry
+    
     proc = multiprocessing.Process(target=entry_frontend,args=())
     proc.start()
 
