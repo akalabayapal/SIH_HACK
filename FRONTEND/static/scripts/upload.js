@@ -243,11 +243,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const reasonMsg = uploadData.reason || uploadData.error || `Upload failed (HTTP ${uploadRes.status})`;
             throw new Error(reasonMsg);
           }
-
+          if(uploadData.status == 0)
+          {
           returnedFilePath = uploadData.file_id;
           if (!returnedFilePath) {
             throw new Error("File uploaded, but no valid file path was returned by server.");
           }
+        }
+        else
+        {
+          const reason = uploadData.reason;
+          throw new Error("Error:"+reason);
+
+
+        }
         }
 
       } catch (err) {
