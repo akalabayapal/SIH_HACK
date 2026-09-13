@@ -4,6 +4,13 @@
 import json
 import pipeline
 import multiprocessing
+# Set start method before importing submodules if using Windows/macOS
+if __name__ == '__main__':
+    multiprocessing.freeze_support()
+    try:
+        multiprocessing.set_start_method('spawn')
+    except RuntimeError:
+        pass
 from BACKEND.app import entry
 from FRONTEND.app import entry_frontend
 

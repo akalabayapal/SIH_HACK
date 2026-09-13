@@ -43,6 +43,19 @@ CREATE TABLE IF NOT EXISTS review (
   `downvotes` int(11) NOT NULL DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS `subs` (
+  `id` int(11) NOT NULL,
+  `email` varchar(1024) NOT NULL
+) 
+
+ALTER TABLE `subs`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `subs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
 
 TRUNCATE TABLE master;
 TRUNCATE TABLE projects;

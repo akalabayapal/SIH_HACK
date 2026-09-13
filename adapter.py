@@ -24,6 +24,8 @@ from ML.feature_extractor import feature_ext
 from db_setup import setup_db
 from BACKEND import fuzzy_search as fuzzy
 
+from newsletter import process_monthly_newsletter,forward_latest_newsletter_to_new_user
+
 def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False):
 
     if debug:
@@ -106,9 +108,17 @@ class ORM:
         data_2 = self.cursor.fetchall()
         self.total_indexed_all = len(data_2)
 
+        # Check for the broadcating if needed
+        process_monthly_newsletter(self.cursor,self.call_llm)
 
+        # Start a proc to process newsletter once per month
+        
 
-
+    def email_scheduler(self):
+        # run a loop once per month
+        while True:
+            time.sleep(28*24*3600)
+            process_monthly_newsletter(self.cursor,self.call_llm)
         
         
 
@@ -519,6 +529,20 @@ LIMIT %s OFFSET %s;
 
         return data
 
+    def call_llm(self,prompt):
+        response = self.client.models.generate_content(
+                                model='gemini-2.5-flash',  # The fastest, free-tier friendly model
+                                contents=prompt,
+                                config=genai.types.GenerateContentConfig(
+                                response_mime_type="application/json",
+        )
+        )
+                    
+        
+        return response.text
+        
+
+
     def llm_query(self,json_data) -> dict:
         '''
         Query llm and gets comprehenisve explaination of the project
@@ -628,15 +652,9 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
 
 
         try:
-            response = self.client.models.generate_content(
-                        model='gemini-2.5-flash',  # The fastest, free-tier friendly model
-                        contents=prompt,
-                        config=genai.types.GenerateContentConfig(
-        response_mime_type="application/json",
-    )
-            )
+            response = self.call_llm(prompt)
 
-            return {"status":0,"content":json.loads(response.text)}
+            return {"status":0,"content":json.loads(response)}
         except Exception as ex:
             return {"status":-1,"reason":"Error failed due to:"+str(ex)}
 
@@ -774,6 +792,27 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
             "has_more":False,
             "total":len(rows)
         }
+
+    def add_subscriber(self, email: str) -> bool:
+        """
+        Inserts a new subscriber email into the 'subs' table.
+
+        :param email: User's email address string
+        :return: True if insertion succeeded, False otherwise
+        """
+        query = "INSERT INTO subs (email) VALUES (%s)"
+        try:
+            self.cursor.execute(query, (email,))
+            self.db_connection.commit()
+
+            forward_latest_newsletter_to_new_user(email=email,cursor=self.cursor,call_llm=self.call_llm)
+            return True
+        except Exception as err:
+            self.db_connection.rollback()
+            print(f"Error inserting subscriber: {err}")
+            return False
+
+        
         
 
 

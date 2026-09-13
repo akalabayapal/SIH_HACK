@@ -167,3 +167,19 @@ def filter():
     return flask.jsonify(orm.filter_content(field=field,value=val))
 
 
+@app.route('/subs_newsletter', methods=['POST'])
+def subs_newsletter():
+    # Attempt to extract email from JSON body or Form data
+    data = flask.request.get_json(silent=True) or {}
+    email = data.get('email') or flask.request.form.get('email')
+
+    if not email:
+        return flask.jsonify({'status': 'error', 'message': 'Email address is required.'}), 400
+
+    # Call ORM method created in Task 1
+    success = orm.add_subscriber(email)
+
+    if success:
+        return flask.jsonify({'status': 'success', 'message': 'Subscribed successfully!'}), 200
+    else:
+        return flask.jsonify({'status': 'error', 'message': 'Failed to save subscription. Please try again.'}), 500

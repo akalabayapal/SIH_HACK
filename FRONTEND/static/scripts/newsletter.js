@@ -7,6 +7,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const COOKIE_NAME = "kabtak_newsletter_subscribed";
   const COOKIE_DAYS = 365; // Cookie lifetime in days once accepted
+  const API_URL = "http://localhost:3000/subs_newsletter";
 
   // Helper function to read cookie value
   function getCookie(name) {
@@ -38,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize Bootstrap Modal instance
     const modalInstance = new bootstrap.Modal(modalElement);
-    
-    // Show modal flyer after a slight delay (1 second) on page load
+
+    // Show modal flyer after a 1 second delay on page load
     setTimeout(() => {
       modalInstance.show();
     }, 1000);
@@ -48,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.getElementById("newsletter-email");
 
     if (form) {
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         // Client-side email validation
@@ -57,11 +58,36 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // Store subscription cookie upon user acceptance ("Yes")
-        setCookie(COOKIE_NAME, "true", COOKIE_DAYS);
+        const email = emailInput.value.trim();
+        const submitBtn = form.querySelector('button[type="submit"]');
 
-        // Hide modal
-        modalInstance.hide();
+        try {
+          if (submitBtn) submitBtn.disabled = true;
+
+          // Make HTTP POST call to backend API
+          const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: email }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Server returned status: ${response.status}`);
+          }
+
+          // Store subscription cookie upon successful API response ("Yes")
+          setCookie(COOKIE_NAME, "true", COOKIE_DAYS);
+
+          // Hide modal overlay
+          modalInstance.hide();
+        } catch (err) {
+          console.error("Failed to subscribe to newsletter:", err);
+          alert("Something went wrong with your subscription. Please try again.");
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
       });
     }
   }
