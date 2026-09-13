@@ -10,7 +10,7 @@
     "host_frontend":"localhost",
     "port_frontend":"8000",
 
-    "is_trained":true,
+    "is_trained":false,
 
     "raw_pdf":"ML/raw",
     "raw_csv":"ML/csv/raw",

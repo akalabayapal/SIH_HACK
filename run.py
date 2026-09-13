@@ -43,6 +43,8 @@ def main():
         # Make it train as true
         obj['is_trained'] = True
 
+        # dump the new json to file
+        open("config.json","w").write(json.dumps(obj))
     # 3. Start the backend and frontend in two processes
     # As frontend do not need much debuging putting it in another thread
     from BACKEND.app import entry
