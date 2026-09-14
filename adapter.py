@@ -911,7 +911,9 @@ class Trainer:
                 self.mobj.p_csv,
                 self.mobj.master_csv,
                 self.mobj.cost_data,
-                self.mobj.time_data
+                self.mobj.time_data,
+                False,
+                True
                 ))
 
             self.procs[uid] = p

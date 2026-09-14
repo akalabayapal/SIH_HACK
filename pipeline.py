@@ -10,7 +10,7 @@ import os
 
 import sys
 
-def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False):
+def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False,reload=False):
 
     if not debug:
         sys.stdout = open(os.devnull, 'w')
@@ -32,11 +32,23 @@ def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str
     train_model(out_file,out_cost=out_cost,out_time=out_time)
 
     #Now upload it to the db
-    print("[+] Setting up database and making tables...")
-    setup_db()
+    if not reload:
+        print("[+] Setting up database and making tables...")
+        setup_db()
+        
+        print('[+] Uploading data to database...')
+        upload(out_file,out_cost,out_time) 
+            
+    else:
+        # save the token for restart
+                
+        if not os.path.exists(".token"):
+            f = open(".token")
+            f.write("")
+            f.close()
 
-    print('[+] Uploading data to database...')
-    upload(out_file,out_cost,out_time)
+        
+
 
 
 

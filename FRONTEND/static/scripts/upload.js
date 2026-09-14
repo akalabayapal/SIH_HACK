@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
             clearInterval(pollingTimer);
             eraseCookie(COOKIE_NAME);
             
-            showAlert("success", `<strong>Success!</strong> Model retraining completed for Job ID: <code>${jobId}</code>.`);
+            showAlert("success", `<strong>Success!</strong> Model retraining completed for Job ID: <code>${jobId}</code>.Manual Restarting is needed for data to reflect`);
             setFormDisabled(false);
             form.reset();
             form.classList.remove("was-validated");

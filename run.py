@@ -13,8 +13,10 @@ if __name__ == '__main__':
         pass
 
 from FRONTEND.app import entry_frontend
-
 from config_loader import ModelObject
+import os
+from adapter import upload
+from db_setup import setup_db
 
 def main():
 
@@ -40,6 +42,8 @@ def main():
                     debug=True
         )
 
+
+        
         # Make it train as true
         obj['is_trained'] = True
 
@@ -47,6 +51,15 @@ def main():
         open("config.json","w").write(json.dumps(obj))
     # 3. Start the backend and frontend in two processes
     # As frontend do not need much debuging putting it in another thread
+    if os.path.exists(".token"):
+        try:
+            os.remove(".token")
+        except:
+            pass
+        setup_db()
+        upload(mobj.master_csv,mobj.cost_data,mobj.time_data)
+
+
     from BACKEND.app import entry
     
     proc = multiprocessing.Process(target=entry_frontend,args=())
