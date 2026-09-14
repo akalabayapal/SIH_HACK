@@ -871,10 +871,7 @@ class Trainer:
 
         return uid.hex # return the job id
 
-    def check_procs(self):
-        for p in self.procs:
-            if not self.procs[p].is_alive():
-                del self.procs[p]
+ 
 
 
     def train_scheduler(self):
@@ -901,8 +898,10 @@ class Trainer:
             temp = os.path.join('temp',uid)
             os.mkdir(temp)
 
-            #1. Copy the file
+            #1. Copy the file both to the temp and also to the main raw dir
             shutil.copyfile(file_path,os.path.join(temp,os.path.basename(file_path)))
+            shutil.copyfile(file_path,os.path.join(temp,os.path.basename(file_path)))
+
 
             #2. Start the training process
             p = multiprocessing.Process(target=pipeline,args=(
@@ -918,14 +917,11 @@ class Trainer:
             self.procs[uid] = p
 
             p.start()
-            self.check_procs()
-
             time.sleep(0.3)
 
 
     def get_status(self,uid):
         p: multiprocessing.Process = self.procs[uid]
-
         return p.is_alive()
 
 
