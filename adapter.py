@@ -47,7 +47,7 @@ def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str
 
                 
     if not os.path.exists(".token"):
-        f = open(".token")
+        f = open(".token",'w')
         f.write("")
         f.close()
 
