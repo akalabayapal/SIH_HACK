@@ -31,25 +31,12 @@ def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str
         print("[+] Train the full model and dump the csv file")
     train_model(out_file,out_cost=out_cost,out_time=out_time)
 
-    #Now upload it to the db
-    if not reload:
-        print("[+] Setting up database and making tables...")
-        setup_db()
+    
+    print("[+] Setting up database and making tables...")
+    setup_db()
         
-        print('[+] Uploading data to database...')
-        upload(out_file,out_cost,out_time) 
-            
-    else:
-        # save the token for restart
-                
-        if not os.path.exists(".token"):
-            f = open(".token")
-            f.write("")
-            f.close()
-
-        
-
-
+    print('[+] Uploading data to database...')
+    upload(out_file,out_cost,out_time) 
 
 
 if __name__ == "__main__":

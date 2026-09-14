@@ -28,6 +28,7 @@ from newsletter import process_monthly_newsletter,forward_latest_newsletter_to_n
 
 def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False):
 
+
     if debug:
         print("[+] Preprocessing the pdfs to extract csv...")
     extract_raw(pdf_folder,raw_csv_folder)
@@ -44,12 +45,11 @@ def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str
         print("[+] Train the full model and dump the csv file")
     train_model(out_file,out_cost=out_cost,out_time=out_time)
 
-    # Now upload it to the db
-    print("[+] Setting up database and making tables...")
-    setup_db()
-
-    print('[+] Uploading data to database...')
-    upload(out_file,out_cost,out_time)
+                
+    if not os.path.exists(".token"):
+        f = open(".token")
+        f.write("")
+        f.close()
 
 
 
@@ -912,7 +912,6 @@ class Trainer:
                 self.mobj.master_csv,
                 self.mobj.cost_data,
                 self.mobj.time_data,
-                False,
                 True
                 ))
 
