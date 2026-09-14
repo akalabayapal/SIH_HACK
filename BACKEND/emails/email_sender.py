@@ -168,18 +168,3 @@ def broadcast(subject: str, content_json: list, cursor, text_fallback: str = "Pl
         return False
 
 
-# ---------------------------------------------------------------------------
-# Example Usage & Testing
-# ---------------------------------------------------------------------------
-if __name__ == "__main__":
-    test_content = [
-        {"Monthly Overview": "In March 2026, 85% of infrastructure projects met expected milestones."},
-        {"Critical Risk Alert": "NIT Rourkela Hostel expansion project requires budget reallocation due to procurement delays."}
-    ]
-
-    # Test single send
-    send(
-        recipient="kallol.lipika2006@gmail.com",
-        subject="Kab Tak Project Update - March 2026",
-        content_json=test_content
-    )

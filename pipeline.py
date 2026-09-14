@@ -31,7 +31,7 @@ def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str
         print("[+] Train the full model and dump the csv file")
     train_model(out_file,out_cost=out_cost,out_time=out_time)
 
-    # Now upload it to the db
+    #Now upload it to the db
     print("[+] Setting up database and making tables...")
     setup_db()
 

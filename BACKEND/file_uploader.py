@@ -57,7 +57,8 @@ def upload(file, month, year, overwrite=False) -> str:
     filepath = os.path.join(UPLOAD_FOLDER, filename+".pdf")
 
     if os.path.exists(filepath) or os.path.exists(os.path.join(ModelObject().raw_pdf,filename+".pdf")):
-        return json.dumps({"status":-1,"reason":f"a report for {MONTHS[int(month) - 1].capitalize()}/{year} already exists"})
+        v =  {"status":-1,"reason":f"a report for {MONTHS[int(month) - 1].capitalize()}/{year} already exists"}
+        return v
 
     file.save(filepath)
     return {"status":0,"file_id":filename}

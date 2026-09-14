@@ -57,6 +57,8 @@ class ORM:
     def __init__(self):
 
         self.config = config_loader.SqlObject()
+        self.fetching = False
+        self.get = False
 
         if self.config.gem_key == "YOUR_GEMINI_API_KEY":
             print("WARNING:Your gemini client has not been configured using dev mode dummy simulation for .llm_query()")
@@ -167,7 +169,7 @@ class ORM:
         tytp = 0
         tbtp = 0
         
-        for data in tqdm.tqdm(cost_model):
+        for index,data in tqdm.tqdm(enumerate(cost_model)):
 
             code = data[1]
             department,n = data[2].split("___",1)
@@ -198,7 +200,7 @@ class ORM:
             cost_target = master_filtered[9]
             cost_target_revised = master_filtered[10]
             cspend = master_filtered[11]
-            progress = max(master_all[:,-2])
+            progress = time_model[index][-1]
 
    
 
@@ -364,6 +366,8 @@ class ORM:
         '''
         Gets all rows and send them all to UI
         '''
+        while self.get or self.fetching:
+            pass
 
         page = max(1, page)
         limit = max(1, limit)
@@ -405,6 +409,12 @@ class ORM:
         Gets the top k filtered project results
         '''
 
+        while self.fetching:
+            pass
+
+        self.get = True
+
+
         page = max(1, page)
         limit = max(1, limit)
         offset = (page - 1) * limit
@@ -432,6 +442,8 @@ LIMIT %s OFFSET %s;
         
         # Fetch all rows directly with state included
         rows = self.cursor.fetchall()
+
+        self.get = False
         
         # Return the result
         return {
@@ -457,6 +469,10 @@ LIMIT %s OFFSET %s;
         }
 
     def get_projects_by_name(self, names: list[tuple]) -> list[dict]:
+
+        while self.get or self.fetching:
+            pass
+
         if not names:
             return []
 
@@ -491,6 +507,10 @@ LIMIT %s OFFSET %s;
         '''
         Returns a single project data along with its historical trend
         '''
+        while self.get:
+            pass
+
+        self.fetching = True
 
         # Get current project from projects
         sql_project = "SELECT * FROM `projects` WHERE `code` = %s"
@@ -526,6 +546,8 @@ LIMIT %s OFFSET %s;
         history = self.cursor.fetchall()
 
         data["history"] = history
+
+        self.fetching = False
 
         return data
 
@@ -748,6 +770,8 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
         """
         Return the unique entries of a field from the master table.
         """
+        while self.get or self.fetching:
+                    pass
         # 1. Sanitize/validate column name to prevent SQL injection
         # Replace backticks or restrict field names if necessary
         safe_field = field.replace("`", "")
@@ -874,12 +898,15 @@ class Trainer:
             file_path = item['file_path']
             uid = item['uid']
 
+            temp = os.path.join('temp',uid)
+            os.mkdir(temp)
+
             #1. Copy the file
-            shutil.copyfile(file_path,os.path.join(self.mobj.raw_pdf,os.path.basename(file_path)))
+            shutil.copyfile(file_path,os.path.join(temp,os.path.basename(file_path)))
 
             #2. Start the training process
             p = multiprocessing.Process(target=pipeline,args=(
-                self.mobj.raw_pdf,
+                temp,
                 self.mobj.raw_csv,
                 self.mobj.p_csv,
                 self.mobj.master_csv,

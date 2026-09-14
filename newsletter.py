@@ -79,6 +79,8 @@ def generate_llm_newsletter(analytics_data: dict,call_llm) -> list:
     {json.dumps(analytics_data, indent=2, default=str)}
 
     Generate a comprehensive executive newsletter breakdown covering key risks, top-performing/underperforming states & departments, and recommendations.
+    It should not include improvements in model but improvements and recomendations for projects. No not add sub-lists inside the schema write only in paragrpahs.
+    Use history,location and other insights to validate the risk scores and other facts, when ever needed.
 
     CRITICAL INSTRUCTION:
     Return ONLY a JSON array of single-key dictionaries matching this exact schema:

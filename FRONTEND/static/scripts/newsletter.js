@@ -26,11 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = `${name}=${encodeURIComponent(value)};expires=${date.toUTCString()};path=/;SameSite=Strict`;
   }
+  function getSession() {
+    try {
+      return JSON.parse(sessionStorage.getItem("kabtak_session"));
+    } catch {
+      return null;
+    }
+  }
 
   function initNewsletterPopup() {
+
     // 1. Check if user has already subscribed
     const isSubscribed = getCookie(COOKIE_NAME);
-    if (isSubscribed === "true") {
+    if (isSubscribed === "true" || getSession() != null) {
       return; // Do not show flyer if cookie exists
     }
 
