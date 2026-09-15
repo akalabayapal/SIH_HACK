@@ -1,6 +1,6 @@
-# 🌿 PAIMANA_KT — Project Monitoring & Risk Prediction
+# 🌿 KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM) — Project Monitoring & Risk Prediction
 
-**PAIMANA_KT** is an integrated project monitoring and risk prediction platform developed for the **Smart India Hackathon (SIH)**.
+**KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)** is an integrated project monitoring and risk prediction platform developed for the **Smart India Hackathon (SIH)**.
 
 It combines project monitoring, machine learning, AI-powered analysis, and risk prediction to help identify potential **cost, schedule, and overall project risks**.
 
@@ -114,7 +114,7 @@ Example:
 
 ### MySQL
 
-MySQL must be installed and running before starting PAIMANA_KT.
+MySQL must be installed and running before starting KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM).
 
 **You do not need to manually create the database or import `hckdb.sql`.** The project's Python scripts automatically create and initialize the required database and tables.
 
@@ -153,7 +153,7 @@ This allows the application to perform the required ML/data-processing pipeline 
 
 ---
 
-## ▶️ Running PAIMANA_KT
+## ▶️ Running KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)
 
 Once MySQL is running and `config.json` is configured, simply run:
 
@@ -178,7 +178,7 @@ That's all.
 ## 📁 Project Structure
 
 ```text
-PAIMANA_KT/
+KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)/
 │
 ├── BACKEND/              # Backend/API
 ├── FRONTEND/             # User interface
@@ -270,7 +270,7 @@ For production deployments, use environment variables or a secure secret-managem
 
 ## 🏆 Smart India Hackathon
 
-**PAIMANA_KT** was developed as part of the **Smart India Hackathon (SIH)** to provide an intelligent platform for project monitoring, risk prediction, and AI-assisted project analysis.
+**KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)** was developed as part of the **Smart India Hackathon (SIH)** to provide an intelligent platform for project monitoring, risk prediction, and AI-assisted project analysis.
 
 ---
 
@@ -288,4 +288,4 @@ Configure `config.json`, make sure MySQL is running, and then:
 python run.py
 ```
 
-> **Configure once → Start MySQL → Run `python run.py` → PAIMANA_KT starts.** 🚀
+> **Configure once → Start MySQL → Run `python run.py` → KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM) starts.** 🚀
