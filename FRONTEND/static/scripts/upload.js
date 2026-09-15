@@ -145,10 +145,25 @@ document.addEventListener("DOMContentLoaded", () => {
       // Lock form and save state to cookie
       setFormDisabled(true);
       setCookie(COOKIE_NAME, jobId);
+       
 
       const checkStatus = async () => {
-        checkCount++;
         const now = new Date().toLocaleTimeString();
+        checkCount++;
+        if(checkCount == 1)
+        {
+          showAlert(
+          "info",
+          `<strong>Retraining Model in Progress...</strong> (Job ID: <code>${jobId}</code>)<br>` +
+          `<small class="text-muted">Form is locked until completion. Status check #${checkCount} at ${now}. Polling every 30s...</small>`,
+          true
+        );
+
+
+        return;
+        }
+
+
         
         showAlert(
           "info",
@@ -173,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Backend returns boolean: true = completed, false = running
             isCompleted = await res.json();
+            console.log(isCompleted);
           }
 
           if (isCompleted === true) {
@@ -238,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           const uploadData = await uploadRes.json();
+          console.log(uploadData);
 
           if (!uploadRes.ok || uploadData.status === -1 || uploadData.error) {
             const reasonMsg = uploadData.reason || uploadData.error || `Upload failed (HTTP ${uploadRes.status})`;
@@ -290,8 +307,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           const retrainData = await retrainRes.json();
+          console.log(retrainData);
           jobId = retrainData.job_id || retrainData.uid;
-
+          console.log(retrainData.job_id);
           if (!jobId) {
             throw new Error("Retrain request succeeded, but no Job ID / UID was returned.");
           }

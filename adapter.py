@@ -23,14 +23,26 @@ from ML.train import train_model
 from ML.feature_extractor import feature_ext
 from db_setup import setup_db
 from BACKEND import fuzzy_search as fuzzy
-
 from newsletter import process_monthly_newsletter,forward_latest_newsletter_to_new_user
+import requests
+
+def ollama(prompt, model="llama3.2:1b"):
+    response = requests.post(
+        "http://localhost:11434/api/generate",
+        json={
+            "model": model,
+            "prompt": prompt,
+            "stream": False
+        }
+    )
+
+    response.raise_for_status()
+
+    return response.json()["response"]
 
 def pipeline(pdf_folder: str,raw_csv_folder: str,p_csv_folder: str,out_file: str,out_cost:str,out_time:str,debug :bool=False):
 
-
-    if debug:
-        print("[+] Preprocessing the pdfs to extract csv...")
+    print("[+] Preprocessing the pdfs to extract csv...")
     extract_raw(pdf_folder,raw_csv_folder)
 
     if debug:
@@ -552,6 +564,7 @@ LIMIT %s OFFSET %s;
         return data
 
     def call_llm(self,prompt):
+
         response = self.client.models.generate_content(
                                 model='gemini-2.5-flash',  # The fastest, free-tier friendly model
                                 contents=prompt,
@@ -889,7 +902,7 @@ class Trainer:
 
                 break # Use this as a poison pill
             except:
-                self.check_procs()
+ 
                 continue
 
             file_path = item['file_path']
@@ -899,7 +912,6 @@ class Trainer:
             os.mkdir(temp)
 
             #1. Copy the file both to the temp and also to the main raw dir
-            shutil.copyfile(file_path,os.path.join(temp,os.path.basename(file_path)))
             shutil.copyfile(file_path,os.path.join(temp,os.path.basename(file_path)))
 
 
