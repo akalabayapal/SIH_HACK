@@ -564,6 +564,7 @@ LIMIT %s OFFSET %s;
         return data
 
     def call_llm(self,prompt):
+        
 
         response = self.client.models.generate_content(
                                 model='gemini-2.5-flash',  # The fastest, free-tier friendly model
@@ -785,9 +786,14 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
         """
         while self.get or self.fetching:
                     pass
+
         # 1. Sanitize/validate column name to prevent SQL injection
         # Replace backticks or restrict field names if necessary
         safe_field = field.replace("`", "")
+
+        if safe_field == "rl":
+            # Process the risk level different types
+            return [["High Risk"],["Medium Risk"],["Low Risk"]]
 
         # 2. Format column name directly into the SQL string
         sql_unique = f"SELECT DISTINCT `{safe_field}` FROM `master`;"
@@ -801,24 +807,50 @@ DATA:""" +json.dumps(json_data, indent=2, default=str)
         return results
 
     def filter_content(self,field: str,value: str):
+
         '''
         Filter content by field
         '''
 
         sql_data = f"""
+        
+                SELECT 
+                    p.code,
+                    p.cost_risk, 
+                    p.time_risk, 
+                    p.name, 
+                    p.overall_risk,
+                    m.state
+                FROM `projects` p
+                LEFT JOIN `master` m ON p.code = m.code
+                WHERE m.{field} = '{value}'
+                GROUP BY p.code
+                """
 
-        SELECT 
-            p.code,
-            p.cost_risk, 
-            p.time_risk, 
-            p.name, 
-            p.overall_risk,
-            m.state
-        FROM `projects` p
-        LEFT JOIN `master` m ON p.code = m.code
-        WHERE m.{field} = '{value}'
-        GROUP BY p.code
-        """
+
+        if field == 'rl':
+            # The field need to be adjust sql
+            placeholder = """
+                    
+                            SELECT 
+                                p.code,
+                                p.cost_risk, 
+                                p.time_risk, 
+                                p.name, 
+                                p.overall_risk,
+                                m.state
+                            FROM `projects` p
+                            LEFT JOIN `master` m ON p.code = m.code
+                            WHERE p.overall_risk > {} and p.overall_risk < {}
+                            GROUP BY p.code
+                            """
+
+            if value == "High Risk":
+                sql_data = placeholder.format(70,100)
+            elif value == "Medium Risk":
+                sql_data = placeholder.format(30,70)
+            else:
+                sql_data = placeholder.format(0,30)
 
         self.cursor.execute(sql_data)
 

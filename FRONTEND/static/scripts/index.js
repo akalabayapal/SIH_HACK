@@ -161,20 +161,20 @@ function createProjectItem(project) {
   li.dataset.projectId = project.id;
   li.innerHTML = `
     <div class="row g-2 align-items-center">
-      <div class="col-2 col-md-1 kt-rank fw-semibold text-secondary">${project.id}</div>
+      <div class="col-2 col-md-1 kt-rank fw-semibold text-secondary"><span>${project.id}</span></div>
       <div class="col-10 col-md-5">
         <a href="project.html?id=${encodeURIComponent(project.id)}"
            class="fw-semibold text-body text-decoration-none stretched-link">${escapeHTML(capitalizeWords(name))}</a>
-        <div class="small text-secondary">${escapeHTML(capitalizeWords(dept))} | ${escapeHTML(capitalizeWords(project.state))}</div>
+        <div class="small text-secondary"><span>${escapeHTML(capitalizeWords(dept))} | ${escapeHTML(capitalizeWords(project.state))}</span></div>
       </div>
       <div class="col-4 col-md-2">
-        <span class="small text-secondary d-block d-md-none">Time risk</span>${riskBadge(project.timeRisk)}
+        <span class="small text-secondary d-block d-md-none">Time risk</span><span>${riskBadge(project.timeRisk)}</span>
       </div>
       <div class="col-4 col-md-2">
-        <span class="small text-secondary d-block d-md-none">Cost risk</span>${riskBadge(project.costRisk)}
+        <span class="small text-secondary d-block d-md-none">Cost risk</span><span>${riskBadge(project.costRisk)}</span>
       </div>
       <div class="col-4 col-md-2 kt-combined-risk">
-        <span class="small text-secondary d-block d-md-none">Combined</span>${combinedRiskCell(project.combinedRisk)}
+        <span class="small text-secondary d-block d-md-none">Combined</span><span>${combinedRiskCell(project.combinedRisk)}</span>
       </div>
     </div>`;
   attachPreviewHandlers(li, project.id);

@@ -6,6 +6,7 @@ from flask_cors import CORS
 from BACKEND import file_uploader
 from config_loader import ServerObject, AuthObject
 from adapter import ORM, Trainer
+from deep_translator import LibreTranslator
 
 orm = ORM()
 tr = Trainer()
@@ -22,6 +23,19 @@ def entry():
         port=serv_details.port_backend,
         debug=False
     )
+
+@app.route('/translate', methods=['POST'])
+def translate_text():
+    data = flask.request.json
+    english_text = data.get('text', '')
+    target_lang = data.get('lang', 'hi') # Default to Hindi ('hi')
+    
+    try:
+        # Translates text automatically on the fly
+        translated = LibreTranslator(source='en', target=target_lang).translate(english_text)
+        return flask.jsonify({"translated_text": translated})
+    except Exception as e:
+        return flask.jsonify({"error": str(e)}), 500
 
 @app.route("/get_all")
 def get_all():

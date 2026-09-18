@@ -4,6 +4,7 @@
 import json
 import pipeline
 import multiprocessing
+import subprocess
 # Set start method before importing submodules if using Windows/macOS
 if __name__ == '__main__':
     multiprocessing.freeze_support()
@@ -58,6 +59,16 @@ def main():
             pass
         setup_db()
         upload(mobj.master_csv,mobj.cost_data,mobj.time_data)
+
+    # Check if the upload folder exists
+    print("[+] Making uploads folder if needed...")
+    if not os.path.exists(os.path.join("BACKEND","uploads")):
+        os.mkdir(os.path.join("BACKEND","uploads"))
+
+    print("[+] Starting translational engine")
+    subprocess.Popen(["libretranslate", "--load-only", "en,bn,hi,ur"])
+
+
 
 
     from BACKEND.app import entry

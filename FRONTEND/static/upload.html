@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload Report - Kab Tak</title>
-  
+
   <!-- Bootstrap 5 (vendored locally, consistent with the rest of the site) -->
   <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
   <!-- Bootstrap Icons -->
@@ -13,6 +14,7 @@
   <!-- Custom Upload Stylesheet -->
   <link rel="stylesheet" href="style/upload.css">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
   <!-- Header -->
@@ -27,11 +29,32 @@
       </a>
       <div class="d-flex align-items-center gap-2 ms-auto">
         <span class="badge text-bg-light d-none d-sm-inline-flex align-items-center gap-1 px-3 py-2">
-          <i class="bi bi-shield-lock-fill text-primary"></i> Admin portal
+          <i class="bi bi-shield-lock-fill text-primary"></i><span> Admin portal</span>
         </span>
+
+        <button type="button" class="btn btn-outline-light btn-sm kt-theme-toggle me-2" data-theme-toggle></button>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <!-- Translator  -->
+        <div class="logo">SIH Hackathon Website</div>
+
+        <!-- ADD IT HERE IN THE NAVBAR -->
+        <div class="lang-container">
+          <select id="languageSelector" onchange="changeWebsiteLanguage()">
+            <option value="en">English</option>
+            <option value="hi">Hindi (हिंदी)</option>
+            <option value="bn">Bengali (বাংলা)</option>
+            <option value="ur">Urdu (اردو)</option>
+          </select>
+        </div>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
         <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout">Logout</button>
       </div>
     </div>
+
   </nav>
 
   <!-- Hero Header -->
@@ -67,33 +90,35 @@
                 <!-- Input 1: Reporting Month & Year -->
                 <div class="mb-4">
                   <label for="reporting_month" class="form-label fw-semibold">
-                    Reporting Month &amp; Year <span class="text-danger">*</span>
+                    <span>Reporting Month &amp; Year </span> <span class="text-danger">*</span>
                   </label>
                   <div class="kt-field">
                     <i class="bi bi-calendar-month kt-field-icon" aria-hidden="true"></i>
-                    <input type="month" class="form-control form-control-lg kt-field-input" id="reporting_month" name="reporting_month" required>
-                    <div class="invalid-feedback">Please select a valid month and year.</div>
+                    <input type="month" class="form-control form-control-lg kt-field-input" id="reporting_month"
+                      name="reporting_month" required>
+                    <div class="invalid-feedback"><span>Please select a valid month and year.</span></div>
                   </div>
                 </div>
 
                 <!-- Input 2: PDF Document File -->
                 <div class="mb-4">
                   <label for="document" class="form-label fw-semibold">
-                    PDF Document <span class="text-danger">*</span>
+                    <span>PDF Document</span> <span class="text-danger">*</span>
                   </label>
                   <div class="kt-field-file">
                     <i class="bi bi-cloud-arrow-up kt-field-file-icon" aria-hidden="true"></i>
                     <span class="kt-field-file-title">Click to upload the monthly report</span>
                     <span class="kt-field-file-hint">Standard .pdf files, up to 20 MB</span>
-                    <input type="file" class="form-control form-control-lg kt-dropzone" id="document" name="document" accept=".pdf,application/pdf" required>
-                    <div class="invalid-feedback">Please upload a valid PDF file.</div>
+                    <input type="file" class="form-control form-control-lg kt-dropzone" id="document" name="document"
+                      accept=".pdf,application/pdf" required>
+                    <div class="invalid-feedback"><span>Please upload a valid PDF file.</span></div>
                   </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="pt-2">
                   <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold kt-upload-submit">
-                    <i class="bi bi-upload me-1"></i> Upload Report
+                    <i class="bi bi-upload me-1"></i> <span>Upload Report</span>
                   </button>
                 </div>
 
@@ -110,12 +135,15 @@
   <!-- Footer -->
   <footer class="kt-footer py-4 mt-auto">
     <div class="container text-center small">
-      <p class="mb-0 opacity-90">&copy; 2026 <span class="kt-footer-title fw-semibold">Kab Tak</span> Infrastructure Accountability Portal.</p>
+      <p class="mb-0 opacity-90">&copy; 2026 <span class="kt-footer-title fw-semibold">Kab Tak</span> Infrastructure
+        Accountability Portal.</p>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="bootstrap/bootstrap.bundle.min.js"></script>
   <script src="scripts/upload.js"></script>
+  <script src="scripts/translate.js"></script>
 </body>
+
 </html>

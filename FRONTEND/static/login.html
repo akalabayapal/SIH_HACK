@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
   <!-- Updated to use the modularized CSS file -->
   <link rel="stylesheet" href="style/login.css">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
   <a href="#main-content" class="visually-hidden-focusable kt-skip-link">Skip to main content</a>
@@ -24,17 +26,40 @@
         </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" data-admin-only hidden><a class="nav-link" href="upload.html">Upload projects</a></li>
         </ul>
+
+        <button type="button" class="btn btn-outline-light btn-sm kt-theme-toggle me-2" data-theme-toggle></button>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <!-- Translator  -->
+        <div class="logo">SIH Hackathon Website</div>
+
+        <!-- ADD IT HERE IN THE NAVBAR -->
+        <div class="lang-container">
+          <select id="languageSelector" onchange="changeWebsiteLanguage()">
+            <option value="en">English</option>
+            <option value="hi">Hindi (हिंदी)</option>
+            <option value="bn">Bengali (বাংলা)</option>
+            <option value="ur">Urdu (اردو)</option>
+          </select>
+        </div>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
         <a class="btn btn-light btn-sm px-3 fw-semibold" href="login.html" id="nav-login">Admin login</a>
-        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout" hidden>Logout</button>
+        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout"
+          hidden>Logout</button>
       </div>
     </div>
+
+
   </nav>
 
   <main id="main-content" tabindex="-1">
@@ -43,7 +68,8 @@
       <div class="container">
         <div class="row align-items-center justify-content-center min-vh-50">
           <div class="col-12 text-center text-white kt-auth-hero-content">
-            <p class="kt-hero-dept mb-2">Government of India &middot; Ministry of Statistics and Programme Implementation</p>
+            <p class="kt-hero-dept mb-2">Government of India &middot; Ministry of Statistics and Programme
+              Implementation</p>
             <div class="kt-auth-shield mb-3">
               <i class="bi bi-shield-lock-fill"></i>
             </div>
@@ -71,7 +97,8 @@
                     <label for="username" class="form-label fw-medium">Admin ID</label>
                     <div class="kt-field">
                       <i class="bi bi-person-fill kt-field-icon" aria-hidden="true"></i>
-                      <input type="text" class="form-control form-control-lg kt-field-input" id="username" name="username" placeholder="Enter your admin ID" autocomplete="username" required>
+                      <input type="text" class="form-control form-control-lg kt-field-input" id="username"
+                        name="username" placeholder="Enter your admin ID" autocomplete="username" required>
                       <div class="invalid-feedback">Enter your admin ID.</div>
                     </div>
                   </div>
@@ -79,8 +106,11 @@
                     <label for="password" class="form-label fw-medium">Password</label>
                     <div class="kt-field">
                       <i class="bi bi-lock-fill kt-field-icon" aria-hidden="true"></i>
-                      <input type="password" class="form-control form-control-lg kt-field-input kt-field-input-pad-r" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
-                      <button class="kt-field-toggle" type="button" id="toggle-password" aria-label="Show or hide password">
+                      <input type="password" class="form-control form-control-lg kt-field-input kt-field-input-pad-r"
+                        id="password" name="password" placeholder="Enter your password" autocomplete="current-password"
+                        required>
+                      <button class="kt-field-toggle" type="button" id="toggle-password"
+                        aria-label="Show or hide password">
                         <i class="bi bi-eye"></i>
                       </button>
                       <div class="invalid-feedback">Enter your password.</div>
@@ -90,12 +120,13 @@
                   <button type="submit" class="btn btn-primary w-100 btn-lg fw-semibold kt-auth-submit">
                     <span class="kt-auth-submit-text">Log in</span>
                     <i class="bi bi-arrow-right ms-1 kt-auth-submit-arrow"></i>
-                    <span class="kt-auth-submit-spinner spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                    <span class="kt-auth-submit-spinner spinner-border spinner-border-sm ms-2 d-none" role="status"
+                      aria-hidden="true"></span>
                   </button>
                 </form>
                 <div class="text-center mt-4 pt-3 border-top">
                   <a href="index.html" class="text-decoration-none small text-secondary kt-back-link">
-                    <i class="bi bi-arrow-left me-1"></i>Back to home
+                    <i class="bi bi-arrow-left me-1"></i><span>Back to home</span>
                   </a>
                 </div>
               </div>
@@ -108,14 +139,17 @@
 
   <footer class="kt-footer py-4 mt-auto">
     <div class="container text-center small">
-      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span> &middot; Ministry of Statistics and Programme Implementation, Government of India</p>
+      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span>&nbsp;<span> Ministry of Statistics and
+          Programme Implementation, Government of India</span></p>
       <p class="mb-0 opacity-75">Built for Smart India Hackathon &middot; Problem statement 26103</p>
     </div>
   </footer>
 
   <script src="bootstrap/bootstrap.bundle.min.js"></script>
-  
+
   <!-- Updated to use the modularized JS file -->
   <script src="scripts/login.js"></script>
+  <script src="scripts/translate.js"></script>
 </body>
+
 </html>

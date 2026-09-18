@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kab Tak: project monitoring and risk early-warning system.">
   <title>Kab Tak | Project Monitoring System</title>
-  
+
+
+  <script src="scripts/theme.js"></script>   <!-- no defer/async: prevents a white flash -->
+
   <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="style/theme.css">
   <link rel="stylesheet" href="style/index.css">
+  <link rel="stylesheet" href="style/theme.css">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
   <a href="#main-content" class="visually-hidden-focusable kt-skip-link">Skip to main content</a>
@@ -25,17 +30,38 @@
         </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" data-admin-only hidden><a class="nav-link" href="upload.html">Upload projects</a></li>
         </ul>
+
+        <button type="button" class="btn btn-outline-light btn-sm kt-theme-toggle me-2" data-theme-toggle></button>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <!-- Translator  -->
+
+        <!-- ADD IT HERE IN THE NAVBAR -->
+        <div class="lang-container">
+          <select id="languageSelector" onchange="changeWebsiteLanguage()">
+            <option value="en">English</option>
+            <option value="hi">Hindi (हिंदी)</option>
+            <option value="bn">Bengali (বাংলা)</option>
+            <option value="ur">Urdu (اردو)</option>
+          </select>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
         <a class="btn btn-light btn-sm px-3 fw-semibold" href="login.html" id="nav-login">Admin login</a>
-        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout" hidden>Logout</button>
+        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout"
+          hidden>Logout</button>
       </div>
     </div>
+
+
   </nav>
 
   <main id="main-content" tabindex="-1">
@@ -44,7 +70,8 @@
     <section class="kt-hero" aria-labelledby="site-title">
       <div class="kt-hero-infra-bg" aria-hidden="true"></div>
       <div class="container">
-        <p class="kt-hero-dept mb-2">Ministry of Statistics and Programme Implementation &middot; Government of India</p>
+        <p class="kt-hero-dept mb-2">Ministry of Statistics and Programme Implementation &middot; Government of India
+        </p>
         <h1 class="kt-hero-title" id="site-title">Kab Tak</h1>
         <p class="kt-hero-title-hi mb-0" lang="hi">कब तक</p>
         <div class="kt-hero-rule" aria-hidden="true"></div>
@@ -53,19 +80,19 @@
         <div class="kt-kpi-grid" aria-label="Key monitoring indicators">
           <div class="kt-kpi-card">
             <div class="kt-kpi-value" id="kpi-total">&ndash;</div>
-            <div class="kt-kpi-label">Projects monitored</div>
+            <div class="kt-kpi-label"><span>Projects monitore</span>d</div>
           </div>
           <div class="kt-kpi-card">
             <div class="kt-kpi-value" id="kpi-coverage">&ndash;</div>
-            <div class="kt-kpi-label">Prediction coverage</div>
+            <div class="kt-kpi-label"><span>Prediction coverage</span></div>
           </div>
           <div class="kt-kpi-card">
             <div class="kt-kpi-value" id="kpi-predicted">&ndash;</div>
-            <div class="kt-kpi-label">Risk-assessed projects</div>
+            <div class="kt-kpi-label"><span>Risk-assessed projects</span></div>
           </div>
           <div class="kt-kpi-card">
             <div class="kt-kpi-value" id="kpi-tytp">&ndash;</div>
-            <div class="kt-kpi-label">Too young to predict</div>
+            <div class="kt-kpi-label"><span>Too young to predict</span></div>
           </div>
         </div>
       </div>
@@ -76,7 +103,8 @@
       <div class="container">
         <p class="kt-eyebrow mb-2">Executive analytics</p>
         <h2 class="h4 kt-section-title mb-1" id="summary-title">Prediction coverage</h2>
-        <p class="kt-section-sub mb-4">How many of the <span id="total-projects">–</span> monitored projects the risk model could assess.</p>
+        <p class="kt-section-sub mb-4">How many of the <span id="total-projects">–</span> monitored projects the risk
+          model could assess.</p>
 
         <div id="summary-error" class="alert alert-warning" role="alert" hidden>
           Couldn't load the prediction summary. Refresh the page to try again.
@@ -92,7 +120,8 @@
                   <span><span class="fs-4 fw-semibold" id="stat-predicted-pct">–</span>
                     <span class="small text-secondary">(<span id="stat-predicted-count">–</span> projects)</span></span>
                 </div>
-                <div class="progress kt-coverage-bar" role="progressbar" aria-label="Predicted projects" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress kt-coverage-bar" role="progressbar" aria-label="Predicted projects"
+                  aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                   <div class="progress-bar kt-fill-predicted" id="bar-predicted"></div>
                 </div>
                 <p class="small text-secondary mt-1 mb-0">Enough good-quality data to calculate time and cost risk.</p>
@@ -104,7 +133,8 @@
                   <span><span class="fs-4 fw-semibold" id="stat-tytp-pct">–</span>
                     <span class="small text-secondary">(<span id="stat-tytp-count">–</span> projects)</span></span>
                 </div>
-                <div class="progress kt-coverage-bar" role="progressbar" aria-label="Too young to predict projects" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress kt-coverage-bar" role="progressbar" aria-label="Too young to predict projects"
+                  aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                   <div class="progress-bar kt-fill-tytp" id="bar-tytp"></div>
                 </div>
                 <p class="small text-secondary mt-1 mb-0">Only a few days of data so far.</p>
@@ -140,26 +170,31 @@
           <div class="card-body p-3 p-md-4">
             <form id="projects-filter-form" role="search" aria-label="Filter projects">
               <div class="row g-3 align-items-end">
-                
+
                 <!-- Search Field (Name & Code) -->
                 <div class="col-12 col-md-4">
                   <label for="filter-search" class="form-label small fw-semibold text-secondary mb-1">Search</label>
                   <div class="input-group">
                     <span class="input-group-text bg-body text-secondary border-end-0">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                       </svg>
                     </span>
-                    <input type="search" id="filter-search" class="form-control border-start-0" placeholder="Project name or @code:code…" aria-label="Filter by project name or code">
+                    <input type="search" id="filter-search" class="form-control border-start-0"
+                      placeholder="Project name or @code:code…" aria-label="Filter by project name or code">
                   </div>
                 </div>
 
                 <div id="field_cont" class="col-12 col-sm-6 col-md-3">
-                  <label for="filter_type" class="form-label small fw-semibold text-secondary mb-1">Select Filter Field</label>
+                  <label for="filter_type" class="form-label small fw-semibold text-secondary mb-1">Select Filter
+                    Field</label>
                   <select id="filter_type" class="form-select" aria-label="Filter by State or Department">
                     <option value="" selected>No Filter</option>
                     <option value="state">State</option>
                     <option value="department">Department</option>
+                    <option value="rl">Risk Level</option>
                   </select>
                 </div>
 
@@ -184,18 +219,19 @@
 
         <div class="kt-list-head px-3 py-2 d-none d-md-block" aria-hidden="true">
           <div class="row g-2">
-            <div class="col-md-1">Code</div>
-            <div class="col-md-5">Project</div>
-            <div class="col-md-2">Time risk</div>
-            <div class="col-md-2">Cost risk</div>
-            <div class="col-md-2">Combined risk</div>
+            <div class="col-md-1"><span>Code</span></div>
+            <div class="col-md-5"><span>Project</span></div>
+            <div class="col-md-2"><span>Time risk</span></div>
+            <div class="col-md-2"><span>Cost risk</span></div>
+            <div class="col-md-2"><span>Combined risk</span></div>
           </div>
         </div>
 
         <ol class="list-group kt-project-list" id="projects-list"></ol>
 
         <div id="projects-sentinel" class="kt-load-sentinel text-center py-4">
-          <div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading projects…</span></div>
+          <div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading
+              projects…</span></div>
           <span class="small text-secondary ms-2 kt-load-text">Loading additional projects&hellip;</span>
         </div>
         <div id="projects-status" class="text-center small text-secondary"></div>
@@ -210,7 +246,8 @@
   <!-- Footer -->
   <footer class="kt-footer py-4 mt-auto">
     <div class="container text-center small">
-      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span> &middot; Ministry of Statistics and Programme Implementation, Government of India</p>
+      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span> &middot; <span>Ministry of Statistics and
+          Programme Implementation, Government of India</span></p>
       <p class="mb-0 opacity-75">Built for Smart India Hackathon &middot; Problem statement 26103</p>
     </div>
   </footer>
@@ -223,18 +260,23 @@
   <script src="scripts/core.js"></script>
   <script src="scripts/index.js"></script>
   <script src="scripts/search.js"></script>
+  <script src="scripts/translate.js"></script>
   <!-- Newsletter Subscription Modal Overlay -->
-  <div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow-lg kt-modal-content">
-        
-        
+
+
 
         <div class="modal-body p-4 p-md-5 text-center">
           <div class="mb-3 text-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-envelope-paper-heart" viewBox="0 0 16 16">
-              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5a.5.5 0 0 1-1 0V2a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v2.5a.5.5 0 0 1-1 0z"/>
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.557zm.034 7.954A2 2 0 0 0 2 14h12a2 2 0 0 0 1.966-1.349l-4.72-3.852-1.28 1.047a1 1 0 0 1-1.932 0l-1.28-1.047zM16 11.801V4.697l-5.803 3.557z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+              class="bi bi-envelope-paper-heart" viewBox="0 0 16 16">
+              <path
+                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5a.5.5 0 0 1-1 0V2a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v2.5a.5.5 0 0 1-1 0z" />
+              <path
+                d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.557zm.034 7.954A2 2 0 0 0 2 14h12a2 2 0 0 0 1.966-1.349l-4.72-3.852-1.28 1.047a1 1 0 0 1-1.932 0l-1.28-1.047zM16 11.801V4.697l-5.803 3.557z" />
             </svg>
           </div>
 
@@ -246,7 +288,8 @@
           <form id="newsletter-form" novalidate>
             <div class="mb-3 text-start">
               <label for="newsletter-email" class="form-label small fw-semibold text-secondary">Email Address</label>
-              <input type="email" class="form-control form-control-lg fs-6" id="newsletter-email" placeholder="name@example.com" required>
+              <input type="email" class="form-control form-control-lg fs-6" id="newsletter-email"
+                placeholder="name@example.com" required>
               <div class="invalid-feedback">Please enter a valid email address.</div>
             </div>
 
@@ -254,7 +297,8 @@
               <button type="submit" class="btn btn-primary btn-lg fs-6 fw-semibold">
                 Subscribe Now
               </button>
-              <button type="button" class="btn btn-link btn-sm text-secondary text-decoration-none" data-bs-dismiss="modal">
+              <button type="button" class="btn btn-link btn-sm text-secondary text-decoration-none"
+                data-bs-dismiss="modal">
                 No thanks, maybe later
               </button>
             </div>
@@ -264,7 +308,9 @@
       </div>
     </div>
   </div>
-    <script src="scripts/newsletter.js"></script>
+  <script src="scripts/newsletter.js"></script>
+  <link rel="stylesheet" href="style/dark.css">    <!-- must be last -->
 
 </body>
+
 </html>

@@ -27,7 +27,7 @@ const CONFIG = {
   PREVIEW_DELAY_MS: 1000,
   REQUEST_TIMEOUT_MS: 15000,
   ANALYSIS_TIMEOUT_MS: 90000,
-  RISK_THRESHOLDS: { LOW_MAX: 30, MEDIUM_MAX: 60 },
+  RISK_THRESHOLDS: { LOW_MAX: 30, MEDIUM_MAX: 70 },
   ADMIN_ROLE: "admin",
   SESSION_KEY: "kabtak_session",
   CLIENT_ID_COOKIE: "kt_client_id",
@@ -203,7 +203,7 @@ function loadingHTML(text) {
   return `
     <div class="d-flex align-items-center gap-2 small">
       <span class="spinner-border spinner-border-sm text-primary" aria-hidden="true"></span>
-      ${escapeHTML(text)}
+      <span>${escapeHTML(text)}</span>
     </div>`;
 }
 

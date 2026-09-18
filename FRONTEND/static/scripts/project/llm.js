@@ -70,7 +70,7 @@ function listSection(title, items, accentClass = "border-primary text-primary") 
           ${items.map((item) => `
             <li class="list-group-item bg-transparent border-0 px-0 py-1 text-dark small d-flex gap-2">
               <span class="fw-bold">•</span>
-              <div>${renderJSONValue(item)}</div>
+              <div><span>${renderJSONValue(item)}</span<</div>
             </li>`).join("")}
         </ul>
       </div>

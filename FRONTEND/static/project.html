@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Details | Kab Tak</title>
   <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="scripts/theme.js">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style/theme.css">
   <link rel="stylesheet" href="style/project.css">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
   <a href="#main-content" class="visually-hidden-focusable kt-skip-link">Skip to main content</a>
@@ -24,7 +29,7 @@
         </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
@@ -32,10 +37,32 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item" data-admin-only hidden><a class="nav-link" href="upload.html">Upload projects</a></li>
         </ul>
+
+        <button type="button" class="btn btn-outline-light btn-sm kt-theme-toggle me-2" data-theme-toggle></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <!-- Translator  -->
+        <div class="logo">SIH Hackathon Website</div>
+
+        <!-- ADD IT HERE IN THE NAVBAR -->
+        <div class="lang-container">
+          <select id="languageSelector" onchange="changeWebsiteLanguage()">
+            <option value="en">English</option>
+            <option value="hi">Hindi (हिंदी)</option>
+            <option value="bn">Bengali (বাংলা)</option>
+            <option value="ur">Urdu (اردو)</option>
+          </select>
+        </div>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
         <a class="btn btn-light btn-sm px-3 fw-semibold" href="login.html" id="nav-login">Admin login</a>
-        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout" hidden>Logout</button>
+        <button type="button" class="btn btn-outline-light btn-sm px-3 fw-semibold" id="nav-logout"
+          hidden>Logout</button>
       </div>
     </div>
+
+
   </nav>
 
   <!-- Main Content Container -->
@@ -49,11 +76,11 @@
 
       <!-- Active Project View -->
       <div id="project-content" hidden>
-        
+
         <!-- Navigation Header -->
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
           <a href="index.html" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
-            <i class="bi bi-arrow-left me-1"></i> Back to Projects
+            <i class="bi bi-arrow-left me-1"></i> <span>Back to Projects</span>
           </a>
           <span id="project-id-label" class="badge text-bg-dark font-monospace fs-6 px-3 py-2">Project ID</span>
         </div>
@@ -67,14 +94,15 @@
         </div>
 
         <div class="row g-4">
-          
+
           <!-- Left Column: Details, Trends & Physical Progress -->
           <div class="col-lg-8">
-            
+
             <!-- Metadata Specifications -->
             <div class="card kt-panel mb-4">
               <div class="card-header kt-panel-header">
-                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-info-circle me-2 text-primary"></i>Project Information</h2>
+                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-info-circle me-2 text-primary"></i>Project
+                  Information</h2>
               </div>
               <div class="card-body p-4">
                 <dl id="project-facts" class="row mb-0 g-3">
@@ -86,7 +114,8 @@
             <!-- Execution Progress -->
             <div class="card kt-panel mb-4">
               <div class="card-header kt-panel-header">
-                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-bar-chart-line me-2 text-primary"></i>Physical Progress</h2>
+                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-bar-chart-line me-2 text-primary"></i>Physical
+                  Progress</h2>
               </div>
               <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -94,7 +123,8 @@
                   <span id="project-progress-value" class="fw-bold text-dark fs-5">0%</span>
                 </div>
                 <div class="progress kt-risk-meter" style="height: 12px;" aria-hidden="true">
-                  <div id="project-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="project-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
@@ -102,7 +132,8 @@
             <!-- Historical Trends Section -->
             <div class="card kt-panel mb-4">
               <div class="card-header kt-panel-header">
-                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-graph-up-arrow me-2 text-primary"></i>Historical Trends</h2>
+                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-graph-up-arrow me-2 text-primary"></i>Historical
+                  Trends</h2>
               </div>
               <div class="card-body p-4">
                 <div class="row g-4">
@@ -126,11 +157,12 @@
 
           <!-- Right Column: Risk Indicators, AI Evaluation & Community Feedback -->
           <div class="col-lg-4">
-            
+
             <!-- Risk Metrics -->
             <div class="card kt-panel mb-4">
               <div class="card-header kt-panel-header">
-                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-shield-exclamation me-2 text-warning"></i>Risk Assessment</h2>
+                <h2 class="h5 fw-bold text-dark mb-0"><i
+                    class="bi bi-shield-exclamation me-2 text-warning"></i><span>Risk Assessment</span></h2>
               </div>
               <div class="card-body p-4">
                 <div id="project-risks">
@@ -142,17 +174,23 @@
             <!-- Citizen Reviews / Community Feedback (MOVED HERE) -->
             <div class="card kt-panel mb-4">
               <div class="card-header kt-panel-header">
-                <h2 class="h5 fw-bold text-dark mb-0"><i class="bi bi-hand-thumbs-up me-2 text-primary"></i>Community Feedback</h2>
+                <h2 class="h5 fw-bold text-dark mb-0"><i
+                    class="bi bi-hand-thumbs-up me-2 text-primary"></i><span>Community Feedback</span></h2>
               </div>
               <div class="card-body p-4">
-                <p class="text-secondary small mb-3">Vote on whether official progress aligns with ground observations.</p>
+                <p class="text-secondary small mb-3">Vote on whether official progress aligns with ground observations.
+                </p>
                 <div class="d-flex flex-column flex-sm-row flex-lg-column gap-2">
-                  <button type="button" class="btn btn-outline-success w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold" data-vote="up">
-                    <i class="bi bi-hand-thumbs-up-fill"></i> Accurate
+                  <button type="button"
+                    class="btn btn-outline-success w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold"
+                    data-vote="up">
+                    <i class="bi bi-hand-thumbs-up-fill"></i> <span>Accurate</span>
                     <span id="review-up-count" class="badge text-bg-success ms-1">0</span>
                   </button>
-                  <button type="button" class="btn btn-outline-danger w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold" data-vote="down">
-                    <i class="bi bi-hand-thumbs-down-fill"></i> Delayed / Inaccurate
+                  <button type="button"
+                    class="btn btn-outline-danger w-100 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold"
+                    data-vote="down">
+                    <i class="bi bi-hand-thumbs-down-fill"></i> <span>Delayed / Inaccurate</span>
                     <span id="review-down-count" class="badge text-bg-danger ms-1">0</span>
                   </button>
                 </div>
@@ -163,10 +201,12 @@
             <!-- LLM Analysis Trigger -->
             <div class="card kt-panel-accent mb-4">
               <div class="card-body p-4">
-                <h2 class="h5 fw-bold text-primary mb-2"><i class="bi bi-cpu-fill me-2"></i>AI Risk Analysis</h2>
-                <p class="small text-secondary mb-3">Generate an automated LLM analysis evaluating delay risks and financial deviations.</p>
+                <h2 class="h5 fw-bold text-primary mb-2"><i class="bi bi-cpu-fill me-2"></i><span>AI Risk
+                    Analysis</span></h2>
+                <p class="small text-secondary mb-3">Generate an automated LLM analysis evaluating delay risks and
+                  financial deviations.</p>
                 <button type="button" id="analyse-button" class="btn btn-primary w-100 fw-semibold py-2">
-                  <i class="bi bi-stars me-2"></i>Analyze Project Risk
+                  <i class="bi bi-stars me-2"></i><span>Analyze Project Risk</span>
                 </button>
               </div>
             </div>
@@ -185,13 +225,35 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content border-0 shadow-lg kt-modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title fw-bold" id="analysisModalLabel"><i class="bi bi-robot me-2"></i>AI Project Analysis</h5>
+          <h5 class="modal-title fw-bold" id="analysisModalLabel"><i class="bi bi-robot me-2"></i><span>AI Project
+              Analysis</span></h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div id="analysis-body" class="modal-body p-4">
           <!-- Populated dynamically via project.js -->
         </div>
         <div class="modal-footer bg-light">
+          <!-- Text-to-speech controls (wired up by scripts/project/tts.js) -->
+          <div id="tts-controls" class="d-flex flex-wrap align-items-center gap-2" hidden>
+            <button type="button" id="tts-toggle" class="btn btn-outline-primary btn-sm fw-semibold"
+              aria-pressed="false">
+              <i class="bi bi-volume-up-fill me-1" aria-hidden="true"></i>Listen
+            </button>
+
+            <button type="button" id="tts-stop" class="btn btn-outline-secondary btn-sm" aria-label="Stop reading"
+              hidden>
+              <i class="bi bi-stop-fill" aria-hidden="true"></i>
+            </button>
+
+            <select id="tts-rate" class="form-select form-select-sm w-auto" aria-label="Reading speed">
+              <option value="0.8">0.8x</option>
+              <option value="1" selected>1x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+            </select>
+
+            <span id="tts-status" class="small text-secondary" role="status" aria-live="polite"></span>
+          </div>
           <button type="button" class="btn btn-success fw-semibold" data-bs-dismiss="modal">OK</button>
         </div>
       </div>
@@ -201,18 +263,25 @@
   <!-- Footer -->
   <footer class="kt-footer py-4 mt-auto">
     <div class="container text-center small">
-      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span> &middot; Ministry of Statistics and Programme Implementation, Government of India</p>
+      <p class="mb-1"><span class="kt-footer-title fw-semibold">Kab Tak</span> &middot; <span>Ministry of Statistics and
+          Programme Implementation, Government of India</span></p>
       <p class="mb-0 opacity-75">Built for Smart India Hackathon &middot; Problem statement 26103</p>
     </div>
   </footer>
 
   <script src="bootstrap/bootstrap.bundle.min.js"></script>
   <script src="bootstrap/chart.umd.js"></script>
-  
+
   <script src="scripts/core.js"></script>
   <script src="scripts/project/graph.js"></script>
   <script src="scripts/project/project.js"></script>
   <script src="scripts/project/votes.js"></script>
   <script src="scripts/project/llm.js"></script>
+  <script src="scripts/translate.js"></script>
+  <script src="scripts/project/tts.js"></script>
+
+  <link rel="stylesheet" href="style/dark-project.css">
+
 </body>
+
 </html>

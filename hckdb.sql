@@ -1,8 +1,4 @@
-DROP DATABASE IF EXISTS hckdb;
-CREATE DATABASE IF NOT EXISTS hckdb;
-USE hckdb;
-
-CREATE TABLE IF NOT EXISTS master (
+CREATE TABLE master (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     code INT,
     name VARCHAR(512) NOT NULL,
@@ -19,7 +15,7 @@ CREATE TABLE IF NOT EXISTS master (
     report_date VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS projects (
+CREATE TABLE  projects (
     code INT NOT NULL,
     name VARCHAR(1024) NOT NULL,
     status_cost VARCHAR(8) NOT NULL,

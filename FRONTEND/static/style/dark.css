@@ -1,0 +1,261 @@
+/* =========================================================================
+   Kab Tak – dark.css
+   Dark mode for the whole site. Load it LAST on every page (after theme.css
+   and the page's own stylesheet).
+
+   How it works
+   - theme.js sets data-bs-theme="dark" | "light" on <html>.
+   - Bootstrap 5.3 already knows how to render data-bs-theme="dark"; this file
+     re-tints Bootstrap's variables to the Kab Tak navy palette, swaps the
+     --kt-* tokens, and fixes the places where the other stylesheets use
+     hard-coded colours (#fff, navy text, text-dark, bg-light...).
+   - Everything is scoped to html[data-bs-theme="dark"] on purpose. The navbar
+     carries its own data-bs-theme="dark" so it can stay navy in light mode;
+     scoping to <html> stops these overrides from touching it.
+   - Navbar, hero and footer are already dark surfaces, so they are unchanged.
+   ========================================================================= */
+
+/* ===================== 1. TOKENS ===================== */
+html[data-bs-theme="dark"] {
+  color-scheme: dark;
+
+  /* Neutrals */
+  --kt-surface: #0c1422;
+  --kt-surface-alt: #121d30;
+  --kt-panel: #172338;
+  --kt-border: #26354f;
+  --kt-border-strong: #364b6c;
+  --kt-text: #e4ebf5;
+  --kt-text-secondary: #a6b4c8;
+  --kt-text-muted: #8797ae;
+  --kt-heading: #f2f6fc;
+
+  /* Brighter blues for text/links on dark surfaces */
+  --kt-blue-accent: #7db4ee;
+
+  /* Risk system: tuned so white badge text and coloured text both stay legible */
+  --kt-risk-low: #2a9457;
+  --kt-risk-low-rgb: 42, 148, 87;
+  --kt-risk-medium: #d99a1c;
+  --kt-risk-medium-rgb: 217, 154, 28;
+  --kt-risk-high: #dc4a45;
+  --kt-risk-high-rgb: 220, 74, 69;
+
+  /* Chart legend colours (index.css) */
+  --kt-predicted: #2fa862;
+  --kt-tbtp: #e0913a;
+  --kt-tytp: #8d9bb3;
+
+  /* Shadows read as depth, not glow, on dark */
+  --kt-shadow-sm: 0 1px 2px rgba(0, 0, 0, .45);
+  --kt-shadow-md: 0 8px 24px rgba(0, 0, 0, .40);
+  --kt-shadow-lg: 0 18px 44px rgba(0, 0, 0, .55);
+
+  /* ---- Bootstrap variables (must be re-declared: theme.css sets them on :root) ---- */
+  --bs-body-color: var(--kt-text);
+  --bs-body-color-rgb: 228, 235, 245;
+  --bs-body-bg: var(--kt-surface);
+  --bs-body-bg-rgb: 12, 20, 34;
+  --bs-emphasis-color: #fff;
+  --bs-emphasis-color-rgb: 255, 255, 255;
+  --bs-border-color: var(--kt-border);
+  --bs-secondary-color: var(--kt-text-secondary);
+  --bs-secondary-bg: var(--kt-surface-alt);
+  --bs-tertiary-bg: var(--kt-surface-alt);
+  --bs-tertiary-bg-rgb: 18, 29, 48;
+  --bs-tertiary-color: var(--kt-text-muted);
+
+  --bs-primary-text-emphasis: #9cc6f2;
+  --bs-primary-bg-subtle: #14294a;
+  --bs-primary-border-subtle: #22467a;
+
+  --bs-success-text-emphasis: #7fd3a1;
+  --bs-success-bg-subtle: #0f2c1c;
+  --bs-success-border-subtle: #1c5a37;
+
+  --bs-warning-text-emphasis: #f2c86b;
+  --bs-warning-bg-subtle: #33260a;
+  --bs-warning-border-subtle: #66490f;
+
+  --bs-danger-text-emphasis: #f0a19d;
+  --bs-danger-bg-subtle: #3a1614;
+  --bs-danger-border-subtle: #6d2723;
+
+  --bs-info-text-emphasis: #9fd0f5;
+  --bs-info-bg-subtle: #0f2740;
+  --bs-info-border-subtle: #1f4a75;
+
+  --bs-link-color: var(--kt-blue-accent);
+  --bs-link-color-rgb: 125, 180, 238;
+  --bs-link-hover-color: #b0d3f6;
+  --bs-link-hover-color-rgb: 176, 211, 246;
+}
+
+/* ===================== 2. BOOTSTRAP COMPONENTS ===================== */
+html[data-bs-theme="dark"] .btn-outline-primary {
+  --bs-btn-color: var(--kt-blue-accent);
+  --bs-btn-border-color: var(--kt-blue-accent);
+  --bs-btn-hover-color: #08111f;
+  --bs-btn-hover-bg: var(--kt-blue-accent);
+  --bs-btn-hover-border-color: var(--kt-blue-accent);
+  --bs-btn-active-color: #08111f;
+  --bs-btn-active-bg: #a6cbf3;
+  --bs-btn-active-border-color: #a6cbf3;
+  --bs-btn-disabled-color: var(--kt-blue-accent);
+  --bs-btn-disabled-border-color: var(--kt-blue-accent);
+}
+
+html[data-bs-theme="dark"] .btn-outline-secondary {
+  --bs-btn-color: var(--kt-text-secondary);
+  --bs-btn-border-color: var(--kt-border-strong);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--kt-border-strong);
+  --bs-btn-hover-border-color: var(--kt-border-strong);
+}
+
+html[data-bs-theme="dark"] .btn-outline-success {
+  --bs-btn-color: #4cc27e;
+  --bs-btn-border-color: #2a9457;
+}
+html[data-bs-theme="dark"] .btn-outline-danger {
+  --bs-btn-color: #f07873;
+  --bs-btn-border-color: #dc4a45;
+}
+
+html[data-bs-theme="dark"] .btn-outline-dark {
+  --bs-btn-color: var(--kt-text);
+  --bs-btn-border-color: var(--kt-border-strong);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--kt-border-strong);
+  --bs-btn-hover-border-color: var(--kt-border-strong);
+}
+
+html[data-bs-theme="dark"] .form-control:focus,
+html[data-bs-theme="dark"] .form-select:focus,
+html[data-bs-theme="dark"] .form-check-input:focus {
+  border-color: var(--kt-blue-accent);
+  box-shadow: 0 0 0 .2rem rgba(125, 180, 238, .25);
+}
+
+html[data-bs-theme="dark"] .spinner-border.text-primary { color: var(--kt-blue-accent) !important; }
+
+html[data-bs-theme="dark"] .card {
+  --bs-card-bg: var(--kt-panel);
+  --bs-card-border-color: var(--kt-border);
+  --bs-card-cap-bg: var(--kt-surface-alt);
+}
+
+html[data-bs-theme="dark"] .modal-content {
+  background-color: var(--kt-panel);
+  border: 1px solid var(--kt-border) !important;
+}
+html[data-bs-theme="dark"] .modal-footer { border-top-color: var(--kt-border); }
+
+/* Utility classes used in the markup that assume a light page */
+html[data-bs-theme="dark"] .text-dark { color: var(--kt-heading) !important; }
+html[data-bs-theme="dark"] .text-primary { color: var(--kt-blue-accent) !important; }
+html[data-bs-theme="dark"] .bg-light { background-color: var(--kt-surface-alt) !important; }
+html[data-bs-theme="dark"] .bg-body { background-color: var(--kt-panel) !important; }
+html[data-bs-theme="dark"] .text-bg-dark {
+  color: var(--kt-heading) !important;
+  background-color: var(--kt-border-strong) !important;
+}
+html[data-bs-theme="dark"] .text-bg-light {
+  color: var(--kt-text) !important;
+  background-color: var(--kt-border) !important;
+}
+
+/* ===================== 3. SHARED COMPONENTS (theme.css) ===================== */
+html[data-bs-theme="dark"] .kt-section-title { color: var(--kt-heading); }
+
+html[data-bs-theme="dark"] .kt-panel-accent {
+  background: linear-gradient(135deg, var(--bs-primary-bg-subtle) 0%, var(--kt-panel) 75%);
+  border-left-color: var(--kt-blue-accent);
+}
+
+html[data-bs-theme="dark"] .kt-skip-link { background: var(--kt-panel); color: var(--kt-heading); }
+
+/* ===================== 4. INDEX ===================== */
+html[data-bs-theme="dark"] .kt-eyebrow { color: var(--kt-blue-accent); }
+
+html[data-bs-theme="dark"] .kt-filter-card .input-group-text { background-color: var(--kt-panel) !important; }
+
+html[data-bs-theme="dark"] .kt-project-item:hover,
+html[data-bs-theme="dark"] .kt-project-item:focus-within { background-color: #1d2c46; }
+
+/* ===================== 5. LOGIN ===================== */
+html[data-bs-theme="dark"] .kt-auth-card .form-label { color: var(--kt-heading); }
+
+html[data-bs-theme="dark"] .kt-info-chip-icon {
+  background: var(--kt-panel);
+  color: var(--kt-blue-accent);
+}
+
+html[data-bs-theme="dark"] .kt-field-input:focus {
+  background-color: var(--kt-panel);
+  border-color: var(--kt-blue-accent);
+  box-shadow: 0 0 0 .2rem rgba(125, 180, 238, .25);
+}
+
+html[data-bs-theme="dark"] .kt-field:focus-within .kt-field-icon,
+html[data-bs-theme="dark"] .kt-field-toggle:hover,
+html[data-bs-theme="dark"] .kt-back-link:hover { color: var(--kt-blue-accent) !important; }
+
+/* ===================== 6. UPLOAD ===================== */
+html[data-bs-theme="dark"] .kt-upload-card .form-label { color: var(--kt-heading); }
+
+html[data-bs-theme="dark"] .kt-field-file:focus-within {
+  background-color: var(--kt-panel);
+  border-color: var(--kt-blue-accent);
+  box-shadow: 0 0 0 .2rem rgba(125, 180, 238, .25);
+}
+html[data-bs-theme="dark"] .kt-field-file:hover { border-color: var(--kt-blue-accent); }
+html[data-bs-theme="dark"] .kt-field-file-icon { color: var(--kt-blue-accent); }
+html[data-bs-theme="dark"] .kt-field-file-title { color: var(--kt-heading); }
+html[data-bs-theme="dark"] .kt-field-file:has(.kt-dropzone:valid) .kt-field-file-icon { color: #4cc27e; }
+
+html[data-bs-theme="dark"] .kt-dropzone { background-color: var(--kt-surface-alt); }
+
+/* Native calendar icon: invert to white in dark mode */
+html[data-bs-theme="dark"] #reporting_month::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(.75);
+}
+
+/* ===================== 7. PROJECT PAGE ===================== */
+html[data-bs-theme="dark"] [data-vote].btn-outline-success:hover {
+  background-color: var(--bs-success-bg-subtle);
+  border-color: #2a9457;
+  color: #4cc27e;
+}
+html[data-bs-theme="dark"] [data-vote].btn-outline-danger:hover {
+  background-color: var(--bs-danger-bg-subtle);
+  border-color: #dc4a45;
+  color: #f07873;
+}
+
+/* ===================== 8. THEME TOGGLE BUTTON ===================== */
+.kt-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  line-height: 1;
+}
+.kt-theme-toggle svg { width: 1rem; height: 1rem; fill: currentColor; }
+
+/* Smooth colour change only when the user flips the switch (theme.js adds this
+   class for ~300ms), so it never animates on page load. */
+html.kt-theme-transition,
+html.kt-theme-transition *,
+html.kt-theme-transition *::before,
+html.kt-theme-transition *::after {
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.kt-theme-transition,
+  html.kt-theme-transition *,
+  html.kt-theme-transition *::before,
+  html.kt-theme-transition *::after { transition: none !important; }
+}
