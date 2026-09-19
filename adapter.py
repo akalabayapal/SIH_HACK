@@ -364,11 +364,15 @@ class ORM:
         query_customer = "INSERT INTO review (code) VALUES (%s);"
         for data in tqdm.tqdm(cost_model):
             code = data[1] # get the codes
-            self.cursor.execute(query_customer,(code,))
+            try:
+                self.cursor.execute(query_customer,(code,))
+            except:
+                pass
+  
         self.db_connection.commit()
         print("[+] Processing completed for the `review`...")
 
-
+      
         self.db_connection.commit()
         print("[+] Processing Completed")
 
