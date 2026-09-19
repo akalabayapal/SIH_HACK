@@ -1,10 +1,16 @@
-# 🌿 KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM) — Project Monitoring & Risk Prediction
+# 🌿 KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)
 
-**KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)** is an integrated project monitoring and risk prediction platform developed for the **Smart India Hackathon (SIH)**.
+![Python](https://img.shields.io/badge/python-3.8%20to%203.13-blue)
+![Database](https://img.shields.io/badge/database-MySQL-orange)
+![Hackathon](https://img.shields.io/badge/Smart%20India%20Hackathon-PS--26103-green)
 
-It combines project monitoring, machine learning, AI-powered analysis, and risk prediction to help identify potential **cost, schedule, and overall project risks**.
+**KAB TAK** is an integrated project monitoring and risk prediction platform built for the **Smart India Hackathon (SIH)**, **Problem Statement PS-26103**.
 
-### Key Features
+It combines project monitoring, machine learning, and AI-powered analysis to identify potential **cost, schedule, and overall project risks** early, and to notify stakeholders before they become problems.
+
+---
+
+## ✨ Key Features
 
 * 📊 Project monitoring and progress tracking
 * 💰 Cost-risk prediction
@@ -15,38 +21,37 @@ It combines project monitoring, machine learning, AI-powered analysis, and risk 
 * 📧 Email notifications
 * 🗄️ MySQL database
 * 🌐 Integrated frontend and backend
+* 🌍 Multilingual support: Hindi, Bengali, and Urdu
+* 🌙 Dark mode
 
 ---
 
-## 🛠️ Requirements
+## 🛠️ Prerequisites
 
-Install the following before running the project:
+| Requirement | Details |
+| ----------- | ------- |
+| **Python** | Version **3.8 to 3.13** (above 3.7) |
+| **MySQL** | Installed and running |
+| **Gemini API key** | Required for AI-powered insights |
+| **Email/SMTP account** | Used for application emails |
 
-* **Python 3.10+**
-* **MySQL** — must be installed and running
-* A **Gemini API key**
-* An **email/SMTP account** for application emails
-
-Check Python:
+Check your Python version:
 
 ```bash
 python --version
 ```
 
+> ⚠️ Python 3.7 and older is **not supported**.
+
+> ⚠️ Python 3.13 and newer is **not supported**.
+
 ---
 
 ## 📥 Installation
 
-Clone the repository:
-
 ```bash
 git clone https://github.com/akalabayapal/SIH_HACK.git
 cd SIH_HACK
-```
-
-Install the Python dependencies:
-
-```bash
 pip install -r requirements.txt
 ```
 
@@ -54,15 +59,7 @@ pip install -r requirements.txt
 
 ## ⚙️ Configuration
 
-Open:
-
-```text
-config.json
-```
-
-Configure your MySQL, Gemini, and email credentials.
-
-Example:
+Open `config.json` and fill in your MySQL, Gemini, and email credentials:
 
 ```json
 {
@@ -97,65 +94,30 @@ Example:
 }
 ```
 
-### Required values
+### Values you must set
 
-| Configuration     | Description                           |
-| ----------------- | ------------------------------------- |
-| `host`            | MySQL host                            |
-| `port`            | MySQL port, normally `3306`           |
-| `user`            | MySQL username                        |
-| `password`        | MySQL password                        |
-| `database`        | Database name, normally `hckdb`       |
-| `gemini_key`      | Gemini API key                        |
-| `sender_email`    | Email address used by the application |
-| `sender_password` | Email/SMTP password or app password   |
+| Key | Description |
+| --- | ----------- |
+| `host`, `port` | MySQL host and port (normally `localhost` / `3306`) |
+| `user`, `password` | MySQL username and password |
+| `database` | Database name (normally `hckdb`) |
+| `gemini_key` | Your Gemini API key |
+| `admin_user`, `admin_pwd` | Admin login for the application (change the default password) |
+| `sender_email` | Email address the application sends from |
+| `sender_password` | Email/SMTP password (for Gmail, an **App Password** may be required) |
 
-> ⚠️ **Never commit real passwords, API keys, or other credentials to GitHub.**
+The remaining keys (ports, data paths) work with their defaults. Backend and frontend ports can be changed via `port_backend` and `port_frontend`.
 
-### MySQL
+### Notes
 
-MySQL must be installed and running before starting KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM).
-
-**You do not need to manually create the database or import `hckdb.sql`.** The project's Python scripts automatically create and initialize the required database and tables.
-
-### Gemini
-
-Provide a valid Gemini API key:
-
-```json
-"gemini_key": "YOUR_GEMINI_API_KEY"
-```
-
-### Email
-
-Provide the email account used by the application:
-
-```json
-"sender_email": "YOUR_EMAIL_ADDRESS",
-"sender_password": "YOUR_EMAIL_PASSWORD"
-```
-
-For Gmail, an **App Password** may be required depending on your account's security settings.
+* **Database:** you do **not** need to create the database or import `hckdb.sql` manually. The project scripts create and initialize the database and tables automatically. MySQL only needs to be running.
+* **Machine learning:** keep `"is_trained": false` for the first run. The ML/data-processing pipeline runs automatically, so the **first startup may take longer**.
 
 ---
 
-## 🧠 Machine Learning
+## ▶️ Running the Project
 
-The default configuration is:
-
-```json
-"is_trained": false
-```
-
-This allows the application to perform the required ML/data-processing pipeline during the initial run.
-
-> ⏳ The first startup may take longer while the required processing/training is completed.
-
----
-
-## ▶️ Running KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)
-
-Once MySQL is running and `config.json` is configured, simply run:
+Make sure MySQL is running and `config.json` is configured, then:
 
 ```bash
 python run.py
@@ -167,29 +129,26 @@ On Windows:
 py run.py
 ```
 
-That's all.
+`run.py` starts everything automatically: database setup, ML pipeline, backend, and frontend. You do not need to start any of them manually.
 
-**You do not need to manually start the frontend, backend, ML pipeline, or database setup scripts.**
-
-`run.py` handles the required startup processes automatically.
+**Default addresses:** Backend on port `3000`, Frontend on port `8000`.
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)/
-│
-├── BACKEND/              # Backend/API
-├── FRONTEND/             # User interface
-├── ML/                   # Machine-learning components
-├── run.py                # Main application entry point
-├── pipeline.py           # ML/data pipeline
-├── config.json           # Application configuration
-├── config_loader.py      # Configuration loader
-├── db_setup.py           # Automatic database initialization
-├── hckdb.sql             # Database schema
-├── requirements.txt      # Python dependencies
+SIH_HACK/
+├── BACKEND/            # Backend / API
+├── FRONTEND/           # User interface
+├── ML/                 # Machine-learning components
+├── run.py              # Main entry point
+├── pipeline.py         # ML / data pipeline
+├── config.json         # Application configuration
+├── config_loader.py    # Configuration loader
+├── db_setup.py         # Automatic database initialization
+├── hckdb.sql           # Database schema
+├── requirements.txt    # Python dependencies
 └── README.md
 ```
 
@@ -197,72 +156,20 @@ KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)/
 
 ## 🔧 Troubleshooting
 
-### MySQL connection error
-
-Check that:
-
-* MySQL is installed and running.
-* `host` and `port` are correct.
-* The username and password are correct.
-* The MySQL user has the required permissions.
-
-### Gemini API error
-
-Verify:
-
-```json
-"gemini_key": "YOUR_GEMINI_API_KEY"
-```
-
-and make sure the API key is valid.
-
-### Email error
-
-Verify:
-
-```json
-"sender_email": "YOUR_EMAIL_ADDRESS",
-"sender_password": "YOUR_EMAIL_PASSWORD"
-```
-
-Check that your email provider allows SMTP access and use an App Password if required.
-
-### Missing Python package
-
-Run:
-
-```bash
-pip install -r requirements.txt
-```
-
-Then:
-
-```bash
-python run.py
-```
-
-### Port already in use
-
-The default ports are:
-
-```text
-Backend:  3000
-Frontend: 8000
-```
-
-They can be changed in `config.json`.
+| Problem | What to check |
+| ------- | ------------- |
+| **MySQL connection error** | MySQL is running; `host`, `port`, `user`, and `password` are correct; the user has the required permissions |
+| **Gemini API error** | `gemini_key` is present and valid |
+| **Email error** | `sender_email` and `sender_password` are correct; your provider allows SMTP access; use an App Password if required |
+| **Missing Python package** | Run `pip install -r requirements.txt`, then `python run.py` again |
+| **Installation or import errors** | Confirm your Python version is between 3.8 and 3.13 (`python --version`) |
+| **Port already in use** | Change `port_backend` or `port_frontend` in `config.json` |
 
 ---
 
 ## 🔐 Security
 
-Do not commit sensitive information such as:
-
-* MySQL passwords
-* Gemini API keys
-* Email passwords
-* Admin passwords
-* SMTP credentials
+Never commit real credentials to GitHub, including MySQL passwords, Gemini API keys, email/SMTP passwords, and admin passwords. Keep `config.json` values as placeholders in the repository.
 
 For production deployments, use environment variables or a secure secret-management system.
 
@@ -270,22 +177,4 @@ For production deployments, use environment variables or a secure secret-managem
 
 ## 🏆 Smart India Hackathon
 
-**KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM)** was developed as part of the **Smart India Hackathon (SIH)** to provide an intelligent platform for project monitoring, risk prediction, and AI-assisted project analysis.
-
----
-
-## 🚀 Quick Reference
-
-```bash
-git clone https://github.com/akalabayapal/SIH_HACK.git
-cd SIH_HACK
-pip install -r requirements.txt
-```
-
-Configure `config.json`, make sure MySQL is running, and then:
-
-```bash
-python run.py
-```
-
-> **Configure once → Start MySQL → Run `python run.py` → KAB TAK (PAIMANA AI MONITORING AND NOTFY SYSTEM) starts.** 🚀
+Developed for the **Smart India Hackathon (SIH)**, **Problem Statement PS-26103**, to provide an intelligent platform for project monitoring, risk prediction, and AI-assisted project analysis.
