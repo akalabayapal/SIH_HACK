@@ -1,0 +1,17 @@
+/* =========================================================================
+   Kab Tak – dark-project.css
+   Dark-mode overrides for the project detail page (project.html).
+   Load after dark.css (shared) and the page's own stylesheet.
+   Scoped to html[data-bs-theme="dark"].
+   ========================================================================= */
+
+html[data-bs-theme="dark"] [data-vote].btn-outline-success:hover {
+  background-color: var(--bs-success-bg-subtle);
+  border-color: #2a9457;
+  color: #4cc27e;
+}
+html[data-bs-theme="dark"] [data-vote].btn-outline-danger:hover {
+  background-color: var(--bs-danger-bg-subtle);
+  border-color: #dc4a45;
+  color: #f07873;
+}

@@ -1,0 +1,25 @@
+/* =========================================================================
+   Kab Tak – dark-upload.css
+   Dark-mode overrides for the admin upload page (upload.html).
+   Load after dark.css (shared) and the page's own stylesheet.
+   Scoped to html[data-bs-theme="dark"].
+   ========================================================================= */
+
+html[data-bs-theme="dark"] .kt-upload-card .form-label { color: var(--kt-heading); }
+
+html[data-bs-theme="dark"] .kt-field-file:focus-within {
+  background-color: var(--kt-panel);
+  border-color: var(--kt-blue-accent);
+  box-shadow: 0 0 0 .2rem rgba(125, 180, 238, .25);
+}
+html[data-bs-theme="dark"] .kt-field-file:hover { border-color: var(--kt-blue-accent); }
+html[data-bs-theme="dark"] .kt-field-file-icon { color: var(--kt-blue-accent); }
+html[data-bs-theme="dark"] .kt-field-file-title { color: var(--kt-heading); }
+html[data-bs-theme="dark"] .kt-field-file:has(.kt-dropzone:valid) .kt-field-file-icon { color: #4cc27e; }
+
+html[data-bs-theme="dark"] .kt-dropzone { background-color: var(--kt-surface-alt); }
+
+/* Native calendar icon: invert to white in dark mode */
+html[data-bs-theme="dark"] #reporting_month::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(.75);
+}

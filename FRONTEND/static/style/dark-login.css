@@ -1,0 +1,23 @@
+/* =========================================================================
+   Kab Tak – dark-login.css
+   Dark-mode overrides for the admin login page (login.html).
+   Load after dark.css (shared) and the page's own stylesheet.
+   Scoped to html[data-bs-theme="dark"].
+   ========================================================================= */
+
+html[data-bs-theme="dark"] .kt-auth-card .form-label { color: var(--kt-heading); }
+
+html[data-bs-theme="dark"] .kt-info-chip-icon {
+  background: var(--kt-panel);
+  color: var(--kt-blue-accent);
+}
+
+html[data-bs-theme="dark"] .kt-field-input:focus {
+  background-color: var(--kt-panel);
+  border-color: var(--kt-blue-accent);
+  box-shadow: 0 0 0 .2rem rgba(125, 180, 238, .25);
+}
+
+html[data-bs-theme="dark"] .kt-field:focus-within .kt-field-icon,
+html[data-bs-theme="dark"] .kt-field-toggle:hover,
+html[data-bs-theme="dark"] .kt-back-link:hover { color: var(--kt-blue-accent) !important; }
